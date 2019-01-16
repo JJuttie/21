@@ -46,15 +46,15 @@ def login():
     if request.method == "POST":
 
         # ensure username was submitted
-        if not request.form.get("username"):
-            return apology("must provide username")
+        if not request.form.get("email"):
+            return apology("must provide email")
 
         # ensure password was submitted
         elif not request.form.get("password"):
             return apology("must provide password")
 
         # query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
+        rows = db.execute("SELECT * FROM users WHERE email = :email", email=request.form.get("email"))
 
         # ensure username exists and password is correct
         if len(rows) != 1 or not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
