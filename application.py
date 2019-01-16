@@ -126,7 +126,7 @@ def register():
         #nu ingelogd:
         session["user-id"] = gebruiker
         # redirect user to home page
-        return redirect(url_for("recipe"))
+        return render_template("recipe.html")
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -188,7 +188,7 @@ def recipe():
         bio=request.form.get("bio"), tags=request.form.get("tags"))
 
         # redirect user to home page
-        return render_template("index.html")
+        return render_template("login.html")
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
