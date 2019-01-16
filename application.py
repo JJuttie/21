@@ -118,14 +118,14 @@ def register():
         email=request.form.get("email"), name=request.form.get("name"),
         town=request.form.get("town"), hash=password)
 
-        #gebruikersnaampie al in gebruik
+        #email al in gebruik
         if not gebruiker:
             return apology("eMail has already been used")
 
         #nu ingelogd:
         session["user-id"] = gebruiker
         # redirect user to home page
-        return redirect(url_for("index"))
+        return redirect(url_for("recipe"))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
