@@ -18,6 +18,7 @@ Onze doelstelling is het samenbrengen van kookliefhebbers die elkaar graag hun g
 maar ook nieuwe mensen te laten ontmoeten. Op onze website komt men namelijk in contact met andere kookliefhebbers die misschien naast het leren
 van een nieuw gerecht, ook wel zin hebben in een leuke tijd met een andere hobbyist. Het is belangrijk dat onze site een leuke interactie biedt.
 Dat hopen wij met de Tinder-layout te gaan bereiken.
+
 ## Features
 -   Registratie-pagina
 	-   Invullen van naam, wachtwoord, email, andere gegevens (additional)
@@ -72,3 +73,8 @@ API:
 ### Concurrerende sites
 -   [https://www.ylona.nl](https://www.ylona.nl)
 -   [https://www.tinder.com](https://www.tinder.com)
+
+### Moeilijkheden
+De moeilijkste elementen zullen te maken hebben met het uploaden van de afbeeldingen en/of gifs. Daarnaast moeten we veel tijd steken in het
+uitzoeken hoe we matchende gebruikers ontdekken. We zullen met id's moeten gaan werken en wanneer er een wederzijdse like is, moeten wij een
+match maken.
