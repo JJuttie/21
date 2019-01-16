@@ -152,3 +152,7 @@ def password():
 
     else:
         return render_template("password.html")
+
+@app.route("/recipe", methods=["GET", "POST"])
+@login_required
+recipe()
