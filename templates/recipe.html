@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Register
+    Recipe
 {% endblock %}
 
 {% block main %}
-    <form action="{{ url_for('register') }}" method="post">
+    <form action="{{ url_for('recipe) }}" method="post">
         <fieldset>
             <form action="upload.php" method="post">
                 <input type="file" name="image" id="file"/>
