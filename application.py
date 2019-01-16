@@ -3,6 +3,7 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
+import tkMessageBox
 
 from helpers import *
 
@@ -47,7 +48,7 @@ def login():
 
         # ensure username was submitted
         if not request.form.get("email"):
-            return apology("must provide email")
+            tkMessageBox.showinfo(title="Greetings", message="Hello World!")
 
         # ensure password was submitted
         elif not request.form.get("password"):
