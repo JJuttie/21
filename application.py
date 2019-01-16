@@ -34,7 +34,7 @@ db = SQL("sqlite:///finance.db")
 
 @app.route("/")
 @login_required
-def index():
+def ():
     #alle aandelen met aantallen
     dingetjes = db.execute("SELECT symbol, shares \
     FROM portfolio WHERE id=:id", id=session["user_id"])
@@ -49,7 +49,7 @@ def index():
         current_price = current_price["price"]
         total_price = shares * current_price
         alles += total_price
-        #nieuwste prijs wordt toegevoegd om hem vervolgens zometeen weer terug te halen naar index.html
+        #nieuwste prijs wordt toegevoegd om hem vervolgens zometeen weer terug te halen naar .html
         db.execute("UPDATE portfolio SET price=:price, \
         total_price=:total_price WHERE id=:id AND symbol=:symbol",
         price=usd(current_price),
@@ -67,7 +67,7 @@ def index():
     WHERE id=:id", id=session["user_id"])
 
     #stuur de aandelen, cash en portefeuille waarde mee
-    return render_template("index.html", resultaten=resultaten,
+    return render_template("browse.html", resultaten=resultaten,
     cash_niveau=cash_niveau[0]["cash"], portefeuille_waarde=portefeuille_waarde)
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -133,7 +133,7 @@ def buy():
             shares=totaal_aantal, id=session["user_id"],
             symbol=aandeel_info["symbol"])
 
-        return redirect(url_for("index"))
+        return redirect(url_for("browse"))
 
     else:
         return render_template("buy.html")
@@ -177,7 +177,7 @@ def login():
         session["user_id"] = rows[0]["id"]
 
         # redirect user to home page
-        return redirect(url_for("index"))
+        return redirect(url_for(""))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -245,7 +245,7 @@ def register():
         #nu ingelogd:
         session["user-id"] = gebruiker
         # redirect user to home page
-        return redirect(url_for("index"))
+        return redirect(url_for(""))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -306,7 +306,7 @@ def sell():
             WHERE id=:id AND symbol=:symbol", shares=nieuw_shares,
             id=session["user_id"], symbol=request.form.get("symbol"))
 
-        return redirect(url_for("index"))
+        return redirect(url_for(""))
 
     else:
         #keuzelijst meegeven voor de select op sell.html
@@ -331,7 +331,7 @@ def money():
         db.execute("UPDATE users SET cash = cash + :money WHERE \
         id=:id", money=money, id=session["user_id"])
 
-        return redirect(url_for("index"))
+        return redirect(url_for(""))
 
     else:
         return render_template("money.html")
@@ -358,7 +358,7 @@ def password():
         db.execute("UPDATE users SET hash =:hash WHERE \
         id=:id", id=session["user_id"], hash=pwd_context.hash(request.form.get("confirmation")))
 
-        return redirect(url_for("index"))
+        return redirect(url_for(""))
 
     else:
         return render_template("password.html")
