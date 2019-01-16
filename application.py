@@ -112,6 +112,11 @@ def register():
         elif request.form.get("password") != request.form.get("confirmation"):
             return apology("wachtwoorden zijn niet gelijk aan elkaar")
 
+        emails = db.execute("SELECT email FROM users")
+        for email in emails:
+            if email == request.form.get("email"):
+                return apology("eMail has already been used")
+
         #wachtwoord encrypten
         password=pwd_context.hash(request.form.get("password"))
 
