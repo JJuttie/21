@@ -66,7 +66,7 @@ def login():
         session["user_id"] = rows[0]["id"]
 
         # redirect user to home page
-        return render_template("recipe.html")
+        return render_template("index.html")
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
