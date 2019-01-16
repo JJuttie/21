@@ -34,7 +34,7 @@ db = SQL("sqlite:///finance.db")
 
 @app.route("/")
 @login_required
-def ():
+def index():
     #alle aandelen met aantallen
     dingetjes = db.execute("SELECT symbol, shares \
     FROM portfolio WHERE id=:id", id=session["user_id"])
