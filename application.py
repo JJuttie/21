@@ -2,7 +2,7 @@ from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
-
+import os
 from Mike import *
 from helpers import *
 
@@ -22,7 +22,7 @@ if app.config["DEBUG"]:
 app.jinja_env.filters["usd"] = usd
 
 # configure session to use filesystem (instead of signed cookies)
-app.config["SESSION_FILE_DIR"] = mkdtemp()
+# app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -162,4 +162,16 @@ def password():
 @app.route("/recipe", methods=["GET", "POST"])
 @login_required
 def recipe():
-    return render_template("recipe.html")
+    """add recipe to profile"""
+    if request.method == "POST":
+        UPLOAD_FOLDER = os.path.basename('uploads')
+        id = session["user_id"]
+        title = request.form.get("title")
+        bio = request.form.get("bio")
+        tags = request.form.get("tags")
+        # image = request.files("image")
+        # f = os.path.join(21, images, file.image)
+        image = request.files("image")
+        db.execute("INSERT INTO users(id, title, bio, tags, image) VALUES(:id, :title, :bio, :tags, :image", id=id, title=title, bio=bio, tags=tags, image=image)
+    else:
+        return render_template("recipe.html")
