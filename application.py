@@ -5,6 +5,10 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 
 from helpers import *
+from Mike import *
+from Jasmine import *
+from Alex import *
+from Sebas import *
 
 # configure application
 app = Flask(__name__)
@@ -28,13 +32,12 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///foodiematch.db")
+db = SQL("sqlite:///finance.db")
 
 @app.route("/")
 @login_required
 def index():
     return apology("")
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
