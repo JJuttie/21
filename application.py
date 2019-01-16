@@ -116,9 +116,8 @@ def register():
         password=pwd_context.hash(request.form.get("password"))
 
         # pomp het in de database
-        gebruiker = db.execute("INSERT INTO users(email, name, town, hash) VALUES(:email, :name, :town, :hash)",
-        email=request.form.get("email"), name=request.form.get("name"),
-        town=request.form.get("town"), hash=password)
+        gebruiker = db.execute("INSERT INTO users(email, hash) VALUES(:email, :hash)",
+        email=request.form.get("email"), hash=password)
 
         #email al in gebruik
         if not gebruiker:
