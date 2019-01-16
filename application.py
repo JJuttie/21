@@ -183,8 +183,8 @@ def recipe():
             return apology("must provide tags")
 
         # pomp het in de database
-        recipe = db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
-        id=session["user-id"], image="HIER UITVOGELEN HOE WE IMAGE TOEVOEGEN AAN DB", title=request.form.get("title"),
+        db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
+        id=session["user-id"], image=request.form.get("title"), title=request.form.get("title"),
         bio=request.form.get("bio"), tags=request.form.get("tags"))
 
         # redirect user to home page
