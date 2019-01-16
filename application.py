@@ -47,7 +47,7 @@ def login():
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
-        # ensure username was submitted
+        # ensure email was submitted
         if not request.form.get("email"):
             return apology("must provide email")
 
@@ -55,12 +55,12 @@ def login():
         elif not request.form.get("password"):
             return apology("must provide password")
 
-        # query database for username
+        # query database for email
         rows = db.execute("SELECT * FROM users WHERE email = :email", email=request.form.get("email"))
 
-        # ensure username exists and password is correct
+        # ensure email exists and password is correct
         if len(rows) != 1 or not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
-            return apology("invalid username and/or password")
+            return apology("invalid email and/or password")
 
         # remember which user has logged in
         session["user_id"] = rows[0]["id"]
