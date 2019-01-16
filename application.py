@@ -163,4 +163,33 @@ def password():
 @app.route("/recipe", methods=["GET", "POST"])
 @login_required
 def recipe():
-    return render_template("recipe.html")
+    """Recipe tijdens registratie"""
+    if request.method == "POST":
+
+        # provide image
+        if not request.form.get("image"):
+            return apology("You must provide an image.")
+
+        # provide title
+        elif not request.form.get("title"):
+            return apology("must provide a title")
+
+        # provide bio
+        elif not request.form.get("bio"):
+            return apology("must provide a bio")
+
+        # provide tags
+        elif not request.form.get("tags"):
+            return apology("must provide tags")
+
+        # pomp het in de database
+        recipe = db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
+        id=session["user-id"], image="HIER UITVOGELEN HOE WE IMAGE TOEVOEGEN AAN DB", title=request.form.get("title"),
+        bio=request.form.get("bio"), tags=request.form.get("tags"))
+
+        # redirect user to home page
+        return render_template("index.html")
+
+    # else if user reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("recipe.html")
