@@ -86,17 +86,25 @@ def register():
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
-        # username opgeven
-        if not request.form.get("username"):
-            return apology("must provide username")
+        # provide email
+        if not request.form.get("email"):
+            return apology("You must provide an email.")
 
-        # wachtwoord opgeven
+        # provide name
+        elif not request.form.get("name"):
+            return apology("must provide your name")
+
+        # provide town
+        elif not request.form.get("town"):
+            return apology("must provide your town")
+
+        # provide password
         elif not request.form.get("password"):
-            return apology("must provide password")
+            return apology("must provide a password")
 
-        # wachtwoord bevestigen
+        # provide password again
         elif not request.form.get("confirmation"):
-            return apology("must provide confirmation password")
+            return apology("must provide a confirmation password")
 
         # checken
         elif request.form.get("password") != request.form.get("confirmation"):
@@ -106,12 +114,13 @@ def register():
         password=pwd_context.hash(request.form.get("password"))
 
         # pomp het in de database
-        gebruiker = db.execute("INSERT INTO users(username, hash) VALUES(:username, :hash)",
-        username=request.form.get("username"), hash=password)
+        gebruiker = db.execute("INSERT INTO users(email, name, town, hash) VALUES(:email, :name, :town, :hash)",
+        email=request.form.get("email"), name=request.form.get("name"),
+        town=request.form.get("town"), hash=password)
 
         #gebruikersnaampie al in gebruik
         if not gebruiker:
-            return apology("Username is al bezet")
+            return apology("eMail has already been used")
 
         #nu ingelogd:
         session["user-id"] = gebruiker
