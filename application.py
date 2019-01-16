@@ -33,7 +33,7 @@ db = SQL("sqlite:///foodiematch.db")
 @app.route("/")
 @login_required
 def index():
-    return apology("")
+    return render_template("index.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -151,4 +151,5 @@ def password():
 
 @app.route("/recipe", methods=["GET", "POST"])
 @login_required
-recipe()
+def recipe():
+    return render_template("recipe.html")

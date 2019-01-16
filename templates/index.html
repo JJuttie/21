@@ -5,26 +5,5 @@
 {% endblock %}
 
 {% block main %}
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Symbol</th>
-      <th scope="col">Shares</th>
-      <th scope="col">Current Price</th>
-      <th scope="col">Total Price</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for resultaat in resultaten %}
-    <tr>
-      <td>{{ resultaat.symbol }}</td>
-      <td>{{ resultaat.shares }}</td>
-      <td>{{ resultaat.price }}</td>
-      <td>{{ resultaat.total_price }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-<div class="d-inline-flex p-2 bd-highlight">Current Amount Of Cash: {{ cash_niveau | usd }}</div>
-<div class="d-inline-flex p-2 bd-highlight">Total Value Of Cash And Shares: {{ portefeuille_waarde | usd }}</div>
+hello
 {% endblock %}
