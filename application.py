@@ -5,10 +5,6 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 
 from helpers import *
-from Mike import *
-from Jasmine import *
-from Alex import *
-from Sebas import *
 
 # configure application
 app = Flask(__name__)
