@@ -1,3 +1,5 @@
+import smtplib
+
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
@@ -87,6 +89,21 @@ def register():
     """Register user."""
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
+
+        gmail_user = "foodiematch21@gmail.com"
+        gmail_pwd = "FoodieMatch21#"
+        TO = request.form.get("email")
+        SUBJECT = "Password change"
+        message = "Use this link to reset your password:you are an idiot!"  ### Link naar nieuw wachtwoord instellen
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.ehlo()
+        server.starttls()
+        server.login(gmail_user, gmail_pwd)
+        BODY = '\r\n'.join(['To: %s' % TO,
+                'From: %s' % gmail_user,
+                'Subject: %s' % SUBJECT,
+                '', message])
+        server.sendmail(gmail_user, [TO], BODY)
 
         # provide email
         if not request.form.get("email"):
@@ -193,3 +210,4 @@ def recipe():
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("recipe.html")
+
