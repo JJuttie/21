@@ -171,6 +171,51 @@ def register():
     else:
         return render_template("register.html")
 
+@app.route("/forgot", methods=["GET", "POST"])
+def forgot():
+
+    """Forgot password"""
+
+    if request.method == "POST":
+
+        if not request.form.get("email"):
+            return apology("please provide your e-mail address")
+
+        elif not request.form.get("town"):
+            return apology("please provide your town")
+
+        elif not request.form.get("name"):
+            return apology("please provide your name")
+
+        elif not request.form.get("new password"):
+            return apology("please provide new password")
+
+        elif not request.form.get("confirmation"):
+            return apology("please confirm new password")
+
+        elif request.form.get("new password") != request.form.get("confirmation"):
+            return apology("passwords don't match")
+
+        user = db.execute("SELECT * FROM users WHERE email = :email", \
+                            email=request.form.get("email"))
+
+
+
+        if not (user[0]["email"]) == request.form.get("email"):
+            return apology("not valid")
+        elif not (user[0]["name"]) == request.form.get("name"):
+            return apology("not valid")
+        elif not (user[0]["town"]) == request.form.get("town"):
+            return apology("not valid")
+
+
+        hash = pwd_context.hash(request.form.get("new password"))
+        db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
+                hash=hash, email=request.form.get("email"))
+        flash("New password set!")
+        return render_template("login.html")
+    else:
+        return render_template("forgot.html")
 
 #extra_opdracht2
 @app.route("/password", methods=["GET", "POST"])
@@ -225,38 +270,3 @@ def recipe():
         db.execute("INSERT INTO users(id, title, bio, imagebinary) VALUES(:id, :title, :bio, :imagebinary", id=id, title=title, bio=bio, imagebinary=imagebinary)
     else:
         return render_template("recipe.html")
-
-    # """Recipe tijdens registratie"""
-    # if request.method == "POST":
-
-    #     # provide image
-    #     if not request.form.get("image"):
-    #         return apology("You must provide an image.")
-
-    #     # provide title
-    #     elif not request.form.get("title"):
-    #         return apology("must provide a title")
-
-    #     # provide bio
-    #     elif not request.form.get("bio"):
-    #         return apology("must provide a bio")
-
-    #     # provide tags
-    #     elif not request.form.get("tags"):
-    #         return apology("must provide tags")
-
-    #     # pomp het in de database
-    #     db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
-    #     id=session["user-id"], image=request.form.get("title"), title=request.form.get("title"),
-    #     bio=request.form.get("bio"), tags=request.form.get("tags"))
-
-    # else if user reached route via GET (as by clicking a link or via redirect)
-    # else:
-    #     return render_template("recipe.html")
-
-    #     # redirect user to home page
-    #     return render_template("login.html")
-
-    # # else if user reached route via GET (as by clicking a link or via redirect)
-    # else:
-    #     return render_template("recipe.html")

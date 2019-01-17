@@ -1,69 +1,48 @@
-import csv
-import urllib.request
-import smtplib
+def forgot():
 
-from cs50 import SQL
-from flask import redirect, render_template, request, session, url_for
+    """Forgot password"""
 
-from functools import wraps
-from .forms import EmailForm, PasswordForm
-from .models import User
-from .util import send_email, ts
+    if request.method == "POST":
 
-def send_email(user,email,subject,html):
-    """Send user mail"""
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login("foodiematch21@gmail.com", "FoodieMatch21#")
-    sever.sendmail("foodiematch21@gmail.com", email, message)
+        if not request.form.get("email"):
+            return apology("please provide your e-mail address")
 
-@app.route('/reset', methods=["GET", "POST"])
-def reset():
-    """Reset password function"""
+        elif not request.form.get("town"):
+            return apology("please provide your town")
 
-    form = EmailForm()
-    if form.validate_on_submit()
-        user = User.query.filter_by(email=form.email.data).first_or_404()
+        elif not request.form.get("name"):
+            return apology("please provide your name")
 
-        subject = "Password reset requested"
+        elif not request.form.get("new password"):
+            return apology("please provide new password")
 
-        # Here we use the URLSafeTimedSerializer we created in `util` at the
-        # beginning of the chapter
-        token = ts.dumps(self.email, salt='recover-key')
+        elif not request.form.get("confirm password"):
+            return apology("please confirm new password")
 
-        recover_url = url_for(
-            'reset_with_token',
-            token=token,
-            _external=True)
+        elif request.form.get("new password") != request.form.get("confirmation"):
+            return apology("passwords don't match")
 
-        html = render_template(
-            'email/recover.html',
-            recover_url=recover_url)
+        email = db.execute("SELECT email FROM users WHERE email =: email", \
+                            email=request.form.get("email"))
+        name = db.execute("SELECT name FROM users WHERE name =: name", \
+                            name=request.form.get("name"))
+        town = db.execute("SELECT town FROM users WHERE town =:town", \
+                            town=request.form.get("town"))
+        print("EMAIL", email)
+        print("NAME", name)
+        print("TOWN", town)
 
-        # Let's assume that send_email was defined in myapp/util.py
-        send_email(user.email, subject, html)
-
-        return redirect(url_for('index'))
-    return render_template('reset.html', form=form)
-
-    @app.route('/reset/<token>', methods=["GET", "POST"])
-    def reset_token(token):
-        """Reset password with token"""
-
-        try:
-            email = ts.loads(token, salt="recovery-key", max_age=86400)
-        except:
-            abort(404)
-
-            form = PasswordForm()
-
-            if form.validate_on_submit():
-                user = User.query.filter_by(email=email).first_or_404()
-
-                user.password = form.password.data
-
-                db.session.add(user)
-                db.session.commit()
-
-                return redirect(url_for('login'))
-            return render_template('reset_token.html', form=form, token=token)
+        if not email:
+            return apology("not valid")
+        elif not name:
+            return apology("not valid")
+        elif not town:
+            return apology("not valid")
+        else:
+            new_password = pwd_context.hash(request.form.get("new password"))
+            db.execute("UPDATE users SET password = :new_password WHERE id = :id", \
+                    password=new_password, email=email)
+            flash("New password set!")
+            return render_template("login.html")
+    else:
+        return render_template("login.html")
