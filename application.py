@@ -34,6 +34,26 @@ Session(app)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///foodiematch.db")
 
+def reset():
+
+    """Sending email for password reset"""
+
+    gmail_user = "foodiematch21@gmail.com"
+    gmail_pwd = "FoodieMatch21#"
+    TO = request.form.get("email")
+    SUBJECT = "Password reset"
+    message = "Use this link to reset your password"
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login(gmail_user, gmail_pwd)
+    BODY = '\r\n'.join(['To: %s' % TO,
+            'From: %s' % gmail_user,
+            'Subject: %s' % SUBJECT,
+            '', message])
+    server.sendmail(gmail_user, [TO], BODY)
+
+
 @app.route("/")
 @login_required
 def index():
@@ -93,8 +113,8 @@ def register():
         gmail_user = "foodiematch21@gmail.com"
         gmail_pwd = "FoodieMatch21#"
         TO = request.form.get("email")
-        SUBJECT = "Password change"
-        message = "Use this link to reset your password:you are an idiot!"  ### Link naar nieuw wachtwoord instellen
+        SUBJECT = "Registration confirmation"
+        message = "Thank you for registering on FoodieMatch!"
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.ehlo()
         server.starttls()
