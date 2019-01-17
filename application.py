@@ -4,6 +4,9 @@ from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
+
+import os
+from PIL import Image
 from tempfile import mkdtemp
 
 from Mike import *
@@ -25,7 +28,7 @@ if app.config["DEBUG"]:
 app.jinja_env.filters["usd"] = usd
 
 # configure session to use filesystem (instead of signed cookies)
-app.config["SESSION_FILE_DIR"] = mkdtemp()
+# app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -199,34 +202,63 @@ def password():
 @app.route("/recipe", methods=["GET", "POST"])
 @login_required
 def recipe():
-    """Recipe tijdens registratie"""
+    """add recipe to profile"""
     if request.method == "POST":
+        UPLOAD_FOLDER = os.path.basename('uploads')
+        id = session["user_id"]
+        # User input verzamelen
+        title = request.form.get("title")
+        bio = request.form.get("bio")
+        image = request.files("image")
+        # Checken of user input klopt
+        if not title:
+            return apology("You must provide an title")
+        if not bio:
+            return apology("You must provide an bio")
+        if not image:
+            return apology("You must provide an image")
+        imagenew = FileContents(name=image.filename, data=image.read())
+        db.session.add(imagenew)
+        db.session.commit()
 
-        # provide image
-        if not request.form.get("image"):
-            return apology("You must provide an image.")
+        db.execute("INSERT INTO users(id, title, bio, imagebinary) VALUES(:id, :title, :bio, :imagebinary", id=id, title=title, bio=bio, imagebinary=imagebinary)
+    else:
+        return render_template("recipe.html")
 
-        # provide title
-        elif not request.form.get("title"):
-            return apology("must provide a title")
+    # """Recipe tijdens registratie"""
+    # if request.method == "POST":
 
-        # provide bio
-        elif not request.form.get("bio"):
-            return apology("must provide a bio")
+    #     # provide image
+    #     if not request.form.get("image"):
+    #         return apology("You must provide an image.")
 
-        # provide tags
-        elif not request.form.get("tags"):
-            return apology("must provide tags")
+    #     # provide title
+    #     elif not request.form.get("title"):
+    #         return apology("must provide a title")
 
-        # pomp het in de database
-        db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
-        id=session["user-id"], image=request.form.get("title"), title=request.form.get("title"),
-        bio=request.form.get("bio"), tags=request.form.get("tags"))
+    #     # provide bio
+    #     elif not request.form.get("bio"):
+    #         return apology("must provide a bio")
 
-        # redirect user to home page
-        return render_template("login.html")
+    #     # provide tags
+    #     elif not request.form.get("tags"):
+    #         return apology("must provide tags")
 
+    #     # pomp het in de database
+    #     db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
+    #     id=session["user-id"], image=request.form.get("title"), title=request.form.get("title"),
+    #     bio=request.form.get("bio"), tags=request.form.get("tags"))
+
+<<<<<<< HEAD
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("recipe.html")
 
+=======
+    #     # redirect user to home page
+    #     return render_template("login.html")
+
+    # # else if user reached route via GET (as by clicking a link or via redirect)
+    # else:
+    #     return render_template("recipe.html")
+>>>>>>> 410d1964cf4decfad12b4b693cef7196dde804ba
