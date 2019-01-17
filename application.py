@@ -200,20 +200,14 @@ def forgot():
                             email=request.form.get("email"))
 
 
-
-        if not (user[0]["email"]) == request.form.get("email"):
+        if (user[0]["email"]) != request.form.get("email") and (user[0]["name"]) != request.form.get("name") and (user[0]["town"]) != request.form.get("town"):
             return apology("not valid")
-        elif not (user[0]["name"]) == request.form.get("name"):
-            return apology("not valid")
-        elif not (user[0]["town"]) == request.form.get("town"):
-            return apology("not valid")
-
-
-        hash = pwd_context.hash(request.form.get("new password"))
-        db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
-                hash=hash, email=request.form.get("email"))
-        flash("New password set!")
-        return render_template("login.html")
+        else:
+            hash = pwd_context.hash(request.form.get("new password"))
+            db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
+                    hash=hash, email=request.form.get("email"))
+            flash("New password set!")
+            return render_template("login.html")
     else:
         return render_template("forgot.html")
 
@@ -270,8 +264,3 @@ def recipe():
         db.execute("INSERT INTO users(id, title, bio, imagebinary) VALUES(:id, :title, :bio, :imagebinary", id=id, title=title, bio=bio, imagebinary=imagebinary)
     else:
         return render_template("recipe.html")
-    
-@app.route("/matches", methods=["GET", "POST"])
-@login_required
-def matches():
-    return render_template("matches.html")
