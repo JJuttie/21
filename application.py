@@ -270,3 +270,8 @@ def recipe():
         db.execute("INSERT INTO users(id, title, bio, imagebinary) VALUES(:id, :title, :bio, :imagebinary", id=id, title=title, bio=bio, imagebinary=imagebinary)
     else:
         return render_template("recipe.html")
+    
+@app.route("/matches", methods=["GET", "POST"])
+@login_required
+def matches():
+    return render_template("matches.html")
