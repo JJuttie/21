@@ -277,3 +277,13 @@ def recipe():
 
     else:
         return render_template("recipe.html")
+    
+@app.route("/matches", methods=["GET", "POST"])
+@login_required
+def matches():
+    return render_template("matches.html")
+
+@app.route("/account", methods=["GET", "POST"])
+@login_required
+def account():
+    return render_template("account.html")
