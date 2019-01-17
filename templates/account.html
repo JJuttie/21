@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block main %}
+<p><b><u>Account Details</u></b></p>
+<p>eMail Address: {{ gegevens.email }}</p>
+<p>Name: {{ gegevens.name }}</p>
+<p>Town: {{ gegevens.town }}</p>
+<br>
+
+<p><b><u>Change Password</u></b></p>
     <form action="{{ url_for('password') }}" method="post">
         <fieldset>
             <div class="form-group">
@@ -20,12 +27,4 @@
             </div>
         </fieldset>
     </form>
-
-<p><b><u>Account Details</u></b></p>
-<p>eMail Address:</p>
-<p>Name:</p>
-<p>Town:</p>
-<br>
-<p><b><u>Change Password</u></b></p>
-
 {% endblock %}
