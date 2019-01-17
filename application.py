@@ -6,7 +6,7 @@ from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 
 import os
-from PIL import Image
+from werkzeug.utils import secure_filename
 from tempfile import mkdtemp
 
 from Mike import *
@@ -204,23 +204,24 @@ def password():
 def recipe():
     """add recipe to profile"""
     if request.method == "POST":
-        UPLOAD_FOLDER = os.path.basename('uploads')
+        UPLOAD_FOLDER = './images'
+        app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+        # UPLOAD_FOLDER = os.path.basename('uploads')
         id = session["user_id"]
         # User input verzamelen
         title = request.form.get("title")
         bio = request.form.get("bio")
-        image = request.files("image")
+        image = request.files["image"]
+
         # Checken of user input klopt
         if not title:
             return apology("You must provide an title")
         if not bio:
             return apology("You must provide an bio")
-        if not image:
-            return apology("You must provide an image")
-        imagenew = FileContents(name=image.filename, data=image.read())
-        db.session.add(imagenew)
-        db.session.commit()
-
+        # still have to write check if user has uploaded image!!
+        filename = secure_filename(image.filename)
+        image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return apology("done")
         db.execute("INSERT INTO users(id, title, bio, imagebinary) VALUES(:id, :title, :bio, :imagebinary", id=id, title=title, bio=bio, imagebinary=imagebinary)
     else:
         return render_template("recipe.html")
@@ -249,16 +250,13 @@ def recipe():
     #     id=session["user-id"], image=request.form.get("title"), title=request.form.get("title"),
     #     bio=request.form.get("bio"), tags=request.form.get("tags"))
 
-<<<<<<< HEAD
     # else if user reached route via GET (as by clicking a link or via redirect)
-    else:
-        return render_template("recipe.html")
+    # else:
+    #     return render_template("recipe.html")
 
-=======
     #     # redirect user to home page
     #     return render_template("login.html")
 
     # # else if user reached route via GET (as by clicking a link or via redirect)
     # else:
     #     return render_template("recipe.html")
->>>>>>> 410d1964cf4decfad12b4b693cef7196dde804ba
