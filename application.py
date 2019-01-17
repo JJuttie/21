@@ -2,13 +2,11 @@ from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
-<<<<<<< HEAD
+
 import os
-=======
 from tempfile import mkdtemp
 
 
->>>>>>> 8abc88f66cf640fb5a8cf32dd81a1d43f4aaa6ff
 from Mike import *
 from helpers import *
 
@@ -167,7 +165,6 @@ def password():
 @app.route("/recipe", methods=["GET", "POST"])
 @login_required
 def recipe():
-<<<<<<< HEAD
     """add recipe to profile"""
     if request.method == "POST":
         UPLOAD_FOLDER = os.path.basename('uploads')
@@ -175,49 +172,49 @@ def recipe():
         # User input verzamelen
         title = request.form.get("title")
         bio = request.form.get("bio")
-        tags = request.form.get("tags")
+        image = request.files("image")
         # Checken of user input klopt
         if not title:
             return apology("You must provide an title")
         if not bio:
             return apology("You must provide an bio")
-        if not tags:
-            return apology("You must provide tags")
         if not image:
             return apology("You must provide an image")
+        imagebinary = convertToBinaryData(image)
         # image = request.files("image")
         # f = os.path.join(21, images, file.image)
-        image = request.files("image")
+
         db.execute("INSERT INTO users(id, title, bio, tags, image) VALUES(:id, :title, :bio, :tags, :image", id=id, title=title, bio=bio, tags=tags, image=image)
-=======
-    """Recipe tijdens registratie"""
-    if request.method == "POST":
-
-        # provide image
-        if not request.form.get("image"):
-            return apology("You must provide an image.")
-
-        # provide title
-        elif not request.form.get("title"):
-            return apology("must provide a title")
-
-        # provide bio
-        elif not request.form.get("bio"):
-            return apology("must provide a bio")
-
-        # provide tags
-        elif not request.form.get("tags"):
-            return apology("must provide tags")
-
-        # pomp het in de database
-        db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
-        id=session["user-id"], image=request.form.get("title"), title=request.form.get("title"),
-        bio=request.form.get("bio"), tags=request.form.get("tags"))
-
-        # redirect user to home page
-        return render_template("login.html")
-
-    # else if user reached route via GET (as by clicking a link or via redirect)
->>>>>>> 8abc88f66cf640fb5a8cf32dd81a1d43f4aaa6ff
     else:
         return render_template("recipe.html")
+
+    # """Recipe tijdens registratie"""
+    # if request.method == "POST":
+
+    #     # provide image
+    #     if not request.form.get("image"):
+    #         return apology("You must provide an image.")
+
+    #     # provide title
+    #     elif not request.form.get("title"):
+    #         return apology("must provide a title")
+
+    #     # provide bio
+    #     elif not request.form.get("bio"):
+    #         return apology("must provide a bio")
+
+    #     # provide tags
+    #     elif not request.form.get("tags"):
+    #         return apology("must provide tags")
+
+    #     # pomp het in de database
+    #     db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
+    #     id=session["user-id"], image=request.form.get("title"), title=request.form.get("title"),
+    #     bio=request.form.get("bio"), tags=request.form.get("tags"))
+
+    #     # redirect user to home page
+    #     return render_template("login.html")
+
+    # # else if user reached route via GET (as by clicking a link or via redirect)
+    # else:
+    #     return render_template("recipe.html")
