@@ -70,7 +70,7 @@ def login():
         session["user_id"] = rows[0]["id"]
 
         # redirect user to home page
-        return redirect(url_for("index"))
+        return render_template("index.html")
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -210,12 +210,12 @@ def recipe():
             return apology("must provide tags")
 
         # pomp het in de database
-        recipe = db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
-        id=session["user-id"], image="HIER UITVOGELEN HOE WE IMAGE TOEVOEGEN AAN DB", title=request.form.get("title"),
+        db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
+        id=session["user-id"], image=request.form.get("title"), title=request.form.get("title"),
         bio=request.form.get("bio"), tags=request.form.get("tags"))
 
         # redirect user to home page
-        return render_template("index.html")
+        return render_template("login.html")
 
     # else if user reached route via GET (as by clicking a link or via redirect)
 >>>>>>> 8abc88f66cf640fb5a8cf32dd81a1d43f4aaa6ff

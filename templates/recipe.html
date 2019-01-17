@@ -14,12 +14,14 @@
     <p1>Please enter your favourite recipe:</p1>
     <form action="{{ url_for('recipe') }}" method="post">
         <fieldset>
-            <div class="form-group">
                 <form action="upload.php" method="post">
                     <input type="file" name="image" id="file"/>
                 </form>
+<<<<<<< HEAD
 >>>>>>> 8abc88f66cf640fb5a8cf32dd81a1d43f4aaa6ff
             </div>
+=======
+>>>>>>> b65cd933abf89a46137e5a4d96c276bbf6817f08
             <div class="form-group">
                 <input autocomplete="off" autofocus class="form-control" name="title" placeholder="Title" type="text"/>
             </div>
@@ -27,8 +29,22 @@
                 <input autocomplete ="off" class="form-control" name="bio" placeholder="Bio" type="text"/>
             </div>
             <div class="form-group">
-                <input autocomplete ="off" class="form-control" name="tags" placeholder="Tags" type="text"/>
+                <select multiple = "allergies">
+                    <option disabled selected value="">Allergies</option>
+                    <option value = "corn">Corn</option>
+                    <option value = "egg">Egg</option>
+                    <option value = "fish">Fish</option>
+                    <option value = "meat">Meat</option>
+                    <option value = "milk">Milk</option>
+                    <option value = "peanut">Peanut</option>
+                    <option value = "shellfish">Shellfish</option>
+                    <option value = "soy">Soy</option>
+                    <option value = "tree nut">Tree Nut</option>
+                    <option value = "wheat">Wheat</option>
+                    <option value = "FPIES">FPIES</option>
             </div>
+            <br>
+            <br>
             <div class="form-group">
                 <button class="btn btn-default" type="submit">Finish Registration</button>
             </div>
