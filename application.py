@@ -258,9 +258,29 @@ def recipe():
         if not bio:
             return apology("You must provide an bio")
         # still have to write check if user has uploaded image!!
+
+        # afbeelding opslaan in images
         filename = secure_filename(image.filename)
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # afbeelding hernoemen
+        os.rename("images/"+filename, "images/"+str(id)+".jpg")
+        imageid = "images/"+str(id)+".jpg"
+        # alles in de database gooien
+        db.execute("INSERT INTO recipes(id, title, bio, tags, imageid) VALUES(:id, :title, :bio, :tags, :imageid)", id=id, title=title, bio=bio, tags="appel", imageid=imageid)
         return apology("done")
-        db.execute("INSERT INTO users(id, title, bio, imagebinary) VALUES(:id, :title, :bio, :imagebinary", id=id, title=title, bio=bio, imagebinary=imagebinary)
+
     else:
         return render_template("recipe.html")
+<<<<<<< HEAD
+=======
+    
+@app.route("/matches", methods=["GET", "POST"])
+@login_required
+def matches():
+    return render_template("matches.html")
+
+@app.route("/account", methods=["GET", "POST"])
+@login_required
+def account():
+    return render_template("account.html")
+>>>>>>> 0c700d080374e1195b10b51ad61194eb0ce6de11
