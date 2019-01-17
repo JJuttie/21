@@ -4,6 +4,7 @@ from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 
 import os
+from PIL import Image
 from tempfile import mkdtemp
 
 
@@ -180,11 +181,11 @@ def recipe():
             return apology("You must provide an bio")
         if not image:
             return apology("You must provide an image")
-        imagebinary = convertToBinaryData(image)
-        # image = request.files("image")
-        # f = os.path.join(21, images, file.image)
+        imagenew = FileContents(name=image.filename, data=image.read())
+        db.session.add(imagenew)
+        db.session.commit()
 
-        db.execute("INSERT INTO users(id, title, bio, tags, image) VALUES(:id, :title, :bio, :tags, :image", id=id, title=title, bio=bio, tags=tags, image=image)
+        db.execute("INSERT INTO users(id, title, bio, imagebinary) VALUES(:id, :title, :bio, :imagebinary", id=id, title=title, bio=bio, imagebinary=imagebinary)
     else:
         return render_template("recipe.html")
 
