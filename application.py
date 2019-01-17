@@ -171,6 +171,51 @@ def register():
     else:
         return render_template("register.html")
 
+@app.route("/forgot", methods=["GET", "POST"])
+def forgot():
+
+    """Forgot password"""
+
+    if request.method == "POST":
+
+        if not request.form.get("email"):
+            return apology("please provide your e-mail address")
+
+        elif not request.form.get("town"):
+            return apology("please provide your town")
+
+        elif not request.form.get("name"):
+            return apology("please provide your name")
+
+        elif not request.form.get("new password"):
+            return apology("please provide new password")
+
+        elif not request.form.get("confirmation"):
+            return apology("please confirm new password")
+
+        elif request.form.get("new password") != request.form.get("confirmation"):
+            return apology("passwords don't match")
+
+        user = db.execute("SELECT * FROM users WHERE email = :email", \
+                            email=request.form.get("email"))
+
+
+
+        if not (user[0]["email"]) == request.form.get("email"):
+            return apology("not valid")
+        elif not (user[0]["name"]) == request.form.get("name"):
+            return apology("not valid")
+        elif not (user[0]["town"]) == request.form.get("town"):
+            return apology("not valid")
+
+
+        hash = pwd_context.hash(request.form.get("new password"))
+        db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
+                hash=hash, email=request.form.get("email"))
+        flash("New password set!")
+        return render_template("login.html")
+    else:
+        return render_template("forgot.html")
 
 #extra_opdracht2
 @app.route("/password", methods=["GET", "POST"])
@@ -249,16 +294,13 @@ def recipe():
     #     id=session["user-id"], image=request.form.get("title"), title=request.form.get("title"),
     #     bio=request.form.get("bio"), tags=request.form.get("tags"))
 
-<<<<<<< HEAD
-    # else if user reached route via GET (as by clicking a link or via redirect)
-    else:
-        return render_template("recipe.html")
-
-=======
     #     # redirect user to home page
     #     return render_template("login.html")
 
     # # else if user reached route via GET (as by clicking a link or via redirect)
     # else:
     #     return render_template("recipe.html")
->>>>>>> 410d1964cf4decfad12b4b693cef7196dde804ba
+    # else if user reached route via GET (as by clicking a link or via redirect)
+    # else:
+    #    return render_template("recipe.html")
+
