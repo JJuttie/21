@@ -5,10 +5,20 @@
 {% endblock %}
 
 {% block main %}
+<<<<<<< HEAD
     <form action="{{ url_for('recipe') }}" method="post">
         <fieldset>
            <div>
                 <span class="btn btn-default btn-file">Upload an image of your meal <input type="file" name="image">
+=======
+    <p1>Please enter your favourite recipe:</p1>
+    <form action="{{ url_for('recipe') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <form action="upload.php" method="post">
+                    <input type="file" name="image" id="file"/>
+                </form>
+>>>>>>> 8abc88f66cf640fb5a8cf32dd81a1d43f4aaa6ff
             </div>
             <div class="form-group">
                 <input autocomplete="off" autofocus class="form-control" name="title" placeholder="Title" type="text"/>
@@ -20,7 +30,7 @@
                 <input autocomplete ="off" class="form-control" name="tags" placeholder="Tags" type="text"/>
             </div>
             <div class="form-group">
-                <button class="btn btn-default" type="submit">Submit</button>
+                <button class="btn btn-default" type="submit">Finish Registration</button>
             </div>
         </fieldset>
     </form>

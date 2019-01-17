@@ -2,7 +2,13 @@ from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
+<<<<<<< HEAD
 import os
+=======
+from tempfile import mkdtemp
+
+
+>>>>>>> 8abc88f66cf640fb5a8cf32dd81a1d43f4aaa6ff
 from Mike import *
 from helpers import *
 
@@ -45,7 +51,7 @@ def login():
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
-        # ensure username was submitted
+        # ensure email was submitted
         if not request.form.get("email"):
             return apology("must provide email")
 
@@ -53,12 +59,12 @@ def login():
         elif not request.form.get("password"):
             return apology("must provide password")
 
-        # query database for username
+        # query database for email
         rows = db.execute("SELECT * FROM users WHERE email = :email", email=request.form.get("email"))
 
-        # ensure username exists and password is correct
+        # ensure email exists and password is correct
         if len(rows) != 1 or not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
-            return apology("invalid username and/or password")
+            return apology("invalid email and/or password")
 
         # remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -113,19 +119,18 @@ def register():
         #wachtwoord encrypten
         password=pwd_context.hash(request.form.get("password"))
 
+        rows = db.execute("SELECT * FROM users WHERE email = :email", email=request.form.get("email"))
+        if len(rows) != 0:
+            return apology("email already used")
+
         # pomp het in de database
         gebruiker = db.execute("INSERT INTO users(email, name, town, hash) VALUES(:email, :name, :town, :hash)",
-        email=request.form.get("email"), name=request.form.get("name"),
-        town=request.form.get("town"), hash=password)
-
-        #email al in gebruik
-        if not gebruiker:
-            return apology("eMail has already been used")
+        email=request.form.get("email"), name=request.form.get("name"), town=request.form.get("town"), hash=password)
 
         #nu ingelogd:
         session["user-id"] = gebruiker
         # redirect user to home page
-        return redirect(url_for("recipe"))
+        return render_template("recipe.html")
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -162,16 +167,57 @@ def password():
 @app.route("/recipe", methods=["GET", "POST"])
 @login_required
 def recipe():
+<<<<<<< HEAD
     """add recipe to profile"""
     if request.method == "POST":
         UPLOAD_FOLDER = os.path.basename('uploads')
         id = session["user_id"]
+        # User input verzamelen
         title = request.form.get("title")
         bio = request.form.get("bio")
         tags = request.form.get("tags")
+        # Checken of user input klopt
+        if not title:
+            return apology("You must provide an title")
+        if not bio:
+            return apology("You must provide an bio")
+        if not tags:
+            return apology("You must provide tags")
+        if not image:
+            return apology("You must provide an image")
         # image = request.files("image")
         # f = os.path.join(21, images, file.image)
         image = request.files("image")
         db.execute("INSERT INTO users(id, title, bio, tags, image) VALUES(:id, :title, :bio, :tags, :image", id=id, title=title, bio=bio, tags=tags, image=image)
+=======
+    """Recipe tijdens registratie"""
+    if request.method == "POST":
+
+        # provide image
+        if not request.form.get("image"):
+            return apology("You must provide an image.")
+
+        # provide title
+        elif not request.form.get("title"):
+            return apology("must provide a title")
+
+        # provide bio
+        elif not request.form.get("bio"):
+            return apology("must provide a bio")
+
+        # provide tags
+        elif not request.form.get("tags"):
+            return apology("must provide tags")
+
+        # pomp het in de database
+        recipe = db.execute("INSERT INTO recipes(id, image, title, bio, tags) VALUES(:id, :image, :title, :bio, :tags)",
+        id=session["user-id"], image="HIER UITVOGELEN HOE WE IMAGE TOEVOEGEN AAN DB", title=request.form.get("title"),
+        bio=request.form.get("bio"), tags=request.form.get("tags"))
+
+        # redirect user to home page
+        return render_template("index.html")
+
+    # else if user reached route via GET (as by clicking a link or via redirect)
+>>>>>>> 8abc88f66cf640fb5a8cf32dd81a1d43f4aaa6ff
     else:
         return render_template("recipe.html")
