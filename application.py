@@ -199,15 +199,15 @@ def forgot():
         user = db.execute("SELECT * FROM users WHERE email = :email", \
                             email=request.form.get("email"))
 
-<<<<<<< HEAD
+
         if not (user[0]["email"]) == request.form.get("email"):
             return apology("not valid")
         elif not (user[0]["name"]) == request.form.get("name"):
-=======
+
 
         if (user[0]["email"]) != request.form.get("email") and (user[0]["name"]) != request.form.get("name") and (user[0]["town"]) != request.form.get("town"):
->>>>>>> 899f77ae0c70e091cf32c33f6049613f765512ae
             return apology("not valid")
+
         else:
             hash = pwd_context.hash(request.form.get("new password"))
             db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
@@ -277,13 +277,7 @@ def recipe():
 
     else:
         return render_template("recipe.html")
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-    
->>>>>>> 899f77ae0c70e091cf32c33f6049613f765512ae
 @app.route("/matches", methods=["GET", "POST"])
 @login_required
 def matches():
@@ -293,4 +287,4 @@ def matches():
 @login_required
 def account():
     return render_template("account.html")
->>>>>>> 0c700d080374e1195b10b51ad61194eb0ce6de11
+
