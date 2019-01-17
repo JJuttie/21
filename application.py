@@ -282,5 +282,6 @@ def matches():
 @login_required
 def account():
     gegevens = db.execute("SELECT * FROM users WHERE id=:id", id=session["user_id"])
-    return render_template("account.html", gegevens=gegevens)
+    email = gegevens[0]['email']
+    return render_template("account.html", email=email)
 
