@@ -199,19 +199,21 @@ def forgot():
         user = db.execute("SELECT * FROM users WHERE email = :email", \
                             email=request.form.get("email"))
 
+<<<<<<< HEAD
         if not (user[0]["email"]) == request.form.get("email"):
             return apology("not valid")
         elif not (user[0]["name"]) == request.form.get("name"):
-            return apology("not valid")
-        elif not (user[0]["town"]) == request.form.get("town"):
-            return apology("not valid")
+=======
 
-
-        hash = pwd_context.hash(request.form.get("new password"))
-        db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
-                hash=hash, email=request.form.get("email"))
-        flash("New password set!")
-        return render_template("login.html")
+        if (user[0]["email"]) != request.form.get("email") and (user[0]["name"]) != request.form.get("name") and (user[0]["town"]) != request.form.get("town"):
+>>>>>>> 899f77ae0c70e091cf32c33f6049613f765512ae
+            return apology("not valid")
+        else:
+            hash = pwd_context.hash(request.form.get("new password"))
+            db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
+                    hash=hash, email=request.form.get("email"))
+            flash("New password set!")
+            return render_template("login.html")
     else:
         return render_template("forgot.html")
 
@@ -262,13 +264,26 @@ def recipe():
         if not bio:
             return apology("You must provide an bio")
         # still have to write check if user has uploaded image!!
+
+        # afbeelding opslaan in images
         filename = secure_filename(image.filename)
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # afbeelding hernoemen
+        os.rename("images/"+filename, "images/"+str(id)+".jpg")
+        imageid = "images/"+str(id)+".jpg"
+        # alles in de database gooien
+        db.execute("INSERT INTO recipes(id, title, bio, tags, imageid) VALUES(:id, :title, :bio, :tags, :imageid)", id=id, title=title, bio=bio, tags="appel", imageid=imageid)
         return apology("done")
-        db.execute("INSERT INTO users(id, title, bio, imagebinary) VALUES(:id, :title, :bio, :imagebinary", id=id, title=title, bio=bio, imagebinary=imagebinary)
+
     else:
         return render_template("recipe.html")
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 899f77ae0c70e091cf32c33f6049613f765512ae
 @app.route("/matches", methods=["GET", "POST"])
 @login_required
 def matches():
@@ -278,3 +293,4 @@ def matches():
 @login_required
 def account():
     return render_template("account.html")
+>>>>>>> 0c700d080374e1195b10b51ad61194eb0ce6de11
