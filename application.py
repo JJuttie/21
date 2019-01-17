@@ -200,20 +200,20 @@ def forgot():
                             email=request.form.get("email"))
 
 
-
         if not (user[0]["email"]) == request.form.get("email"):
             return apology("not valid")
         elif not (user[0]["name"]) == request.form.get("name"):
-            return apology("not valid")
-        elif not (user[0]["town"]) == request.form.get("town"):
-            return apology("not valid")
 
 
-        hash = pwd_context.hash(request.form.get("new password"))
-        db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
-                hash=hash, email=request.form.get("email"))
-        flash("New password set!")
-        return render_template("login.html")
+        if (user[0]["email"]) != request.form.get("email") and (user[0]["name"]) != request.form.get("name") and (user[0]["town"]) != request.form.get("town"):
+            return apology("not valid")
+
+        else:
+            hash = pwd_context.hash(request.form.get("new password"))
+            db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
+                    hash=hash, email=request.form.get("email"))
+            flash("New password set!")
+            return render_template("login.html")
     else:
         return render_template("forgot.html")
 
@@ -289,3 +289,4 @@ def matches():
 @login_required
 def account():
     return render_template("account.html")
+
