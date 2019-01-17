@@ -281,5 +281,6 @@ def matches():
 @app.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
-    return render_template("account.html")
+    gegevens = db.execute("SELECT * FROM users WHERE id=:id", id=session["user_id"])
+    return render_template("account.html", gegevens=gegevens)
 
