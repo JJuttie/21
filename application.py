@@ -254,6 +254,8 @@ def recipe():
         # UPLOAD_FOLDER = os.path.basename('uploads')
         id = session["user_id"]
         # User input verzamelen
+        if not request.files.get('image', None):
+            return apology("You must provide an image!")
         title = request.form.get("title")
         bio = request.form.get("bio")
         image = request.files["image"]
@@ -263,7 +265,7 @@ def recipe():
             return apology("You must provide an title")
         if not bio:
             return apology("You must provide an bio")
-        # still have to write check if user has uploaded image!!
+        # still have to write check if user has uploaded image!!!!!!
 
         # afbeelding opslaan in images
         filename = secure_filename(image.filename)
@@ -271,13 +273,13 @@ def recipe():
         # afbeelding hernoemen
         os.rename("images/"+filename, "images/"+str(id)+".jpg")
         imageid = "images/"+str(id)+".jpg"
-        # alles in de database gooien
+        # alles in de database gooien   !!!! tags moeten nog verwerkt worden!!!!!
         db.execute("INSERT INTO recipes(id, title, bio, tags, imageid) VALUES(:id, :title, :bio, :tags, :imageid)", id=id, title=title, bio=bio, tags="appel", imageid=imageid)
         return apology("done")
 
     else:
         return render_template("recipe.html")
-    
+
 @app.route("/matches", methods=["GET", "POST"])
 @login_required
 def matches():
