@@ -10,27 +10,60 @@ def apology():
 def login():
 “”Logs in user””
 Request method: POST
+- check voor bestaande gebruiker
+- controleert de vakjes
+- controleert wachtwoord
+- stuurt door naar de browse pagina
 
 def browse():
 “”Let user match recipes””
 Request method: POST
+- bij een swipe naar rechts:
+	- match noteren in de database, wie liket wie? 
+	- controleren of de andere jou ook al heeft geliket:
+		- zoja, melding("je hebt een match!")
+	- nieuw gerecht tonen
+- bij een swipe naar links:
+	- nieuw gerecht tonen
 
 def register():
 “”Register a new user””
+- gegevens opslaan
+- controleren of confirmation wachtwoord gelijk is aan wachtwoord
+- doorsturen naar pagina waar je je gerecht invoert
+- bevestigingsmail sturen naar opgegeven emailadres
 
 def recipe():
 Request method: POST
+- verwerken van een gerecht bij registratie
+	- afbeelding, bio, tags en titel opslaan in database
+- doorsturen naar browse pagina
 
 def match():
 “”Let user see all their matches””
+- tonen van alle matches van huidige gebruiker
+	- het gerecht en de contact gegevens	
 Request method: POST
 
 def account()
 “”Let user edit their account settings””
+- tonen van gegevens
+- mogelijkheid om wachtwoord te bekijken.
+	- met def password():
+		- wachtwoord controleren
+		- wachtwoord updaten
 Request method: POST
 
 def logout():
 “”Let user log out””
+- session clear
+- doorsturen naar login
+
+def forgot():
+"""Wachtwoord vergeten"""
+- controleert ingevoerde gegevens
+- indien juist, mogelijkheid om wachtwoord te updaten
+- daarna doorsturen naar login
 
 ### Extra functies in application.py
 def Facebook_login():
