@@ -287,3 +287,8 @@ def account():
     town = gegevens[0]['town']
     return render_template("account.html", email=email, name=name, town=town)
 
+@app.route("/changerecipe", methods=["GET", "POST"])
+@login_required
+def changerecipe():
+    return render_template("changerecipe.html")
+
