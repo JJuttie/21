@@ -9,7 +9,7 @@ def apology():
 ### Controllers in application.py
 def login():
 “”Logs in user””
-Request method: POST
+Request method: POST and GET
 - check voor bestaande gebruiker
 - controleert de vakjes
 - controleert wachtwoord
