@@ -290,5 +290,37 @@ def account():
 @app.route("/changerecipe", methods=["GET", "POST"])
 @login_required
 def changerecipe():
-    return render_template("changerecipe.html")
+    """change recipe"""
+    if request.method == "POST":
+        UPLOAD_FOLDER = './images'
+        app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+        id = session["user_id"]
+        # Checken of afbeelding is geupload
+        if not request.files.get('image', None):
+            return apology("You must provide an image!")
+        # User input verzamelen
+        title = request.form.get("title")
+        bio = request.form.get("bio")
+        image = request.files["image"]
+
+        # Checken of user input klopt
+        if not title:
+            return apology("You must provide an title")
+        if not bio:
+            return apology("You must provide an bio")
+
+        # afbeelding opslaan in images
+        filename = secure_filename(image.filename)
+        image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # afbeelding hernoemen
+        os.rename("images/"+filename, "images/"+str(id)+".jpg")
+        imageid = "images/"+str(id)+".jpg"
+        # alles in de database gooien
+        # !!!! tags moeten nog verwerkt worden!!!!!
+        db.execute("UPDATE recipes SET title=:title, bio=:bio, tags=:tags WHERE id=:id", id=id, title=title, bio=bio, tags="appel")
+        return apology("changed")
+
+    else:
+        return render_template("changerecipe.html")
+
 
