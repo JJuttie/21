@@ -242,7 +242,7 @@ def password():
 def recipe():
     """add recipe to profile"""
     if request.method == "POST":
-        UPLOAD_FOLDER = './images'
+        UPLOAD_FOLDER = './static/images'
         app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
         id = session["user_id"]
         # Checken of afbeelding is geupload
@@ -263,8 +263,8 @@ def recipe():
         filename = secure_filename(image.filename)
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # afbeelding hernoemen
-        os.rename("images/"+filename, "images/"+str(id)+".jpg")
-        imageid = "images/"+str(id)+".jpg"
+        os.rename("static/images/"+filename, "static/images/"+str(id)+".jpg")
+        imageid = "static/images/"+str(id)+".jpg"
         # alles in de database gooien
         # !!!! tags moeten nog verwerkt worden!!!!!
         db.execute("INSERT INTO recipes(id, title, bio, tags, imageid) VALUES(:id, :title, :bio, :tags, :imageid)", id=id, title=title, bio=bio, tags="appel", imageid=imageid)
@@ -292,7 +292,7 @@ def account():
 def changerecipe():
     """change recipe"""
     if request.method == "POST":
-        UPLOAD_FOLDER = './images'
+        UPLOAD_FOLDER = './static/images'
         app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
         id = session["user_id"]
         # Checken of afbeelding is geupload
@@ -313,7 +313,7 @@ def changerecipe():
         filename = secure_filename(image.filename)
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # afbeelding hernoemen
-        os.rename("images/"+filename, "images/"+str(id)+".jpg")
+        os.rename("static/images/"+filename, "static/images/"+str(id)+".jpg")
         imageid = "images/"+str(id)+".jpg"
         # alles in de database gooien
         # !!!! tags moeten nog verwerkt worden!!!!!
