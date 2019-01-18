@@ -59,7 +59,21 @@ def reset():
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
+    session["likedid"] = gerecht[0]["id"]
+    imageid = gerecht[0]["imageid"]
+    title = gerecht[0]["title"]
+    bio = gerecht[0]["bio"]
+    return render_template("index.html", imageid=imageid, title=title, bio=bio, likedid=session["likedid"])
+
+@app.route("/like", methods=["GET", "POST"])
+@login_required
+def like():
+    if request.method == "POST":
+        db.execute("INSERT INTO like(currentid, likedid) VALUES(currentid=:currentid, likedid=:likedid)", currentid=session["user_id"], likedid=session["likedid"])
+        return render_template("index.html")
+    else:
+        return render_template("index.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
