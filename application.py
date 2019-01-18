@@ -60,7 +60,7 @@ def reset():
 @login_required
 def index():
     gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
-    session["likedid"] = gerecht[0]["id"]
+    #session["likedid"] = gerecht[0]["id"]
     imageid = gerecht[0]["imageid"]
     title = gerecht[0]["title"]
     bio = gerecht[0]["bio"]
@@ -70,7 +70,7 @@ def index():
 @login_required
 def like():
     if request.method == "POST":
-        db.execute("INSERT INTO like(currentid, likedid) VALUES(currentid=:currentid, likedid=:likedid)", currentid=session["user_id"], likedid=session["likedid"])
+        db.execute("INSERT INTO like(currentid, likedid) VALUES(currentid=:currentid, likedid=:likedid)", currentid=session["user_id"])
         return render_template("index.html")
     else:
         return render_template("index.html")
