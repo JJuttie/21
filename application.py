@@ -64,13 +64,13 @@ def index():
     imageid = gerecht[0]["imageid"]
     title = gerecht[0]["title"]
     bio = gerecht[0]["bio"]
-    return render_template("index.html", imageid=imageid, title=title, bio=bio, likedid=session["likedid"])
+    return render_template("index.html", imageid=imageid, title=title, bio=bio)
 
 @app.route("/like", methods=["GET", "POST"])
 @login_required
 def like():
     if request.method == "POST":
-        db.execute("INSERT INTO like(currentid, likedid) VALUES(currentid=:currentid, likedid=:likedid)", currentid=session["user_id"])
+        #db.execute("INSERT INTO like(currentid, likedid) VALUES(currentid=:currentid, likedid=:likedid)", currentid=session["user_id"], likedid=session["likedid"])
         return render_template("index.html")
     else:
         return render_template("index.html")
