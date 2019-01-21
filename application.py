@@ -266,6 +266,9 @@ def recipe():
         title = request.form.get("title")
         bio = request.form.get("bio")
         image = request.files["image"]
+        tags = request.form.getlist("tags")
+        for tag in tags:
+            db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
 
         # Checken of user input klopt
         if not title:
@@ -281,7 +284,7 @@ def recipe():
         imageid = "static/images/"+str(id)+".jpg"
         # alles in de database gooien
         # !!!! tags moeten nog verwerkt worden!!!!!
-        db.execute("INSERT INTO recipes(id, title, bio, tags, imageid) VALUES(:id, :title, :bio, :tags, :imageid)", id=id, title=title, bio=bio, tags="appel", imageid=imageid)
+        db.execute("INSERT INTO recipes(id, title, bio, imageid) VALUES(:id, :title, :bio, :imageid)", id=id, title=title, bio=bio, imageid=imageid)
         return apology("done")
 
     else:
@@ -316,6 +319,9 @@ def changerecipe():
         title = request.form.get("title")
         bio = request.form.get("bio")
         image = request.files["image"]
+        tags = request.form.getlist("tags")
+        for tag in tags:
+            db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
 
         # Checken of user input klopt
         if not title:
