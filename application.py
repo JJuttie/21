@@ -267,14 +267,17 @@ def recipe():
         bio = request.form.get("bio")
         image = request.files["image"]
         tags = request.form.getlist("tags")
-        for tag in tags:
-            db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
+
 
         # Checken of user input klopt
         if not title:
             return apology("You must provide an title")
         if not bio:
             return apology("You must provide an bio")
+
+        # update tags in database
+        for tag in tags:
+            db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
 
         # afbeelding opslaan in images
         filename = secure_filename(image.filename)
@@ -320,14 +323,18 @@ def changerecipe():
         bio = request.form.get("bio")
         image = request.files["image"]
         tags = request.form.getlist("tags")
-        for tag in tags:
-            db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
 
         # Checken of user input klopt
         if not title:
             return apology("You must provide an title")
         if not bio:
             return apology("You must provide an bio")
+
+        # reset all tags
+        db.execute("UPDATE recipes SET bio = NULL,	corn = NULL, egg = NULL, fish = NULL, meat = NULL, milk = NULL,	peanut = NULL, shellfish = NULL, soy = NULL, treenut = NULL, wheat = NULL, FPIES = NULL")
+        # update tags in database
+        for tag in tags:
+            db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
 
         # afbeelding opslaan in images
         filename = secure_filename(image.filename)
@@ -337,8 +344,8 @@ def changerecipe():
         imageid = "images/"+str(id)+".jpg"
         # alles in de database gooien
         # !!!! tags moeten nog verwerkt worden!!!!!
-        db.execute("UPDATE recipes SET title=:title, bio=:bio, tags=:tags WHERE id=:id", id=id, title=title, bio=bio, tags="appel")
-        return apology("changed")
+        db.execute("UPDATE recipes SET title=:title, bio=:bio WHERE id=:id", id=id, title=title, bio=bio)
+        return redirect(url_for("index"))
 
     else:
         return render_template("changerecipe.html")
