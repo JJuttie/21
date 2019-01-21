@@ -282,9 +282,10 @@ def recipe():
         # afbeelding opslaan in images
         filename = secure_filename(image.filename)
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        filetype = filename[filename.rfind("."):]
         # afbeelding hernoemen
-        os.rename("static/images/"+filename, "static/images/"+str(id)+".jpg")
-        imageid = "static/images/"+str(id)+".jpg"
+        os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
+        imageid = "static/images/"+str(id)+filetype
         # alles in de database gooien
         # !!!! tags moeten nog verwerkt worden!!!!!
         db.execute("INSERT INTO recipes(id, title, bio, imageid) VALUES(:id, :title, :bio, :imageid)", id=id, title=title, bio=bio, imageid=imageid)
@@ -338,13 +339,14 @@ def changerecipe():
 
         # afbeelding opslaan in images
         filename = secure_filename(image.filename)
+        filetype = filename[filename.rfind("."):]
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # afbeelding hernoemen
-        os.rename("static/images/"+filename, "static/images/"+str(id)+".jpg")
-        imageid = "images/"+str(id)+".jpg"
+        os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
+        imageid = "static/images/"+str(id)+filetype
         # alles in de database gooien
         # !!!! tags moeten nog verwerkt worden!!!!!
-        db.execute("UPDATE recipes SET title=:title, bio=:bio WHERE id=:id", id=id, title=title, bio=bio)
+        db.execute("UPDATE recipes SET title=:title, bio=:bio, imageid=:imageid WHERE id=:id", id=id, title=title, bio=bio, imageid=imageid)
         return redirect(url_for("index"))
 
     else:
