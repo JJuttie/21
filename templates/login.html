@@ -25,6 +25,9 @@
 	<br><br><br><br><br><br><br><br>
 	<main>
 		<h1>
+			<p>
+				Login with your eMail & password
+			</p><br>
 		<form action="{{ url_for('login') }}" method="post">
 				<fieldset>
 					<div class="form-group">
@@ -39,6 +42,7 @@
 					</div>
 				</fieldset>
 		</form>
+		<br>
 		<li><a href="{{ url_for('forgot') }}">Forgot your password?</a></li>
 	</h1>
 	</main>

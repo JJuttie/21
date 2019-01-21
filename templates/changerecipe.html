@@ -26,7 +26,7 @@
 		<h1>    <form action="{{ url_for('changerecipe') }}" method="post" enctype="multipart/form-data">
 			<fieldset>
 			   <div>
-					<span class="btn btn-default btn-file">Upload an image of your meal <input type="file" name="image">
+					<span class="btn btn-default btn-file">Upload an image of your meal<br> <input type="file" name="image">
 				</div>
 				   <br>
 				<div class="form-group">
@@ -35,6 +35,7 @@
 				<div class="form-group">
 					<input autocomplete ="off" class="form-control" name="bio" placeholder="Bio" type="text"/>
 				</div>
+				<br>
 				<div class="form-group">
 
 					<select id="tags" name="tags" multiple class="form-control">
