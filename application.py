@@ -279,16 +279,19 @@ def recipe():
         for tag in tags:
             db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
 
-        # afbeelding opslaan in images
+        # naam van de afbeelding ophalen
         filename = secure_filename(image.filename)
+        # afbeelding opslaan
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # afbeeldingstype achterhalen
+        filetype = filename[filename.rfind("."):]
         # afbeelding hernoemen
-        os.rename("static/images/"+filename, "static/images/"+str(id)+".jpg")
-        imageid = "static/images/"+str(id)+".jpg"
+        os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
+        # imageid voor in de database vormen
+        imageid = "static/images/"+str(id)+filetype
         # alles in de database gooien
-        # !!!! tags moeten nog verwerkt worden!!!!!
         db.execute("INSERT INTO recipes(id, title, bio, imageid) VALUES(:id, :title, :bio, :imageid)", id=id, title=title, bio=bio, imageid=imageid)
-        return apology("done")
+        return redirect(url_for("index"))
 
     else:
         return render_template("recipe.html")
@@ -336,15 +339,20 @@ def changerecipe():
         for tag in tags:
             db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
 
-        # afbeelding opslaan in images
+        # naam van de afbeelding ophalen
         filename = secure_filename(image.filename)
+        # type van de afbeelding ophalen
+        filetype = filename[filename.rfind("."):]
+        # de oude file van gebruiker ophalen en verwijderen
+        oldfile = db.execute("SELECT imageid FROM recipes WHERE id=:id", id=id)
+        os.remove(oldfile[0]["imageid"])
+        # nieuwe file opslaan
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # afbeelding hernoemen
-        os.rename("static/images/"+filename, "static/images/"+str(id)+".jpg")
-        imageid = "images/"+str(id)+".jpg"
+        os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
+        imageid = "static/images/"+str(id)+filetype
         # alles in de database gooien
-        # !!!! tags moeten nog verwerkt worden!!!!!
-        db.execute("UPDATE recipes SET title=:title, bio=:bio WHERE id=:id", id=id, title=title, bio=bio)
+        db.execute("UPDATE recipes SET title=:title, bio=:bio, imageid=:imageid WHERE id=:id", id=id, title=title, bio=bio, imageid=imageid)
         return redirect(url_for("index"))
 
     else:
