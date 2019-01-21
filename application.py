@@ -340,6 +340,8 @@ def changerecipe():
         # afbeelding opslaan in images
         filename = secure_filename(image.filename)
         filetype = filename[filename.rfind("."):]
+        oldfile = db.execute("SELECT imageid FROM recipes WHERE id=:id", id=id)
+        os.remove(oldfile[0]["imageid"])
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # afbeelding hernoemen
         os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
