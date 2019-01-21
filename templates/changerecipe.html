@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}"> <!-- CSS reset -->
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Resource style -->
 
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script> <!-- Select selecting multiple options source-->
+
+
 	<script src="{{ url_for('static', filename='modernizr.js') }}"></script><!-- Modernizr -->
 
 	<title>FoodieMatch | Change Recipe</title>
@@ -38,6 +41,8 @@
 				<br>
 				<div class="form-group">
 
+
+
 					<select id="tags" name="tags" multiple class="form-control" size="12">
 						<option disabled selected value="">Allergies</option>
 						<option value = "corn">Corn</option>
@@ -53,6 +58,7 @@
 						<option value = "FPIES">FPIES</option>
 					</select>
 				</div>
+
 				<script>
 					$('option').mousedown(function(e) {
 						e.preventDefault();
@@ -68,6 +74,7 @@
 						return false;
 					});
 					</script>
+
 				<div class="form-group">
 					<button class="btn btn-default" type="submit">Change recipe</button>
 				</div>
