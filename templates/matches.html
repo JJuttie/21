@@ -1,11 +1,29 @@
-{% extends "layout.html" %}
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block title %}
-    Matches
-{% endblock %}
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 
-{% block main %}
-<p><b><u>My FoodieMatches:</u></b></p></p>
+	<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Resource style -->
+	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+
+	<title>FoodieMatch | My Matches</title>
+</head>
+<body>
+	<header class="cd-header">
+		<a href="#0" class="cd-logo"><img src="img/Logo_foodiematch1.png" alt="Logo"></a>
+		<a href="#0" class="cd-3d-nav-trigger">
+			Menu
+			<span></span>
+		</a>
+	</header> <!-- .cd-header -->
+	<br><br><br><br><br><br><br><br>
+	<main>
+		<h1>
+			<p><b><u>My FoodieMatches:</u></b></p></p>
 Eventueel gebruik maken van lightbox:
 <a href ="https://www.w3schools.com/howto/howto_js_lightbox.asp">linkie</a><br>
 En een tile grid:
@@ -19,4 +37,36 @@ Voor wanneer geklikt en overzicht van recept een sticky foto
 En misschien een scroll indicator
 <a href = "https://www.w3schools.com/howto/howto_js_scroll_indicator.asp">linkie</a><br>
 
-{% endblock %}
+		</h1>
+		<!-- all your content here -->
+	</main>
+
+	<nav class="cd-3d-nav-container">
+		<ul class="cd-3d-nav">
+			<li>
+				<a href="{{ url_for('index') }}">Browse</a>
+			</li>
+
+			<li class="cd-selected">
+				<a href="{{ url_for('matches') }}">My Matches</a>
+			</li>
+
+			<li>
+				<a href="{{ url_for('changerecipe') }}">Change My Recipe</a>
+			</li>
+
+			<li>
+				<a href="{{ url_for('account') }}">Settings</a>
+			</li>
+
+			<li>
+				<a href="{{ url_for('logout') }}">Log out</a>
+			</li>
+		</ul> <!-- .cd-3d-nav -->
+
+		<span class="cd-marker color-1"></span>
+	</nav> <!-- .cd-3d-nav-container -->
+<script src="{{ url_for('static', filename='jquery-2.1.1.js') }}"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script> <!-- Resource jQuery -->
+</body>
+</html>
