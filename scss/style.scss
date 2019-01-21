@@ -6,7 +6,7 @@
 
 @import '../partials/layout'; // responsive grid and media queries
 
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -32,9 +32,9 @@ a {
 	text-decoration: none;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main Components 
+Main Components
 
 -------------------------------- */
 
@@ -62,7 +62,10 @@ Main Components
 
 .cd-logo {
 	float: left;
-	margin-top: 28px; 
+	margin-top: 28px;
+	width: 100%;
+  	max-width: 400px;
+  	height: auto;
 }
 
 .cd-3d-nav-trigger {
@@ -78,8 +81,8 @@ Main Components
 	white-space: nowrap;
 	color: transparent;
 
-	span, 
-	span::before, 
+	span,
+	span::before,
 	span::after {
 		/* hamburger icon in CSS */
 		position: absolute;
@@ -95,14 +98,14 @@ Main Components
 		left: 8px;
 		@include transition(background 0.2s $animation-duration);
 
-		&::before, 
+		&::before,
 		&:after {
 			/* these are the upper and lower lines */
 			content: '';
 			left: 0;
 			@include transition(transform 0.2s $animation-duration);
 		}
-		
+
 		&::before {
 			bottom: 8px;
 		}
@@ -111,14 +114,14 @@ Main Components
 			top: 8px;
 		}
 	}
-	
+
 	.nav-is-visible & {
 
 		span {
 			/* hide line in the center */
 			background-color: rgba(#FFF, 0);
 
-			&::before, 
+			&::before,
 			&::after {
 				/* keep visible other 2 lines */
 				background-color: rgba(#FFF, 1);
@@ -163,7 +166,7 @@ Main Components
 	}
 
 	@include MQ(M) {
-		height: $nav-height-M; 
+		height: $nav-height-M;
 	}
 }
 
@@ -200,23 +203,23 @@ Main Components
 		@include column(1/$nav-items); // see partials > _layout.scss
 
 		&:first-of-type a::before {
-			background-image: url(../img/icon-1.svg);
+			background-image: url(static/icon-1.svg);
 		}
 
 		&:nth-of-type(2) a::before {
-			background-image: url(../img/icon-2.svg);
+			background-image: url(static/icon-2.svg);
 		}
 
 		&:nth-of-type(3) a::before {
-			background-image: url(../img/icon-3.svg);
+			background-image: url(static/icon-3.svg);
 		}
 
 		&:nth-of-type(4) a::before {
-			background-image: url(../img/icon-4.svg);
+			background-image: url(static/icon-4.svg);
 		}
 
 		&:nth-of-type(5) a::before {
-			background-image: url(../img/icon-5.svg);
+  			background-image: url({{ url_for('static', filename='img/icon-5.svg') }});
 		}
 	}
 
@@ -253,7 +256,7 @@ Main Components
 
 		&::before {
 			background-position: 0 -32px;
-		} 
+		}
 	}
 
 	.nav-is-visible & {
@@ -268,7 +271,7 @@ Main Components
 	}
 
 	@include MQ(M) {
-		
+
 		a {
 			padding: 7.6em 1em 0;
 			color: $text-color;
@@ -278,7 +281,7 @@ Main Components
 			}
 			text-align: center;
 			@include font-smoothing;
-			
+
 			/* truncate text with ellipsis if too long */
 			white-space: nowrap;
 			overflow: hidden;
@@ -301,7 +304,7 @@ Main Components
 	width: 100%/$nav-items;
 	@include transform-origin(center bottom);
 	@include transform(translateZ(0) rotateX(90deg));
-	
+
 	-webkit-transition: -webkit-transform $animation-duration, left 0.5s, color 0.5s, background-color 0.5s;
 	-moz-transition: -moz-transform $animation-duration, left 0.5s, color 0.5s, background-color 0.5s;
 	transition: transform $animation-duration, left 0.5s, color 0.5s, background-color 0.5s;

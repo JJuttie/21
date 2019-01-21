@@ -8,13 +8,14 @@
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}"> <!-- CSS reset -->
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Resource style -->
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+
+	<script src="{{ url_for('static', filename='modernizr.js') }}"></script><!-- Modernizr -->
 
 	<title>FoodieMatch | Register</title>
 </head>
 <body>
 	<header class="cd-header">
-		<a href="#0" class="cd-logo"><img src="img/Logo_foodiematch1.png" alt="Logo"></a>
+		<a href="#0" class="cd-logo"><img src="static/Logo_foodiematch1.png" alt="Logo"></a>
 		<a href="#0" class="cd-3d-nav-trigger">
 			Menu
 			<span></span>
