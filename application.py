@@ -334,7 +334,7 @@ def changerecipe():
             return apology("You must provide an bio")
 
         # reset all tags
-        db.execute("UPDATE recipes SET bio = NULL,	corn = NULL, egg = NULL, fish = NULL, meat = NULL, milk = NULL,	peanut = NULL, shellfish = NULL, soy = NULL, treenut = NULL, wheat = NULL, FPIES = NULL")
+        db.execute("UPDATE recipes SET corn = NULL, egg = NULL, fish = NULL, meat = NULL, milk = NULL,	peanut = NULL, shellfish = NULL, soy = NULL, 'tree nut' = NULL, wheat = NULL, FPIES = NULL")
         # update tags in database
         for tag in tags:
             db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
