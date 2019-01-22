@@ -114,10 +114,15 @@ def login():
             return apology("invalid email and/or password")
 
         # remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        id =rows[0]["id"]
+        session["user_id"] = id
 
+        recipe = db.execute("SELECT * FROM recipes WHERE id=:id", id=id)
+        if not recipe:
+            return redirect(url_for("recipe"))
+        else:
         # redirect user to home page
-        return redirect(url_for("index"))
+            return redirect(url_for("index"))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -188,11 +193,12 @@ def register():
         # pomp het in de database
         gebruiker = db.execute("INSERT INTO users(email, name, town, hash) VALUES(:email, :name, :town, :hash)",
         email=request.form.get("email"), name=request.form.get("name"), town=request.form.get("town"), hash=password)
+        rows = db.execute("SELECT * FROM users WHERE email = :email", email=request.form.get("email"))
 
         #nu ingelogd:
-        session["user-id"] = gebruiker
+        session["user-id"] = rows[0]["id"]
         # redirect user to home page
-        return render_template("recipe.html")
+        return redirect(url_for("recipe"))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
