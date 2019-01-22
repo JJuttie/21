@@ -210,6 +210,7 @@ def forgot():
 
     if request.method == "POST":
 
+        # check if all fields are filled out
         if not request.form.get("email"):
             return apology("please provide your e-mail address")
 
@@ -228,12 +229,22 @@ def forgot():
         elif request.form.get("new password") != request.form.get("confirmation"):
             return apology("passwords don't match")
 
+        # get user's info
         user = db.execute("SELECT * FROM users WHERE email = :email", \
                             email=request.form.get("email"))
 
+        # check if email is known
+        if not user:
+            return apology("sorry don't know that e-mail!")
 
-        if (user[0]["email"]) != request.form.get("email") and (user[0]["name"]) != request.form.get("name") and (user[0]["town"]) != request.form.get("town"):
-            return apology("not valid")
+        # check if forms match with database
+        if (user[0]["name"]) != request.form.get("name"):
+            return("name not valid")
+
+        elif user[0]["town"] != request.form.get("town"):
+            return("town not valid")
+
+        # if okay, update database with new password
         else:
             hash = pwd_context.hash(request.form.get("new password"))
             db.execute("UPDATE users SET hash = :hash WHERE email = :email", \
@@ -242,6 +253,7 @@ def forgot():
             return render_template("login.html")
     else:
         return render_template("forgot.html")
+
 #extra_opdracht2
 @app.route("/password", methods=["GET", "POST"])
 @login_required
