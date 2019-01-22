@@ -62,15 +62,14 @@ def reset():
 @login_required
 def index():
     id = session["user_id"]
-    # determine the amount of users
-    users = db.execute("SELECT COUNT(*) FROM users")
-    users = users[0]["COUNT(*)"]
-    user = id
+    # alle gebruikers behalve gebruiker zelf selecteren
+    users = db.execute("SELECT id FROM recipes WHERE id!=:id", id=id)
+    # alle gebruikers in een lijst zetten
+    userlist = [int(id) for id in str(users) if id.isdigit()]
     # willekeurige gebruiker uitkiezen
-    while user == id:
-        user = random.randint(1, users)
+    user = random.choice(userlist)
     # random gebruiker selecteren werkt zodra id=id wordt veranderd naar id=user
-    gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=id)
+    gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=user)
     # session["likedid"] = gerecht[0]["id"]
     imageid = gerecht[0]["imageid"]
     title = gerecht[0]["title"]
