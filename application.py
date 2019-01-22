@@ -60,11 +60,13 @@ def reset():
 @login_required
 def index():
     gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
-    session["likedid"] = gerecht[0]["id"]
+    # session["likedid"] = gerecht[0]["id"]
     imageid = gerecht[0]["imageid"]
     title = gerecht[0]["title"]
     bio = gerecht[0]["bio"]
-    return render_template("index.html", imageid=imageid, title=title, bio=bio)
+    tags = [tag for tag in gerecht[0] if gerecht[0][tag]==1]
+    tags = ", ".join(tags)
+    return render_template("index.html", imageid=imageid, title=title, bio=bio, tags=tags)
 
 @app.route("/like", methods=["GET", "POST"])
 @login_required

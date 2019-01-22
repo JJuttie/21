@@ -30,6 +30,7 @@
 			<img src="/{{ imageid }}" width="900" height="500" class="center">
 			<p>{{ title }}</p>
 			<p>{{ bio }}</p>
+			<p>{{ tags }}</p>
 			<br>
 
 			<form action="{{ url_for('like') }}" method="post">
@@ -70,6 +71,10 @@
 
 			<li>
 				<a href="{{ url_for('logout') }}">Log out</a>
+			</li>
+
+			<li>
+				<a href="{{ url_for('recipe') }}">recipe</a>
 			</li>
 		</ul> <!-- .cd-3d-nav -->
 
