@@ -9,6 +9,8 @@ import os
 from werkzeug.utils import secure_filename
 from tempfile import mkdtemp
 
+import random
+
 from Mike import *
 from helpers import *
 
@@ -59,7 +61,16 @@ def reset():
 @app.route("/")
 @login_required
 def index():
-    gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
+    id = session["user_id"]
+    # determine the amount of users
+    users = db.execute("SELECT COUNT(*) FROM users")
+    users = users[0]["COUNT(*)"]
+    user = id
+    # willekeurige gebruiker uitkiezen
+    while user == id:
+        user = random.randint(1, users)
+    # random gebruiker selecteren werkt zodra id=id wordt veranderd naar id=user
+    gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=id)
     # session["likedid"] = gerecht[0]["id"]
     imageid = gerecht[0]["imageid"]
     title = gerecht[0]["title"]
