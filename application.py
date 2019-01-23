@@ -354,7 +354,7 @@ def matches():
         users = db.execute ("SELECT * FROM users WHERE id=:id", id=id)
         recipelist.append(recipe)
         userdata.append(users)
-    return render_template("matches.html", recipelist, userdata)
+    return render_template("matches.html", recipelist=recipelist, userdata=userdata)
 
 @app.route("/account", methods=["GET", "POST"])
 @login_required
