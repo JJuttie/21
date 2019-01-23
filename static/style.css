@@ -68,8 +68,9 @@ Main Components
   float: left;
   margin-top: 28px;
   width: 40%;
-  max-width: 200px;
+  max-width: 100px;
   height: auto;
+  padding: 20px;
 }
 
 .cd-3d-nav-trigger {
@@ -227,19 +228,19 @@ Main Components
   float: left;
 }
 .cd-3d-nav li:first-of-type a::before {
-  background-image: url(static/icon-3.svg);
+  background-image: url(img/foodiematch.png);
 }
 .cd-3d-nav li:nth-of-type(2) a::before {
-  background-image: url(static/icon-2.svg);
+  background-image: url(img/icon-2.svg);
 }
 .cd-3d-nav li:nth-of-type(3) a::before {
-  background-image: url(static/icon-1.svg);
+  background-image: url(img/icon-1.svg);
 }
 .cd-3d-nav li:nth-of-type(4) a::before {
-  background-image: url(static/icon-4.svg);
+  background-image: url(img/icon-4.svg);
 }
 .cd-3d-nav li:nth-of-type(5) a::before {
-  background-image: url({{ url_for('static', filename='img/icon-5.svg') }})
+  background-image: url(img/icon-5.svg)
 }
 .cd-3d-nav a {
   position: relative;
@@ -435,6 +436,13 @@ main.nav-is-visible {
     font-size: 3.6rem;
     margin: 4em auto;
   }
+}
+
+.form-group {
+  vertical-align: middle;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 

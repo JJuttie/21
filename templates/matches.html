@@ -1,27 +1,10 @@
-<!doctype html>
-<html lang="en" class="no-js">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
 
+{% block title %}
+	Matches
+{% endblock %}
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}"> <!-- CSS reset -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Resource style -->
-
-	<script src="{{ url_for('static', filename='modernizr.js') }}"></script><!-- Modernizr -->
-
-	<title>FoodieMatch | My Matches</title>
-</head>
-<body>
-	<header class="cd-header">
-		<a href="#0" class="cd-logo"><img src="static/Logo_foodiematch1.png" alt="Logo"></a>
-		<a href="#0" class="cd-3d-nav-trigger">
-			Menu
-			<span></span>
-		</a>
-	</header> <!-- .cd-header -->
-	<br><br><br><br><br><br><br><br>
-	<main>
+{% block main %}
 		<h1>
 			<p><b><u>My FoodieMatches:</u></b></p></p>
 Eventueel gebruik maken van lightbox:
@@ -38,35 +21,4 @@ En misschien een scroll indicator
 <a href = "https://www.w3schools.com/howto/howto_js_scroll_indicator.asp">linkie</a><br>
 
 		</h1>
-		<!-- all your content here -->
-	</main>
-
-	<nav class="cd-3d-nav-container">
-		<ul class="cd-3d-nav">
-			<li>
-				<a href="{{ url_for('index') }}">Browse</a>
-			</li>
-
-			<li class="cd-selected">
-				<a href="{{ url_for('matches') }}">My Matches</a>
-			</li>
-
-			<li>
-				<a href="{{ url_for('changerecipe') }}">Change My Recipe</a>
-			</li>
-
-			<li>
-				<a href="{{ url_for('account') }}">Settings</a>
-			</li>
-
-			<li>
-				<a href="{{ url_for('logout') }}">Log out</a>
-			</li>
-		</ul> <!-- .cd-3d-nav -->
-
-		<span class="cd-marker color-1"></span>
-	</nav> <!-- .cd-3d-nav-container -->
-<script src="{{ url_for('static', filename='jquery-2.1.1.js') }}"></script>
-<script src="{{ url_for('static', filename='main.js') }}"></script> <!-- Resource jQuery -->
-</body>
-</html>
+{% endblock %}

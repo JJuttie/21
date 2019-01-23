@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="static/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="static/style.css"> <!-- Resource style -->
+	<script src="static/modernizr.js"></script> <!-- Modernizr -->
+
+	<title>FoodieMatch | Register</title>
+</head>
+<body>
+	<header class="cd-header">
+		<a href="#0" class="cd-logo"><img src="static/foodiematch.png" alt="Logo"></a>
+		<a href="#0" class="cd-3d-nav-trigger">
+			Menu
+			<span></span>
+		</a>
+	</header> <!-- .cd-header -->
+
+	<main>
+		{% block main %}{% endblock %}
+	</main>
+
+	 <nav class="cd-3d-nav-container">
+            {% if session.user_id %}
+                <ul class="cd-3d-nav">
+                	<li class="cd-selected">
+                    	<a href="{{ url_for('index') }}">Browse</a>
+                    </li>
+                    <li><a href="{{ url_for('matches') }}">My Matches</a></li>
+                    <li><a href="{{ url_for('changerecipe') }}">Change My Recipe</a></li>
+                    <li><a href="{{ url_for('account') }}">Settings</a></li>
+                    <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                </ul>
+            {% else %}
+                <ul class="cd-3d-nav">
+                    <li class="cd-selected">
+                        <a href="{{ url_for('register') }}">Register</a>
+                    </li>
+                    <li><a href="{{ url_for('login') }}">Log In</a></li>
+                </ul>
+            {% endif %}
+        <span class="cd-marker color-1"></span>
+	</nav> <!-- .cd-3d-nav-container -->
+<script src="{{ url_for('static', filename='jquery-2.1.1.js') }}"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script> <!-- Resource jQuery -->
+<!--<script src="{{ url_for('static', filename='locationapi.js')}}"></script>-->
+</body>
+</html>
