@@ -6,7 +6,7 @@
 
 {% block main %}
 		<h1>
-			<p><b><u>My FoodieMatches:</u></b></p></p>
+			<p><b><u>My FoodieMatches:</u></b></p></p><br>
 {% for item in recipelist %}
 	<img src="/{{ item[0]["imageid"] }}" width="900" height="500" class="center">
 	<p>Titel = {{ item[0]["title"] }}</p>
