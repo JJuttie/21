@@ -80,10 +80,11 @@ def index():
         # alle gebruikers in een lijst zetten
         userlist = [int(id) for id in str(users) if id.isdigit()]
         # willekeurige gebruiker uitkiezen
-        user = random.choice(userlist)
-        # random gebruiker selecteren werkt zodra id=id wordt veranderd naar id=user
-        gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=user)
-        # session["likedid"] = gerecht[0]["id"]
+        gerecht = []
+        while gerecht == []:
+            user = random.choice(userlist)
+            # random gebruiker selecteren werkt zodra id=id wordt veranderd naar id=user
+            gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=user)
         imageid = gerecht[0]["imageid"]
         title = gerecht[0]["title"]
         bio = gerecht[0]["bio"]
