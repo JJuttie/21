@@ -355,9 +355,11 @@ def matches():
     for id in matchset:
         recipe = db.execute("SELECT * FROM recipes WHERE id=:id", id=id)
         users = db.execute ("SELECT * FROM users WHERE id=:id", id=id)
+        recipe[0]["email"] = users[0]["email"]
+        recipe[0]["name"] = users[0]["name"]
+        recipe[0]["town"] = users[0]["town"]
         recipelist.append(recipe)
-        userdata.append(users)
-    return render_template("matches.html", recipelist=recipelist, userdata=userdata)
+    return render_template("matches.html", recipelist=recipelist)
 
 @app.route("/account", methods=["GET", "POST"])
 @login_required
