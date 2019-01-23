@@ -1,111 +1,60 @@
-<!doctype html>
-<html lang="en" class="no-js">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
 
+{% block title %}
+	Matches
+{% endblock %}
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}"> <!-- CSS reset -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Resource style -->
+{% block main %}
+<h1>    <form action="{{ url_for('recipe') }}" method="post" enctype="multipart/form-data">
+	<fieldset>
+	   <div>
+			<span class="btn btn-default btn-file">Upload an image of your meal<br> <input type="file" name="image">
+		</div>
+		   <br>
+		<div class="form-group">
+			<input autocomplete="off" autofocus class="form-control" name="title" placeholder="Title" type="text"/>
+		</div>
+		<div class="form-group">
+			<input autocomplete ="off" class="form-control" name="bio" placeholder="Bio" type="text"/>
+		</div>
+		<br>
+		<div class="form-group">
 
-	<script src="https://code.jquery.com/jquery-2.2.4.js"></script> <!-- Select selecting multiple options source-->
+			<select id="tags" name="tags" multiple class="form-control" size="12">
+				<option disabled selected value="">Allergies</option>
+				<option value = "corn">Corn</option>
+				<option value = "egg">Egg</option>
+				<option value = "fish">Fish</option>
+				<option value = "meat">Meat</option>
+				<option value = "milk">Milk</option>
+				<option value = "peanut">Peanut</option>
+				<option value = "shellfish">Shellfish</option>
+				<option value = "soy">Soy</option>
+				<option value = "tree nut">Tree Nut</option>
+				<option value = "wheat">Wheat</option>
+				<option value = "FPIES">FPIES</option>
+			</select>
+		</div>
 
-	<script src="{{ url_for('static', filename='modernizr.js') }}"></script><!-- Modernizr -->
+		<script>
+			$('option').mousedown(function(e) {
+				e.preventDefault();
+				var originalScrollTop = $(this).parent().scrollTop();
+				console.log(originalScrollTop);
+				$(this).prop('selected', $(this).prop('selected') ? false : true);
+				var self = this;
+				$(this).parent().focus();
+				setTimeout(function() {
+					$(self).parent().scrollTop(originalScrollTop);
+				}, 0);
 
-	<title>FoodieMatch | My Recipe</title>
-</head>
-<body>
-	<header class="cd-header">
-		<a href="#0" class="cd-logo"><img src="static/Logo_foodiematch1.png" alt="Logo"></a>
-		<a href="#0" class="cd-3d-nav-trigger">
-			Menu
-			<span></span>
-		</a>
-	</header> <!-- .cd-header -->
-	<br><br><br><br><br><br><br><br>
-	<main>
-		<h1>    <form action="{{ url_for('recipe') }}" method="post" enctype="multipart/form-data">
-			<fieldset>
-			   <div>
-					<span class="btn btn-default btn-file">Upload an image of your meal<br> <input type="file" name="image">
-				</div>
-				   <br>
-				<div class="form-group">
-					<input autocomplete="off" autofocus class="form-control" name="title" placeholder="Title" type="text"/>
-				</div>
-				<div class="form-group">
-					<input autocomplete ="off" class="form-control" name="bio" placeholder="Bio" type="text"/>
-				</div>
-				<br>
-				<div class="form-group">
+				return false;
+			});
+			</script>
+		<div class="form-group">
+			<button class="btn btn-default" type="submit">Finish Registration</button>
+		</div>
+	</fieldset>
 
-					<select id="tags" name="tags" multiple class="form-control" size="12">
-						<option disabled selected value="">Allergies</option>
-						<option value = "corn">Corn</option>
-						<option value = "egg">Egg</option>
-						<option value = "fish">Fish</option>
-						<option value = "meat">Meat</option>
-						<option value = "milk">Milk</option>
-						<option value = "peanut">Peanut</option>
-						<option value = "shellfish">Shellfish</option>
-						<option value = "soy">Soy</option>
-						<option value = "tree nut">Tree Nut</option>
-						<option value = "wheat">Wheat</option>
-						<option value = "FPIES">FPIES</option>
-					</select>
-				</div>
-
-				<script>
-					$('option').mousedown(function(e) {
-						e.preventDefault();
-						var originalScrollTop = $(this).parent().scrollTop();
-						console.log(originalScrollTop);
-						$(this).prop('selected', $(this).prop('selected') ? false : true);
-						var self = this;
-						$(this).parent().focus();
-						setTimeout(function() {
-							$(self).parent().scrollTop(originalScrollTop);
-						}, 0);
-
-						return false;
-					});
-					</script>
-				<div class="form-group">
-					<button class="btn btn-default" type="submit">Finish Registration</button>
-				</div>
-			</fieldset>
-
-		</form></h1>
-		<!-- all your content here -->
-	</main>
-
-	<nav class="cd-3d-nav-container">
-		<ul class="cd-3d-nav">
-			<li>
-				<a href="{{ url_for('index') }}">Browse</a>
-			</li>
-
-			<li>
-				<a href="{{ url_for('matches') }}">My Matches</a>
-			</li>
-
-			<li class="cd-selected">
-				<a href="{{ url_for('changerecipe') }}">Change My Recipe</a>
-			</li>
-
-			<li>
-				<a href="{{ url_for('account') }}">Settings</a>
-			</li>
-
-			<li>
-				<a href="{{ url_for('logout') }}">Log out</a>
-			</li>
-		</ul> <!-- .cd-3d-nav -->
-
-		<span class="cd-marker color-1"></span>
-	</nav> <!-- .cd-3d-nav-container -->
-<script src="{{ url_for('static', filename='jquery-2.1.1.js') }}"></script>
-<script src="{{ url_for('static', filename='main.js') }}"></script> <!-- Resource jQuery -->
-</body>
-</html>
-
+</form></h1>
+{% endblock %}
