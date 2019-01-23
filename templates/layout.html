@@ -14,7 +14,10 @@
 </head>
 <body>
 	<header class="cd-header">
+		{% if session.user_id %}
+		{% else %}
 		<a href="#0" class="cd-logo"><img src="static/Logo_foodiematch1.png" alt="Logo"></a>
+		{% endif %}
 		<a href="#0" class="cd-3d-nav-trigger">
 			Menu
 			<span></span>
@@ -28,20 +31,31 @@
 	 <nav class="cd-3d-nav-container">
             {% if session.user_id %}
                 <ul class="cd-3d-nav">
-                	<li class="cd-selected">
-                    	<a href="{{ url_for('index') }}">Browse</a>
-                    </li>
-                    <li><a href="{{ url_for('matches') }}">My Matches</a></li>
-                    <li><a href="{{ url_for('changerecipe') }}">Change My Recipe</a></li>
-                    <li><a href="{{ url_for('account') }}">Settings</a></li>
-                    <li><a href="{{ url_for('logout') }}">Log out</a></li>
+
+                	<li {%- if request.path =="/index" %} class="cd-selected"{% endif %}>
+    					<a href="{{ url_for('index') }}">Browse</a>
+					</li>
+					<li {%- if request.path=="/matches" %} class="cd-selected"{% endif %}>
+    					<a href="{{ url_for('matches') }}">Matches</a>
+					</li>
+                	<li {%- if request.path =="/changerecipe" %} class="cd-selected"{% endif %}>
+    					<a href="{{ url_for('changerecipe') }}">Change My Recipe</a>
+					</li>
+					<li {%- if request.path=="/account" %} class="cd-selected"{% endif %}>
+    					<a href="{{ url_for('account') }}">Settings</a>
+					</li>
+					<li {%- if request.path=="/logout" %} class="cd-selected"{% endif %}>
+    					<a href="{{ url_for('logout') }}">Log Out</a>
+					</li>
                 </ul>
             {% else %}
                 <ul class="cd-3d-nav">
-                    <li class="cd-selected">
-                        <a href="{{ url_for('register') }}">Register</a>
-                    </li>
-                    <li><a href="{{ url_for('login') }}">Log In</a></li>
+					<li {%- if request.path=="/register" %} class="cd-selected"{% endif %}>
+    					<a href="{{ url_for('register') }}">Register</a>
+					</li>
+					<li {%- if request.path=="/login" %} class="cd-selected"{% endif %}>
+    					<a href="{{ url_for('login') }}">Log In</a>
+					</li>
                 </ul>
             {% endif %}
         <span class="cd-marker color-1"></span>
