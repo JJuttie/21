@@ -26,9 +26,6 @@ if app.config["DEBUG"]:
         response.headers["Pragma"] = "no-cache"
         return response
 
-# custom filter
-app.jinja_env.filters["usd"] = usd
-
 # configure session to use filesystem (instead of signed cookies)
 # app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
@@ -67,6 +64,8 @@ def index():
         # gegevens in database zetten bij like en pagina herladen
         if request.form["like"] == "like":
             db.execute("INSERT INTO like(currentid, likedid) VALUES(:currentid, :likedid)", currentid=id, likedid=likedid)
+            matches = check_matches(id)
+            return render_template("index.html", title = matches)
             return redirect(url_for("index"))
         # pagina herladen bij dislike
         elif request.form["like"] == "dislike":
