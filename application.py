@@ -10,6 +10,7 @@ from werkzeug.utils import secure_filename
 from tempfile import mkdtemp
 
 import random
+import re
 
 from Mike import *
 from helpers import *
@@ -73,18 +74,31 @@ def index():
                 return redirect(url_for("index"))
         # pagina herladen bij dislike
         elif request.form["like"] == "dislike":
+            print(session["already"])
             return redirect(url_for("index"))
     else:
         # alle gebruikers behalve gebruiker zelf selecteren
         users = db.execute("SELECT id FROM recipes WHERE id!=:id", id=id)
         # alle gebruikers in een lijst zetten
-        userlist = [int(id) for id in str(users) if id.isdigit()]
+        userlist = [int(user) for user in re.findall('\d+', str(users))]
+        # gebruikers die al gematcht zijn uit lijst halen
+        matches = check_matches(id)
+        for match in matches:
+            userlist.remove(match)
+        for match in session["already"]:
+            userlist.remove(match)
+        # als alle gebruikers al weergeven zijn moet er iets gebeuren, logt nu uit!!!!
+        if userlist == []:
+            return(redirect(url_for("logout")))
         # willekeurige gebruiker uitkiezen
         gerecht = []
+
         while gerecht == []:
+            # random gebruiker selecteren
             user = random.choice(userlist)
-            # random gebruiker selecteren werkt zodra id=id wordt veranderd naar id=user
             gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=user)
+            if user not in session["already"]:
+                session["already"].append(user)
         imageid = gerecht[0]["imageid"]
         title = gerecht[0]["title"]
         bio = gerecht[0]["bio"]
@@ -131,6 +145,9 @@ def login():
         # remember which user has logged in
         id =rows[0]["id"]
         session["user_id"] = id
+
+        # create list of users that have been shown in browse
+        session["already"] = []
 
         recipe = db.execute("SELECT * FROM recipes WHERE id=:id", id=id)
         if not recipe:
