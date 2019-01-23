@@ -32,18 +32,18 @@
 			<p>{{ tags }}</p>
 			<br>
 
-			<form action="{{ url_for('like') }}" method="post">
+			<form action="{{ url_for('index') }}" method="post">
 					<fieldset>
 						<div class="form-group">
-							<button class="btn btn-default" type="submit">Like</button>
+							<button class="btn btn-default" name="like" type="submit" value="like">Like</button>
 						</div>
 					</fieldset>
 			</form>
 
-			<form action="{{ url_for('account') }}" method="post">
+			<form action="{{ url_for('index') }}" method="post">
 					<fieldset>
 						<div class="form-group">
-							<button class="btn btn-default" type="button">Dislike</button>
+							<button class="btn btn-default" name="like" type="submit" value="dislike">Dislike</button>
 						</div>
 					</fieldset>
 			</form></h1>

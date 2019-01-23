@@ -58,25 +58,37 @@ def reset():
     server.sendmail(gmail_user, [TO], BODY)
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
     id = session["user_id"]
-    # alle gebruikers behalve gebruiker zelf selecteren
-    users = db.execute("SELECT id FROM recipes WHERE id!=:id", id=id)
-    # alle gebruikers in een lijst zetten
-    userlist = [int(id) for id in str(users) if id.isdigit()]
-    # willekeurige gebruiker uitkiezen
-    user = random.choice(userlist)
-    # random gebruiker selecteren werkt zodra id=id wordt veranderd naar id=user
-    gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=user)
-    # session["likedid"] = gerecht[0]["id"]
-    imageid = gerecht[0]["imageid"]
-    title = gerecht[0]["title"]
-    bio = gerecht[0]["bio"]
-    tags = [tag for tag in gerecht[0] if gerecht[0][tag]==1]
-    tags = ", ".join(tags)
-    return render_template("index.html", imageid=imageid, title=title, bio=bio, tags=tags)
+    if request.method == "POST":
+        likedid = session["likedid"]
+        # gegevens in database zetten bij like en pagina herladen
+        if request.form["like"] == "like":
+            db.execute("INSERT INTO like(currentid, likedid) VALUES(:currentid, :likedid)", currentid=id, likedid=likedid)
+            return redirect(url_for("index"))
+        # pagina herladen bij dislike
+        elif request.form["like"] == "dislike":
+            return redirect(url_for("index"))
+    else:
+        # alle gebruikers behalve gebruiker zelf selecteren
+        users = db.execute("SELECT id FROM recipes WHERE id!=:id", id=id)
+        # alle gebruikers in een lijst zetten
+        userlist = [int(id) for id in str(users) if id.isdigit()]
+        # willekeurige gebruiker uitkiezen
+        user = random.choice(userlist)
+        # random gebruiker selecteren werkt zodra id=id wordt veranderd naar id=user
+        gerecht = db.execute("SELECT * FROM recipes WHERE id=:id", id=user)
+        # session["likedid"] = gerecht[0]["id"]
+        imageid = gerecht[0]["imageid"]
+        title = gerecht[0]["title"]
+        bio = gerecht[0]["bio"]
+        tags = [tag for tag in gerecht[0] if gerecht[0][tag]==1]
+        tags = ", ".join(tags)
+        # likedid opslaan in globale variabele
+        session["likedid"] = user
+        return render_template("index.html", imageid=imageid, title=title, bio=bio, tags=tags)
 
 @app.route("/like", methods=["GET", "POST"])
 @login_required
@@ -141,6 +153,7 @@ def logout():
 def register():
     """Register user."""
     # if user reached route via POST (as by submitting a form via POST)
+    session.clear()
     if request.method == "POST":
 
         gmail_user = "foodiematch21@gmail.com"
@@ -190,12 +203,12 @@ def register():
             return apology("email already used")
 
         # pomp het in de database
-        gebruiker = db.execute("INSERT INTO users(email, name, town, hash) VALUES(:email, :name, :town, :hash)",
-        email=request.form.get("email"), name=request.form.get("name"), town=request.form.get("town"), hash=password)
+        db.execute("INSERT INTO users(email, name, town, hash) VALUES(:email, :name, :town, :hash)", email=request.form.get("email"), name=request.form.get("name"), town=request.form.get("town"), hash=password)
         rows = db.execute("SELECT * FROM users WHERE email = :email", email=request.form.get("email"))
 
         #nu ingelogd:
-        session["user-id"] = rows[0]["id"]
+        id =rows[0]["id"]
+        session["user_id"] = id
         # redirect user to home page
         return redirect(url_for("recipe"))
 
