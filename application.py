@@ -66,7 +66,7 @@ def index():
             db.execute("INSERT INTO like(currentid, likedid) VALUES(:currentid, :likedid)", currentid=id, likedid=likedid)
             # matches nagaan
             matches = check_matches(id)
-            # als match is dan berichtje
+            # als match is dan verwijzing naar matches
             if likedid in matches:
                 return redirect(url_for("matches"))
             else:
@@ -342,10 +342,19 @@ def recipe():
     else:
         return render_template("recipe.html")
 
-@app.route("/matches", methods=["GET", "POST"])
+@app.route("/matches")
 @login_required
 def matches():
-    return render_template("matches.html")
+    recipelist = []
+    userdata = []
+    id = session["user_id"]
+    matchset = check_matches(id)
+    for id in matchset:
+        recipe = db.execute("SELECT * FROM recipes WHERE id=:id", id=id)
+        users = db.execute ("SELECT * FROM users WHERE id=:id", id=id)
+        recipelist.append(recipe)
+        userdata.append(users)
+    return render_template("matches.html", recipelist, userdata)
 
 @app.route("/account", methods=["GET", "POST"])
 @login_required
