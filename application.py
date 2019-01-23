@@ -64,8 +64,13 @@ def index():
         # gegevens in database zetten bij like en pagina herladen
         if request.form["like"] == "like":
             db.execute("INSERT INTO like(currentid, likedid) VALUES(:currentid, :likedid)", currentid=id, likedid=likedid)
+            # matches nagaan
             matches = check_matches(id)
-            return redirect(url_for("index"))
+            # als match is dan berichtje
+            if likedid in matches:
+                return redirect(url_for("matches"))
+            else:
+                return redirect(url_for("index"))
         # pagina herladen bij dislike
         elif request.form["like"] == "dislike":
             return redirect(url_for("index"))
