@@ -337,6 +337,9 @@ def recipe():
         imageid = "static/images/"+str(id)+filetype
         # alles in de database gooien
         db.execute("INSERT INTO recipes(id, title, bio, imageid) VALUES(:id, :title, :bio, :imageid)", id=id, title=title, bio=bio, imageid=imageid)
+        # update tags in database
+        for tag in tags:
+            db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
         return redirect(url_for("index"))
 
     else:
