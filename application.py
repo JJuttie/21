@@ -65,7 +65,6 @@ def index():
         if request.form["like"] == "like":
             db.execute("INSERT INTO like(currentid, likedid) VALUES(:currentid, :likedid)", currentid=id, likedid=likedid)
             matches = check_matches(id)
-            return render_template("index.html", title = matches)
             return redirect(url_for("index"))
         # pagina herladen bij dislike
         elif request.form["like"] == "dislike":
