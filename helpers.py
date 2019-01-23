@@ -3,6 +3,8 @@ import urllib.request
 
 from cs50 import SQL
 
+import re
+
 from flask import redirect, render_template, request, session
 from functools import wraps
 
@@ -42,11 +44,11 @@ def check_matches(user_id):
     """returns list of all matches for the given id"""
     matchlist = []
     matches = db.execute("SELECT likedid FROM like WHERE currentid=:id", id=user_id)
-    matches = [int(id) for id in str(matches) if id.isdigit()]
+    matches = [int(user) for user in re.findall('\d+', str(matches))]
     for id in matches:
         match2 = db.execute("SELECT likedid FROM like WHERE currentid=:id", id=id)
-        match2 = [int(id) for id in str(match2) if id.isdigit()]
-        if user_id in match2:
+        match2 = [int(user) for user in re.findall('\d+', str(match2))]
+        if user_id in match2 and id != user_id:
             matchlist.append(id)
     return set(matchlist)
 

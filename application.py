@@ -83,6 +83,8 @@ def index():
         userlist = [int(user) for user in re.findall('\d+', str(users))]
         # gebruikers die al gematcht zijn uit lijst halen
         matches = check_matches(id)
+        print(matches)
+        print(userlist)
         for match in matches:
             userlist.remove(match)
         for match in session["already"]:
