@@ -1,0 +1,41 @@
+form .container-right #right {
+	background: url('img/right.png') no-repeat center center;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -ms-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+	width: 200px;
+	height: 250px;
+	border: none;
+	color: transparent;
+	font-size: 0;
+}
+
+form .container-left #left {
+	background: url('img/left.png') no-repeat center center;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -ms-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+	width: 200px;
+	height: 250px;
+	border: none;
+	color: transparent;
+	font-size: 0;
+}
+
+.container-right {
+  position: absolute;
+  top: 10%;
+  left: 72%;
+  right: 15%;
+}
+
+.container-left {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  right: 83%;
+}
