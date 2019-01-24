@@ -14,7 +14,7 @@ html {
 body {
   font-size: 1.6rem;
   font-family: "Open Sans", sans-serif;
-  background-color: #485274;
+  background-color: rgb(121, 51, 18);
 }
 
 a {
@@ -184,7 +184,7 @@ Main Components
   /* this is the 3D rotating navigation */
   position: relative;
   height: 100%;
-  background-color: #343c55;
+  background-color: rgb(143, 181, 46);
   /* Force Hardware Acceleration */
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
@@ -271,13 +271,13 @@ Main Components
   background-position: 0 0;
 }
 .no-touch .cd-3d-nav a:hover {
-  background-color: #2b3145;
+  background-color: rgb(76,108,5);
 }
 .cd-3d-nav .cd-selected a {
-  background-color: #212635;
+  background-color: rgb(76,108,5);
 }
 .no-touch .cd-3d-nav .cd-selected a:hover {
-  background-color: #212635;
+  background-color: rgb(76,108,5);
 }
 .cd-3d-nav .cd-selected a::before {
   background-position: 0 -32px;
@@ -371,28 +371,28 @@ Main Components
 
 /* these are the colors of the markers - line + arrow */
 .color-1 {
-  color: #9a57bd;
-  background-color: #9a57bd;
+  color: white;
+  background-color: white;
 }
 
 .color-2 {
-  color: #c96aa4;
-  background-color: #c96aa4;
+  color: white;
+  background-color: white;
 }
 
 .color-3 {
-  color: #d6915e;
-  background-color: #d6915e;
+  color: white;
+  background-color: white;
 }
 
 .color-4 {
-  color: #5397c7;
-  background-color: #5397c7;
+  color: white;
+  background-color: white;
 }
 
 .color-5 {
-  color: #77cd91;
-  background-color: #77cd91;
+  color: white;
+  background-color: white;
 }
 
 main {
@@ -455,7 +455,7 @@ main h2 {
   background-color:#A4A4A4;
 }
 .button-login:hover{
-  background-color:#485274;
+  background-color: rgb(143, 181, 46);
 }
 .button-login:active{
   background-color: #485274;
