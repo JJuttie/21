@@ -425,6 +425,24 @@ main h2 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+main h9 {
+  height:100%;
+  width:100%;
+  text-align: center;
+  font-size:20px;
+  font-weight: 300;
+  color: #ffffff;
+  background: url("background_matches.jpg") ;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:table;
+  margin-top:5px;
+  margin-bottom:5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* semi-transparent box on login page */
 .login_screen {
   background: rgb(0, 0, 0,0.59);
@@ -434,6 +452,17 @@ main h2 {
   margin:auto;
   border-radius:2%;
 }
+
+.matches_screen {
+  background: rgb(0, 0, 0,0.59);
+  text-align: center;
+  min-width:180px;
+  width:70vw;
+  height:37vw;
+  margin:auto;
+  border-radius:2%;
+}
+
 .forgotpassword{
   color:white;
 }

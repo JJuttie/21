@@ -5,26 +5,23 @@
 {% endblock %}
 
 {% block main %}
-		<h1>
+<h9>
 			<p><b><u>My FoodieMatches:</u></b></p></p><br>
 {% for item in recipelist %}
-	<img src="/{{ item[0]["imageid"] }}" width="900" height="500" class="center">
-	<p>Titel = {{ item[0]["title"] }}</p>
-	<p>Bio = {{ item[0]["bio"] }}</p>
-	<p>Tags = {{ item[0]["tags"] }}</p>
-	<p>Name creator = {{ item[0]["name"] }}</p>
-	<p>Town creator = {{ item[0]["town"] }}</p>
+	<div class="matches_screen">
+		<br>
+		<p>{{ item[0]["title"] }}</p>
+		<img src="/{{ item[0]["imageid"] }}" width="700" height="350" class="center">
+		<p>{{ item[0]["bio"] }}</p>
+		<br>
+		<p>Possible allergies: {{ item[0]["tags"] }}</p>
+		<br>
+		<p>Contact the owner now! :)</p>
+		<p>{{ item[0]["email"] }}</p>
+		<p>{{ item[0]["name"] }}</p>
+		<p>{{ item[0]["town"] }}</p>
+	</div>
+	<br>
 {% endfor %}
-<!--Eventueel gebruik maken van lightbox:-->
-<!--<a href ="https://www.w3schools.com/howto/howto_js_lightbox.asp">linkie</a><br>-->
-<!--En een tile grid:-->
-<!--<a href = "https://www.w3schools.com/howto/howto_css_image_grid_responsive.asp">linkie</a><br>-->
-<!--Hover effect wanneer over foto gaan:-->
-<!--<a href = "https://www.w3schools.com/howto/howto_css_image_overlay.asp">linkie</a><br>-->
-<!--Eventueel text block:-->
-<!--<a href = "https://www.w3schools.com/howto/howto_css_image_text_blocks.asp">linkie</a><br>-->
-<!--Voor wanneer geklikt en overzicht van recept een sticky foto-->
-<!--<a href = "https://www.w3schools.com/howto/howto_css_image_sticky.asp">linkie</a><br>-->
-<!--En misschien een scroll indicator-->
-<!--<a href = "https://www.w3schools.com/howto/howto_js_scroll_indicator.asp">linkie</a><br>-->
+</h9>
 {% endblock %}
