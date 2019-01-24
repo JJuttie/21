@@ -5,27 +5,33 @@
 {% endblock %}
 
 {% block main %}
-<h1>
+<h2>
+<br><br><br><br><br><br><br><br><br>
+	<div class = login_screen>
 	<p>
-		Login with your e-mail & password
-	</p><br>
+		<br><br>
+		Login
+	</p><br><br>
 		<form action="{{ url_for('login') }}" method="post">
 				<fieldset>
 					<div class="form-group">
 						<input autocomplete="off" name="email" placeholder="E-mail" type="text"/>
 					</div>
+					<br>
 					<div class="form-group">
 						<input name="password" placeholder="Password" type="password"/>
 					</div>
+					<br>
 					<div class="form-group">
 						<button class="btn btn-default" type="submit">Log In</button>
 					</div>
 				</fieldset>
 		</form>
 	<br>
-<li><a href="{{ url_for('forgot') }}">Forgot your password?</a></li>
-<h1>
-
+<li><a href="{{ url_for('forgot') }}">Forgot your password?</a></li><br><br>
+	</div>
+	<br><br><br><br><br><br><br><br><br>
+</h2>
 	<script>
         document.querySelector('form').onsubmit = function(){
             if (!document.querySelector("div.form-group input[name='email']").value) {

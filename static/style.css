@@ -408,7 +408,31 @@ main {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-main h1 {
+main h2 {
+  height:100%;
+  width:100%;
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #ffffff;
+  background: url("background_foodiematch.png") ;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:table;
+  top:0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.login_screen {
+  background: rgb(0, 0, 0,0.59);
+  width:26vw;
+  height:auto;
+  margin:auto;
+  border-radius:2%;
+
+
+}
+main h1{
   text-align: center;
   font-size: 2.4rem;
   font-weight: 300;
@@ -433,6 +457,10 @@ main.nav-is-visible {
     transform: translateY(170px);
   }
   main h1 {
+    font-size: 3.6rem;
+    margin: 4em auto;
+  }
+  main h2 {
     font-size: 3.6rem;
     margin: 4em auto;
   }
