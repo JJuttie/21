@@ -6,6 +6,7 @@
 
 	<link rel="stylesheet" href="static/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="static/style.css"> <!-- Resource style -->
+	<link rel="stylesheet" href="static/buttons.css"> <!-- Button style -->
 	<script src="static/modernizr.js"></script> <!-- Modernizr -->
 
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script> <!-- Select selecting multiple options source-->
@@ -14,7 +15,10 @@
 </head>
 <body>
 	<header class="cd-header">
-		<a href="#0" class="cd-logo">
+		{% if session.user_id %}
+		{% else %}
+		<a href="#0" class="cd-logo"><img src="static/Logo_foodiematch1.png" alt="Logo"></a>
+		{% endif %}
 		<a href="#0" class="cd-3d-nav-trigger">
 			Menu
 			<span></span>

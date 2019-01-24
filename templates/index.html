@@ -6,25 +6,22 @@
 
 {% block main %}
 <h1>
-<br><br>
-<img src="/{{ imageid }}" width="900" height="500" class="center">
-<p>{{ title }}</p>
-<p>{{ bio }}</p>
-<p>{{ tags }}</p>
+<p>{{ title }} | {{ bio }} | {{ tags }}</p>
+<img src="/{{ imageid }}" width="600" height="300" class="center">
 <br>
 
 <form action="{{ url_for('index') }}" method="post">
 		<fieldset>
-			<div class="form-group">
-				<button class="btn btn-default" name="like" type="submit" value="like">Like</button>
+			<div class="container-left">
+			  <button id="left" name="dislike" type="submit" value="dislike"></button>
 			</div>
 		</fieldset>
 </form>
 
 <form action="{{ url_for('index') }}" method="post">
 		<fieldset>
-			<div class="form-group">
-				<button class="btn btn-default" name="like" type="submit" value="dislike">Dislike</button>
+			<div class="container-right">
+			  <button id="right" name="like" type="submit" value="like"></button>
 			</div>
 		</fieldset>
 </form>
