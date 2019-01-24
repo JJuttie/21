@@ -5,14 +5,13 @@
 {% endblock %}
 
 {% block main %}
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <h9>
 			<p><b><u>My FoodieMatches:</u></b></p></p><br>
 {% for item in recipelist %}
 	<div class="matches_screen">
 		<br>
 		<p>{{ item[0]["title"] }}</p>
-		<img src="/{{ item[0]["imageid"] }}" width="700" height="350" class="w3-round">
+		<img src="/{{ item[0]["imageid"] }}" width="700" height="350" class="center">
 		<p>{{ item[0]["bio"] }}</p>
 		<br>
 		<p>Possible allergies: {{ item[0]["tags"] }}</p>

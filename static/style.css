@@ -463,6 +463,16 @@ main h9 {
   border-radius:2%;
 }
 
+.index_screen {
+  background: rgb(0, 0, 0,0.59);
+  text-align: center;
+  min-width:180px;
+  width:70vw;
+  height:30vw;
+  margin:auto;
+  border-radius:2%;
+}
+
 .forgotpassword{
   color:white;
 }
