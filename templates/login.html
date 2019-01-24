@@ -11,24 +11,25 @@
 	<p>
 		<br><br>
 		Login
-	</p><br><br>
+	</p><br>
 		<form action="{{ url_for('login') }}" method="post">
 				<fieldset>
-					<div class="form-group">
+					<div class="form-group-login">
 						<input autocomplete="off" name="email" placeholder="E-mail" type="text"/>
 					</div>
 					<br>
-					<div class="form-group">
+					<div class="form-group-login">
 						<input name="password" placeholder="Password" type="password"/>
 					</div>
 					<br>
-					<div class="form-group">
+					<div class="form-group-login">
 						<button class="btn btn-default" type="submit">Log In</button>
 					</div>
 				</fieldset>
 		</form>
 	<br>
-<li><a href="{{ url_for('forgot') }}">Forgot your password?</a></li><br><br>
+	<li><a class=newregister href="{{ url_for('register') }}">Register Here!</a></li><br>
+<li><a class=forgotpassword href="{{ url_for('forgot') }}">Forgot your password?</a></li><br><br>
 	</div>
 	<br><br><br><br><br><br><br><br><br>
 </h2>
