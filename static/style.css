@@ -446,6 +446,22 @@ main h2 {
 .newregister:hover{
   color:blue;
 }
+.button-login{
+  padding:10px 15px;
+  font-size:16px;
+  text-align:center;
+  cursor:pointer;
+  border-radius:15px;
+  background-color:#A4A4A4;
+}
+.button-login:hover{
+  background-color:#485274;
+}
+.button-login:active{
+  background-color: #485274;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 main h1{
   text-align: center;
   font-size: 2.4rem;
