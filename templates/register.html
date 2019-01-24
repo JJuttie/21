@@ -5,31 +5,42 @@
 {% endblock %}
 
 {% block main %}
-<h1>
-	<p>Please enter your details:</p>
+<h2>
+    <br><br><br><br><br><br><br><br><br>
+    <div class=login_screen>
+	<br><p>Please enter your details:</p><br>
     <form action="{{ url_for('register') }}" method="post">
         <fieldset>
-            <div class="form-group">
+            <div class="form-group-login">
                 <input autocomplete="off" name="email" placeholder="E-mail" type="text"/>
             </div>
-            <div class="form-group">
+            <div class="form-group-login">
                 <input name="name" placeholder="Name" type="text"/>
             </div>
-            <div class="form-group">
+            <div class="form-group-login">
                 <input name="town" placeholder="Town" type="text"/>
-            </div>
-            <div class="form-group">
+            </div><br>
+            <div class="form-group-login">
                 <input name="password" placeholder="Password" type="password"/>
             </div>
-            <div class="form-group">
+            <div class="form-group-login">
                 <input name="confirmation" placeholder="Confirm Password" type="password"/>
+<<<<<<< HEAD
             </div>
             <div class="form-group">
                 <button class="btn btn-default" type="submit">Next Step </button>
             </div>
+=======
+            </div><br>
+            <div class="form-group-login">
+                <button class="button-login" type="submit">Next Step</button>
+            </div><br>
+>>>>>>> 6724062b882b66cdbe296e4784923e9b0f565238
         </fieldset>
 	</form>
-</h1>
+	</div>
+	<br><br><br><br><br><br><br><br><br>
+</h2>
 
 
 	<script>

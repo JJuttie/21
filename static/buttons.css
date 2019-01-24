@@ -39,3 +39,23 @@ form .container-left #left {
   left: 15%;
   right: 83%;
 }
+#right{
+	cursor:pointer;
+}
+#left{
+	cursor:pointer;
+}
+#right:hover{
+
+}
+#right:active{
+	box-shadow: 0 5px #666;
+	transform: translateY(6px);
+}
+#left:hover{
+
+}
+#left:active{
+	box-shadow: 0 5px #666;
+	transform: translateY(6px);
+}
