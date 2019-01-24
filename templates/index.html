@@ -6,9 +6,13 @@
 
 {% block main %}
 <h1>
-<p>{{ title }} | {{ bio }} | {{ tags }}</p>
+<p>{{ title }}</p><br>
 <img src="/{{ imageid }}" width="600" height="300" class="center">
 <br>
+<br>
+<p>{{ bio }}<br><br>
+Possible Food Allegries:<br>
+{{ tags }}</p>
 
 <form action="{{ url_for('index') }}" method="post">
 		<fieldset>
