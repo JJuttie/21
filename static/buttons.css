@@ -32,10 +32,16 @@ form .container-left #left {
   left: 72%;
   right: 15%;
 }
+.container-right:hover {
+	cursor:pointer;
+}
 
 .container-left {
   position: absolute;
   top: 10%;
   left: 15%;
   right: 83%;
+}
+.container-left:hover {
+	cursor:pointer;
 }
