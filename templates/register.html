@@ -39,23 +39,23 @@
 	<script>
 	    // no empty fields validation
         document.querySelector('form').onsubmit = function(){
-            if (!document.querySelector("div.form-group input[name='email']").value) {
+            if (!document.querySelector("div.form-group-login input[name='email']").value) {
                 alert('You must provide an email!');
                 return false;
             }
-            else if(!document.querySelector("div.form-group input[name='name']").value) {
+            else if(!document.querySelector("div.form-group-login input[name='name']").value) {
             	alert('You must provide a name!');
                 return false;
             }
-            else if(!document.querySelector("div.form-group input[name='town']").value) {
+            else if(!document.querySelector("div.form-group-login input[name='town']").value) {
             	alert('You must provide a town!');
                 return false;
             }
-            else if(!document.querySelector("div.form-group input[name='password']").value) {
+            else if(!document.querySelector("div.form-group-login input[name='password']").value) {
             	alert('You must provide a password!');
                 return false;
             }
-            else if(!document.querySelector("div.form-group input[name='confirmation']").value) {
+            else if(!document.querySelector("div.form-group-login input[name='confirmation']").value) {
             	alert('You must provide a confirmation password!');
                 return false;
             }
