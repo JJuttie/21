@@ -355,6 +355,15 @@ def recipe():
         os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
         # imageid voor in de database vormen
         imageid = "static/images/"+str(id)+filetype
+
+        # imagecheck
+        report = imagereport(imageid)
+        imagestatus = imagecheck(report)
+        if imagestatus != True:
+            os.remove(imageid)
+            db.execute("DELETE FROM recipes WHERE id=:id", id=id)
+            return apology(imagestatus, 200)
+
         # alles in de database gooien
         db.execute("INSERT INTO recipes(id, title, bio, imageid) VALUES(:id, :title, :bio, :imageid)", id=id, title=title, bio=bio, imageid=imageid)
         # update tags in database
@@ -435,8 +444,9 @@ def changerecipe():
         report = imagereport(imageid)
         imagestatus = imagecheck(report)
         if imagestatus != True:
+            os.remove(imageid)
+            db.execute("DELETE FROM recipes WHERE id=:id", id=id)
             return apology(imagestatus, 200)
-
 
         # alles in de database gooien
         db.execute("UPDATE recipes SET title=:title, bio=:bio, imageid=:imageid WHERE id=:id", id=id, title=title, bio=bio, imageid=imageid)
