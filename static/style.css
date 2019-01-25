@@ -477,13 +477,13 @@ main h9 {
   color:white;
 }
 .forgotpassword:hover{
-  color:blue;
+  color:rgb(121, 51, 18);
 }
 .newregister{
   color:white;
 }
 .newregister:hover{
-  color:blue;
+  color:rgb(121, 51, 18);
 }
 .button-login{
   padding:10px 15px;
@@ -500,6 +500,9 @@ main h9 {
   background-color: #485274;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+.login_list{
+  list-style:none;
 }
 main h1{
   text-align: center;
@@ -540,40 +543,3 @@ main.nav-is-visible {
   margin-left: auto;
   margin-right: auto;
 }
-
-
-  /*#locationField, #controls {*/
-  /*  position: central;*/
-  /*  width: 480px;*/
-  /*}*/
-  /*#autocomplete {*/
-  /*  position: absolute;*/
-  /*  top: 0px;*/
-  /*  left: 0px;*/
-  /*  width: 99%;*/
-  /*}*/
-  /*.label {*/
-  /*  text-align: right;*/
-  /*  font-weight: bold;*/
-  /*  width: 100px;*/
-  /*}*/
-  /*#address {*/
-  /*  width: 480px;*/
-  /*  padding-right: 2px;*/
-  /*}*/
-  /*#address td {*/
-  /*  font-size: 10pt;*/
-  /*}*/
-  /*.field {*/
-  /*  width: 99%;*/
-  /*}*/
-  /*.slimField {*/
-  /*  width: 80px;*/
-  /*}*/
-  /*.wideField {*/
-  /*  width: 200px;*/
-  /*}*/
-  /*#locationField {*/
-  /*  height: 20px;*/
-  /*  margin-bottom: 2px;*/
-  /*}*/
