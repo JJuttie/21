@@ -441,6 +441,22 @@ main h3 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+main h4 {
+  height:100%;
+  width:100%;
+  text-align: center;
+  font-size:30px;
+  font-weight: 300;
+  color: #ffffff;
+  background: url("background_settings.png") ;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:table;
+  margin-top:5px;
+  margin-bottom:5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 main h5 {
   height:100%;
   width:100%;
@@ -457,8 +473,22 @@ main h5 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
+main h6 {
+  height:100%;
+  width:100%;
+  text-align: center;
+  font-size:30px;
+  font-weight: 300;
+  color: #ffffff;
+  background: url("background_changerecipe.jpg") ;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:table;
+  margin-top:5px;
+  margin-bottom:5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 main h9 {
   height:100%;
   width:100%;

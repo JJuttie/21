@@ -5,11 +5,14 @@
 {% endblock %}
 
 {% block main %}
-<h1><p><b><u>Account Details</u></b></p><br>
+<h4>
+	<div class="changerecipe_screen">
+		<br><br><br><br>
+		<p><b><u>Account Details</u></b></p><br>
 	<p>E-mail Address: {{ email }}</p>
 	<p>Name: {{ name }}</p>
 	<p>Town: {{ town }}</p>
-	<br>
+	<br><br>
 
 	<p><b><u>Change Password</u></b></p><br>
 		<form action="{{ url_for('password') }}" method="post">
@@ -24,7 +27,11 @@
 				</div><br>
 				<div class="form-group">
 					<button class="button-login" type="submit">Change</button>
+					<br><br><br><br>
 				</div>
 			</fieldset>
-		</form></h1>
+		</form>
+	</div>
+</h4>
+
 {% endblock %}
