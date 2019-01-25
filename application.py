@@ -12,7 +12,6 @@ from tempfile import mkdtemp
 import random
 import re
 
-from Mike import *
 from helpers import *
 
 # configure application
