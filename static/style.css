@@ -541,6 +541,25 @@ main.nav-is-visible {
   margin-right: auto;
 }
 
+.form-group .form-control {
+  height: 40px;
+}
+
+.form-group #bio {
+  height: 70% ;
+  font-size: 70%;
+}
+
+.form-group #bio textarea {
+  height: 100%;
+  padding: 2px;
+}
+
+.form-group #tags {
+  height: 70px;
+  width: 70px;
+  font-size: 50%;
+}
 
   /*#locationField, #controls {*/
   /*  position: central;*/

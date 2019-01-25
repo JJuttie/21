@@ -35,11 +35,11 @@
 </h2>
 	<script>
         document.querySelector('form').onsubmit = function(){
-            if (!document.querySelector("div.form-group input[name='email']").value) {
+            if (!document.querySelector("div.form-group-login input[name='email']").value) {
                 alert('You must provide an email!');
                 return false;
             }
-            else if(!document.querySelector("div.form-group input[name='password']").value) {
+            else if(!document.querySelector("div.form-group-login input[name='password']").value) {
             	alert('You must provide a password!');
                 return false;
             }
