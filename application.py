@@ -73,7 +73,6 @@ def index():
                 return redirect(url_for("index"))
         # pagina herladen bij dislike
         elif request.form["like"] == "dislike":
-            print(session["already"])
             return redirect(url_for("index"))
     else:
         # kijken of gebruiker wel een recept heeft
