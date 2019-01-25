@@ -76,6 +76,10 @@ def index():
             print(session["already"])
             return redirect(url_for("index"))
     else:
+        # kijken of gebruiker wel een recept heeft
+        recipe_check = db.execute("SELECT * FROM recipes WHERE id=:id", id=id)
+        if not recipe_check:
+            return redirect(url_for("recipe"))
         # alle gebruikers behalve gebruiker zelf selecteren
         users = db.execute("SELECT id FROM recipes WHERE id!=:id", id=id)
         # alle gebruikers in een lijst zetten
