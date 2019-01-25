@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block main %}
-<h1>    <form action="{{ url_for('changerecipe') }}" method="post" enctype="multipart/form-data">
+<h6>    <form action="{{ url_for('changerecipe') }}" method="post" enctype="multipart/form-data">
 	<fieldset>
-				<p><b><u>Current Recipe:</u></b></p></p><br>
 		<div class="matches_screen">
+		<p><b><u>Current Recipe:</u></b></p></p><br>
 		<br>
 		<p>{{ huidig[0]["title"] }}</p><br>
 		<img class="responsivephoto"src="/{{ huidig[0]["imageid"] }}">
@@ -75,7 +75,7 @@
 	<br>
 	</div><br>
 
-</form></h1>
+</form></h6>
 {% endblock %}
 
 
