@@ -458,7 +458,7 @@ main h9 {
   text-align: center;
   min-width:180px;
   width:70vw;
-  height:37vw;
+  height:auto;
   margin:auto;
   border-radius:2%;
 }
@@ -468,7 +468,7 @@ main h9 {
   text-align: center;
   min-width:180px;
   width:70vw;
-  height:30vw;
+  height:auto;
   margin:auto;
   border-radius:2%;
 }
@@ -477,13 +477,13 @@ main h9 {
   color:white;
 }
 .forgotpassword:hover{
-  color:blue;
+  color:rgb(121, 51, 18);
 }
 .newregister{
   color:white;
 }
 .newregister:hover{
-  color:blue;
+  color:rgb(121, 51, 18);
 }
 .button-login{
   padding:10px 15px;
@@ -500,6 +500,9 @@ main h9 {
   background-color: #485274;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+.login_list{
+  list-style:none;
 }
 main h1{
   text-align: center;
@@ -540,6 +543,7 @@ main.nav-is-visible {
   margin-left: auto;
   margin-right: auto;
 }
+<<<<<<< HEAD
 
 .form-group .form-control {
   height: 40px;
@@ -596,3 +600,5 @@ main.nav-is-visible {
   /*  height: 20px;*/
   /*  margin-bottom: 2px;*/
   /*}*/
+=======
+>>>>>>> f5b51d58add337753aea1e353325fc667c6c28a3
