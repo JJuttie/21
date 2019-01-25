@@ -10,10 +10,11 @@
 {% for item in recipelist %}
 	<div class="matches_screen">
 		<br>
-		<p>{{ item[0]["title"] }}</p>
+		<p>{{ item[0]["title"] }}</p><br>
 		<div class="fotoindexmatches">
 		<img class="indexphoto"src="/{{ item[0]["imageid"] }}">
 		</div>
+		<br>
 		<p>{{ item[0]["bio"] }}</p>
 		<br>
 		<p>Possible allergies: {{ item[0]["tags"] }}</p>
@@ -22,6 +23,7 @@
 		<p>{{ item[0]["email"] }}</p>
 		<p>{{ item[0]["name"] }}</p>
 		<p>{{ item[0]["town"] }}</p>
+		<br><br>
 	</div>
 	<br>
 {% endfor %}
