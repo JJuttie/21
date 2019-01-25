@@ -83,12 +83,13 @@ def index():
         userlist = [int(user) for user in re.findall('\d+', str(users))]
         # gebruikers die al gematcht zijn uit lijst halen
         matches = check_matches(id)
-        print(matches)
-        print(userlist)
-        for match in matches:
-            userlist.remove(match)
-        for match in session["already"]:
-            userlist.remove(match)
+        liked = check_liked(id)
+        [userlist.remove(match) for match in matches if match in userlist]
+        # accounts die in sessie al weergeven zijn eruit halen
+        [userlist.remove(match) for match in session["already"] if match in userlist]
+        # al gelikete accounts eruit halen:
+        [userlist.remove(match) for match in liked if match in userlist]
+
         # als alle gebruikers al weergeven zijn moet er iets gebeuren, logt nu uit!!!!
         if userlist == []:
             return(redirect(url_for("logout")))

@@ -41,7 +41,7 @@ def login_required(f):
     return decorated_function
 
 def check_matches(user_id):
-    """returns list of all matches for the given id"""
+    """returns set of all matches for the given id"""
     matchlist = []
     matches = db.execute("SELECT likedid FROM like WHERE currentid=:id", id=user_id)
     matches = [int(user) for user in re.findall('\d+', str(matches))]
@@ -51,5 +51,14 @@ def check_matches(user_id):
         if user_id in match2 and id != user_id:
             matchlist.append(id)
     return set(matchlist)
+
+def check_liked(user_id):
+    """returns set of all likes given by the given id"""
+    likelist = []
+    matches = db.execute("SELECT likedid FROM like WHERE currentid=:id", id=user_id)
+    matches = [int(user) for user in re.findall('\d+', str(matches))]
+    if id != user_id:
+        likelist.append(id)
+    return set(likelist)
 
 
