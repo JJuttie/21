@@ -57,8 +57,9 @@ def check_liked(user_id):
     likelist = []
     matches = db.execute("SELECT likedid FROM like WHERE currentid=:id", id=user_id)
     matches = [int(user) for user in re.findall('\d+', str(matches))]
-    if id != user_id:
-        likelist.append(id)
+    for id in matches:
+        if id != user_id:
+            likelist.append(id)
     return set(likelist)
 
 
