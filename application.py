@@ -454,7 +454,10 @@ def changerecipe():
 
     else:
         huidig = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
-        return render_template("changerecipe.html", huidig=huidig)
+        if huidig:
+            return render_template("changerecipe.html", huidig=huidig)
+        else:
+            return redirect(url_for("recipe"))
 
 
 
