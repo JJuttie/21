@@ -372,7 +372,7 @@ def recipe():
         # update tags in database
         for tag in tags:
             db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
-        return redirect(url_for("index"))
+        return redirect(url_for("account"))
 
     else:
         return render_template("recipe.html")
