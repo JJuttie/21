@@ -34,9 +34,9 @@ Dat hopen wij met de Tinder-layout te gaan bereiken.
 -   Match-pagina, hier komt het gerecht van een persoon dat jij hebt geliket, als hij ook jouw gerecht heeft geliket.
 	-   Bij het klikken op het gerecht verschijnen contactgegevens van de eigenaar.
 	-   Of de mogelijkheid om te unliken. (additional)
+-   ChangeRecipe-pagina, hier komt je huidige gerecht te staan maar ook de mogelijkheid om deze aan te passen.
 -   Account-pagina
 	-   Gegevens en wachtwoord wijzigen.
-	-   Gerecht wijzigen
 	-   Uitloggen
 
 ## Layout
@@ -64,6 +64,7 @@ API:
 -   [http://api2.bigoven.com](http://api2.bigoven.com)
 -   [https://developer.edamam.com](https://developer.edamam.com)
 -   [https://developer.edamam.com/edamam-docs-recipe-api](https://developer.edamam.com/edamam-docs-recipe-api)
+-   [https://sightengine.com](https://sightengine.com)
 
 ### Externe componenten
 -   Bootstrap
