@@ -4,6 +4,7 @@ import urllib.request
 from cs50 import SQL
 
 import re
+from sightengine.client import SightengineClient
 
 from flask import redirect, render_template, request, session
 from functools import wraps
@@ -62,4 +63,31 @@ def check_liked(user_id):
             likelist.append(id)
     return set(likelist)
 
+def imagereport(imageid):
+    """returns report on image"""
+    client = SightengineClient('80581480', 'ishfWhtrSrVWnnYEUYWj')
+    output = client.check('nudity','wad','offensive','faces').set_file(imageid)
+    return output
+
+def imagecheck(report):
+    """returns whether or not image content is approved"""
+    if report['status'] == 'failure':
+        print("status")
+        return "File is not approved"
+    if report['weapon'] >= 0.85:
+        print("weapon")
+        return "Image shows weapons"
+    if report['drugs'] >= 0.85:
+        print("drugs")
+        return "image shows drugs"
+    if report['nudity']['raw'] >= 0.85 or report['nudity']['partial'] >= 0.85:
+        print("nudity")
+        return "Image shows nudity"
+    if report['faces'] != []:
+        print("faces")
+        return "Image not approved"
+    if report['offensive']['prob'] >= 0.85:
+        print("offensive")
+        return "Image shows offensive content"
+    return True
 

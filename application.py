@@ -432,6 +432,13 @@ def changerecipe():
         # afbeelding hernoemen
         os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
         imageid = "static/images/"+str(id)+filetype
+        # imagecheck
+        report = imagereport(imageid)
+        imagestatus = imagecheck(report)
+        if imagestatus != True:
+            return apology(imagestatus, 200)
+
+
         # alles in de database gooien
         db.execute("UPDATE recipes SET title=:title, bio=:bio, imageid=:imageid WHERE id=:id", id=id, title=title, bio=bio, imageid=imageid)
         return redirect(url_for("index"))
