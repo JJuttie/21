@@ -8,7 +8,8 @@
 <h1>    <form action="{{ url_for('changerecipe') }}" method="post" enctype="multipart/form-data">
 	<fieldset>
 	   <div>
-			<span class="btn btn-default btn-file">Upload an image of your meal<br> <input type="file" name="image">
+	   		Upload an image of your meal<br><br>
+			<span class="button-login"><input type="file" name="image">
 		</div>
 		   <br>
 		<div class="form-group">
@@ -36,7 +37,7 @@
 				<option value = "wheat">Wheat</option>
 				<option value = "FPIES">FPIES</option>
 			</select>
-		</div>
+		</div><br>
 
 		<script>
 			$('option').mousedown(function(e) {
@@ -55,7 +56,7 @@
 			</script>
 
 		<div class="form-group">
-			<button class="btn btn-default" type="submit">Change recipe</button>
+			<button class="button-login" type="submit">Change recipe</button>
 		</div>
 	</fieldset>
 

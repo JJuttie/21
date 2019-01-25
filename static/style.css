@@ -458,7 +458,7 @@ main h9 {
   text-align: center;
   min-width:180px;
   width:70vw;
-  height:37vw;
+  height:auto;
   margin:auto;
   border-radius:2%;
 }
@@ -468,7 +468,7 @@ main h9 {
   text-align: center;
   min-width:180px;
   width:70vw;
-  height:30vw;
+  height:auto;
   margin:auto;
   border-radius:2%;
 }
