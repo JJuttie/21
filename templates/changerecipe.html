@@ -7,8 +7,20 @@
 {% block main %}
 <h1>    <form action="{{ url_for('changerecipe') }}" method="post" enctype="multipart/form-data">
 	<fieldset>
-	   <div>
-	   		Upload an image of your meal<br><br>
+				<p><b><u>Current Recipe:</u></b></p></p><br>
+		<div class="matches_screen">
+		<br>
+		<p>{{ huidig[0]["title"] }}</p>
+		<img src="/{{ huidig[0]["imageid"] }}" width="700" height="350" class="center">
+		<p>{{ huidig[0]["bio"] }}</p>
+		<br>
+		<p>Possible allergies: {{ huidig[0]["tags"] }}</p>
+		<br>
+	</div>
+	<br>
+	<div class="changerecipe_screen">
+	    <div>
+	   		<p><b><u>Change Current Recipe:</u></b></p></p><br>
 			<span class="button-login"><input type="file" name="image">
 		</div>
 		   <br>
@@ -23,9 +35,6 @@
 		</div>
 		<br>
 		<div class="form-group">
-
-
-
 			<select id="tags" name="tags" multiple class="form-control">
 				<option disabled selected value="">Allergies</option>
 				<option value = "corn">Corn</option>
@@ -40,7 +49,7 @@
 				<option value = "wheat">Wheat</option>
 				<option value = "FPIES">FPIES</option>
 			</select>
-		</div><br>
+		</div>
 
 		<script>
 			$('option').mousedown(function(e) {
@@ -57,11 +66,14 @@
 				return false;
 			});
 			</script>
-
+		<br>
 		<div class="form-group">
 			<button class="button-login" type="submit">Change recipe</button>
 		</div>
+		<br>
 	</fieldset>
+	<br>
+	</div><br>
 
 </form></h1>
 {% endblock %}
