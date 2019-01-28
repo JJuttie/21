@@ -349,14 +349,16 @@ def recipe():
 
         # naam van de afbeelding ophalen
         filename = secure_filename(image.filename)
-        # als filetype niet goed is, apology
-        if filetype != ".jpg" or filetype != ".jpeg" or filetype != ".png" or filetype != ".gif":
-            db.execute("DELETE FROM recipes WHERE id=:id", id=id)
-            return apology("Filetype not approved, 200")
         # afbeelding opslaan
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # afbeeldingstype achterhalen
         filetype = filename[filename.rfind("."):]
+        # als filetype niet goed is, apology
+        # filetype = str(filetype)
+        # print(filetype)
+        # if filetype != ".jpg" or filetype != ".jpeg" or filetype != ".png" or filetype != ".gif":
+        #     db.execute("DELETE FROM recipes WHERE id=:id", id=id)
+        #     return apology("Filetype not approved", 200)
         # afbeelding hernoemen
         os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
         # imageid voor in de database vormen
@@ -393,7 +395,8 @@ def matches():
         recipe[0]["email"] = users[0]["email"]
         recipe[0]["name"] = users[0]["name"]
         recipe[0]["town"] = users[0]["town"]
-        recipe[0]["tags"] = [tag for tag in recipe[0] if recipe[0][tag]==1]
+        recipe[0]["tags"] = [', '.join(tag) for tag in recipe[0] if recipe[0][tag]==1]
+        print(recipe)
         recipelist.append(recipe)
     return render_template("matches.html", recipelist=recipelist)
 
@@ -440,9 +443,10 @@ def changerecipe():
         # type van de afbeelding ophalen
         filetype = filename[filename.rfind("."):]
         # als filetype niet goed is, apology
-        if filetype != ".jpg" or filetype != ".jpeg" or filetype != ".png" or filetype != ".gif":
-            db.execute("DELETE FROM recipes WHERE id=:id", id=id)
-            return apology("Filetype not approved, 200")
+        # print(filetype)
+        # if filetype != ".jpg" or filetype != ".jpeg" or filetype != ".png" or filetype != ".gif":
+        #     db.execute("DELETE FROM recipes WHERE id=:id", id=id)
+        #     return apology("Filetype not approved", 200)
         # de oude file van gebruiker ophalen en verwijderen
         oldfile = db.execute("SELECT imageid FROM recipes WHERE id=:id", id=id)
         os.remove(oldfile[0]["imageid"])
@@ -465,7 +469,7 @@ def changerecipe():
 
     else:
         huidig = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
-        huidig[0]["tags"] = [tag for tag in huidig[0] if huidig[0][tag]==1]
+        # huidig[0]["tags"] = [tag for tag in huidig[0] if huidig[0][tag]==1]
         if huidig:
             return render_template("changerecipe.html", huidig=huidig)
         else:
