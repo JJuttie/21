@@ -354,17 +354,11 @@ def recipe():
         # afbeeldingstype achterhalen
         filetype = filename[filename.rfind("."):]
         # als filetype niet goed is, apology
-<<<<<<< HEAD
-        if filetype != ".jpg" or filetype != ".jpeg" or filetype != ".png" or filetype != ".gif":
-            db.execute("DELETE FROM recipes WHERE id=:id", id=id)
-            return apology("Filetype not approved, 200")
-=======
         # filetype = str(filetype)
         # print(filetype)
         # if filetype != ".jpg" or filetype != ".jpeg" or filetype != ".png" or filetype != ".gif":
         #     db.execute("DELETE FROM recipes WHERE id=:id", id=id)
         #     return apology("Filetype not approved", 200)
->>>>>>> a38e1404167245d0edfb79ca8cf901cdac993bb7
         # afbeelding hernoemen
         os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
         # imageid voor in de database vormen
