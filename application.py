@@ -395,8 +395,7 @@ def matches():
         recipe[0]["email"] = users[0]["email"]
         recipe[0]["name"] = users[0]["name"]
         recipe[0]["town"] = users[0]["town"]
-        recipe[0]["tags"] = [', '.join(tag) for tag in recipe[0] if recipe[0][tag]==1]
-        print(recipe)
+        recipe[0]["tags"] = [tag for tag in recipe[0] if recipe[0][tag]==1]
         recipelist.append(recipe)
     return render_template("matches.html", recipelist=recipelist)
 
