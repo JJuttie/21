@@ -94,7 +94,7 @@ def index():
 
         # als alle gebruikers al weergeven zijn moet er iets gebeuren, logt nu uit!!!!
         if userlist == []:
-            return(redirect(url_for("logout")))
+            return(redirect(url_for("matches")))
         # willekeurige gebruiker uitkiezen
         gerecht = []
 
@@ -372,7 +372,7 @@ def recipe():
         # update tags in database
         for tag in tags:
             db.execute("UPDATE recipes SET :tag = 1 WHERE id=:id", id=id, tag=tag)
-        return redirect(url_for("account"))
+        return redirect(url_for("index"))
 
     else:
         return render_template("recipe.html")
