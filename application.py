@@ -293,7 +293,6 @@ def forgot():
     else:
         return render_template("forgot.html")
 
-#extra_opdracht2
 @app.route("/password", methods=["GET", "POST"])
 @login_required
 def password():
@@ -394,6 +393,7 @@ def matches():
         recipe[0]["email"] = users[0]["email"]
         recipe[0]["name"] = users[0]["name"]
         recipe[0]["town"] = users[0]["town"]
+        recipe[0]["tags"] = [tag for tag in recipe[0] if recipe[0][tag]==1]
         recipelist.append(recipe)
     return render_template("matches.html", recipelist=recipelist)
 
@@ -465,6 +465,7 @@ def changerecipe():
 
     else:
         huidig = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
+        huidig[0]["tags"] = [tag for tag in huidig[0] if huidig[0][tag]==1]
         if huidig:
             return render_template("changerecipe.html", huidig=huidig)
         else:
