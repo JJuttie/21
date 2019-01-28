@@ -489,6 +489,7 @@ main h6 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 main h7 {
   height:100%;
   width:100%;
@@ -496,7 +497,7 @@ main h7 {
   font-size:30px;
   font-weight: 300;
   color: #ffffff;
-  background: url("background_recipe.jpg") ;
+  background: url("background_register2.jpg") ;
   background-size:cover;
   background-repeat:no-repeat;
   display:table;
@@ -505,6 +506,7 @@ main h7 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 main h9 {
   height:100%;
   width:100%;
@@ -577,16 +579,6 @@ main h9 {
   margin:auto;
   border-radius:2%;
 }
-.recipe_screen {
-  background: rgb(0, 0, 0,0.59);
-  text-align: center;
-  min-width:180px;
-  width:55vw;
-  height:auto;
-  margin:auto;
-  border-radius:2%;
-}
-
 
 .forgotpassword{
   color:white;
