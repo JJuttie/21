@@ -5,6 +5,12 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.base import MIMEBase
+from email import encoders
+
 import os
 from werkzeug.utils import secure_filename
 from tempfile import mkdtemp
@@ -34,26 +40,6 @@ Session(app)
 
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///foodiematch.db")
-
-def reset():
-
-    """Sending email for password reset"""
-
-    gmail_user = "foodiematch21@gmail.com"
-    gmail_pwd = "FoodieMatch21#"
-    TO = request.form.get("email")
-    SUBJECT = "Password reset"
-    message = "Use this link to reset your password"
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-    server.starttls()
-    server.login(gmail_user, gmail_pwd)
-    BODY = '\r\n'.join(['To: %s' % TO,
-            'From: %s' % gmail_user,
-            'Subject: %s' % SUBJECT,
-            '', message])
-    server.sendmail(gmail_user, [TO], BODY)
-
 
 @app.route("/", methods=["GET", "POST"])
 @login_required
@@ -182,20 +168,35 @@ def register():
     session.clear()
     if request.method == "POST":
 
-        gmail_user = "foodiematch21@gmail.com"
-        gmail_pwd = "FoodieMatch21#"
-        TO = request.form.get("email")
-        SUBJECT = "Registration confirmation"
-        message = "Thank you for registering on FoodieMatch!"
+        fromaddr = "foodiematch21@gmail.com"
+        toaddr = request.form.get("email")
+
+        msg = MIMEMultipart()
+
+        msg['From'] = fromaddr
+        msg['To'] = toaddr
+        msg['Subject'] = "Registration confirmation"
+
+        body = "Thank you for registering on FoodieMatch!\n"
+
+        msg.attach(MIMEText(body, 'plain'))
+
+        filename = "background_foodiematch.png"
+        attachment = open("static/background_foodiematch.png", "rb")
+
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload((attachment).read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+        msg.attach(part)
+
         server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.ehlo()
         server.starttls()
-        server.login(gmail_user, gmail_pwd)
-        BODY = '\r\n'.join(['To: %s' % TO,
-                'From: %s' % gmail_user,
-                'Subject: %s' % SUBJECT,
-                '', message])
-        server.sendmail(gmail_user, [TO], BODY)
+        server.login(fromaddr, "FoodieMatch21#")
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
 
         # provide email
         if not request.form.get("email"):
