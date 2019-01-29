@@ -293,6 +293,32 @@ def forgot():
     else:
         return render_template("forgot.html")
 
+@app.route("/password", methods=["GET", "POST"])
+@login_required
+def password():
+    """Change your password"""
+    if request.method == "POST":
+        # wachtwoord opgeven
+        if not request.form.get("new"):
+            return apology("vul je nieuwe wachtwoord in")
+
+        # wachtwoord bevestigen
+        elif not request.form.get("confirmation"):
+            return apology("vul je bevestiging in")
+
+        #checken of de nieuwe hetzelfde zijn
+        if request.form.get("new") != request.form.get("confirmation"):
+            return apology("nieuwe wachtwoorden zijn niet gelijk aan elkaar")
+
+        #database updaten
+        db.execute("UPDATE users SET hash =:hash WHERE \
+        id=:id", id=session["user_id"], hash=pwd_context.hash(request.form.get("confirmation")))
+
+        return redirect(url_for("index"))
+
+    else:
+        return render_template("account.html")
+
 @app.route("/delete", methods=["GET", "POST"])
 @login_required
 def delete():
@@ -324,7 +350,7 @@ def delete():
             #acties die jouw hebben geliket verwijderen
             db.execute("DELETE FROM like WHERE likedid=:likedid", likedid=session["user_id"])
 
-            return redirect(url_for("login"))
+            return redirect(url_for("login")
 
         else:
             return apology("Wachtwoord komt niet overeen met je echte wachtwoord")
