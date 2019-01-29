@@ -7,10 +7,10 @@
 {% block main %}
 <h_index><br><br>
 	<div class="index_screen"><br>
-		<p>{{ title }}</p><br>
+		<p><b><u>{{ title }}</u></b></p><br>
 		<img class="responsivephoto"src="/{{ imageid }}"><br><br>
 		<p>{{ bio }}<br><br>
-		Possible food allergies:<br>
+		<u>Possible food allergies:</u><br>
 		{{ tags }}</p><br><br>
 	</div>
 	<form action="{{ url_for('index') }}" method="post">

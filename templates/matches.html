@@ -11,13 +11,13 @@
 	</div><br>
 {% for item in recipelist %}
 	<div class="matches_screen"><br>
-		<p>{{ item[0]["title"] }}</p><br>
+		<p><b><u>{{ item[0]["title"] }}</u></b></p><br>
 		<div class="fotoindexmatches">
 			<img class="responsivephoto"src="/{{ item[0]["imageid"] }}">
 		</div><br>
 		<p>{{ item[0]["bio"] }}</p><br>
-		<p>Possible Allergies: {% for tag in item[0]["tags"] %} {{ tag }} {% endfor %}</p><br>
-		<p>Contact the owner now! :)</p>
+		<p><u>Possible Allergies:</u><br>{% for tag in item[0]["tags"] %} {{ tag }} {% endfor %}</p><br>
+		<p><u>Contact the owner now! :)</u></p>
 		<p>{{ item[0]["email"] }}</p>
 		<p>{{ item[0]["name"] }}</p>
 		<p>{{ item[0]["town"] }}</p><br><br>
