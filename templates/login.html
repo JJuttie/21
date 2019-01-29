@@ -5,47 +5,42 @@
 {% endblock %}
 
 {% block main %}
-<h_login>
-<br><br><br><br><br><br><br><br><br>
+<h_login><br><br><br><br><br><br><br><br><br>
 	<div class=login_screen>
-	<p>
-		<br><br>
-		<b><u>Login</u></b>
-	</p><br>
+		<p><br><br><b><u>Login</u></b></p><br>
 		<form action="{{ url_for('login') }}" method="post">
-				<fieldset>
-					<div class="form-group-login">
-						<input autocomplete="off" autofocus class="form-control" name="email" placeholder="E-mail" type="text"/>
-					</div>
-					<br>
-					<div class="form-group-login">
-						<input name="password" placeholder="Password" type="password"/>
-					</div>
-					<br>
-					<div class="form-group-login">
-						<button class="button-foodiematch" type="submit">Log In</button>
-					</div>
-				</fieldset>
-		</form>
-	<br>
-	<ul class = login_list>
-	<li><a class=newregister href="{{ url_for('register') }}">Register Here!</a></li><br>
-	<li><a class=forgotpassword href="{{ url_for('forgot') }}">Forgot your password?</a></li><br><br>
-	</ul>
-	</div>
-	<br><br><br><br><br><br><br><br><br>
+			<fieldset>
+				<div class="form-group-login">
+					<input autocomplete="off" autofocus class="form-control" name="email" placeholder="E-mail" type="text"/>
+				</div><br>
+				<div class="form-group-login">
+					<input name="password" placeholder="Password" type="password"/>
+				</div><br>
+				<div class="form-group-login">
+					<button class="button-foodiematch" type="submit">Log In</button>
+				</div>
+			</fieldset>
+		</form><br>
+		<ul class = login_list>
+			<li><a class=newregister href="{{ url_for('register') }}">Register Here!</a></li><br>
+			<li><a class=forgotpassword href="{{ url_for('forgot') }}">Forgot your password?</a></li><br><br>
+		</ul>
+	</div><br><br><br><br><br><br><br><br><br>
 </h_login>
-	<script>
-        document.querySelector('form').onsubmit = function(){
-            if (!document.querySelector("div.form-group-login input[name='email']").value) {
-                alert('You must provide an email!');
-                return false;
-            }
-            else if(!document.querySelector("div.form-group-login input[name='password']").value) {
-            	alert('You must provide a password!');
-                return false;
-            }
-            return true;
-        };
-    </script>
+<script>
+    document.querySelector('form').onsubmit = function()
+    {
+        if (!document.querySelector("div.form-group-login input[name='email']").value)
+        {
+            alert('You must provide an email!');
+            return false;
+        }
+        else if(!document.querySelector("div.form-group-login input[name='password']").value)
+        {
+        	alert('You must provide a password!');
+            return false;
+        }
+        return true;
+    };
+</script>
 {% endblock %}

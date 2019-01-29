@@ -5,72 +5,60 @@
 {% endblock %}
 
 {% block main %}
-<h_recipe>    <form action="{{ url_for('recipe') }}" method="post" enctype="multipart/form-data">
-	<fieldset>
-		<br><br>
-	   <div class="recipe_screen">
-	   	<div>
-	   	<br>
-	   		Upload an image of your meal<br><br>
-			<span class="button-foodiematch"><input type="file" name="image">
-		   <br>
-		   </div>
-		   <br>
-		   <br>
-		<div class="form-group">
-			<input autocomplete="off" autofocus class="form-control" name="title" placeholder="Title" type="text"/>
-		</div>
-		<br>
-		<div class="form-group">
-			<div id="bio">
-			<textarea wrap="soft" class="form-control" name="bio" placeholder="Bio" rows="5"></textarea>
-			</div>
-		</div>
-		<br>
-		<div class="form-group">
-
-
-			If there are no allergies, please don't select any options.<br><br>
-			<select id="tags" name="tags" multiple class="form-control" size="12">
-				<option disabled selected value="">Allergies</option>
-				<option value = "corn">Corn</option>
-				<option value = "egg">Egg</option>
-				<option value = "fish">Fish</option>
-				<option value = "meat">Meat</option>
-				<option value = "milk">Milk</option>
-				<option value = "peanut">Peanut</option>
-				<option value = "shellfish">Shellfish</option>
-				<option value = "soy">Soy</option>
-				<option value = "tree nut">Tree Nut</option>
-				<option value = "wheat">Wheat</option>
-				<option value = "FPIES">FPIES</option>
-			</select>
-		</div>
-
-		<script>
-			$('option').mousedown(function(e) {
-				e.preventDefault();
-				var originalScrollTop = $(this).parent().scrollTop();
-				console.log(originalScrollTop);
-				$(this).prop('selected', $(this).prop('selected') ? false : true);
-				var self = this;
-				$(this).parent().focus();
-				setTimeout(function() {
-					$(self).parent().scrollTop(originalScrollTop);
-				}, 0);
-
-				return false;
-			});
-			</script>
-			<br><br>
-		<div class="form-group">
-			<button class="button-foodiematch" type="submit">Finish Registration</button>
-			<br><br>
-		</div>
-
-		</div>
-		<br><br>
-	</fieldset>
-
-</form></h_recipe>
+<h_recipe>
+	<form action="{{ url_for('recipe') }}" method="post" enctype="multipart/form-data">
+		<fieldset><br><br>
+			<div class="recipe_screen">
+	   			<div><br>
+	   				Upload an image of your meal<br><br>
+					<span class="button-foodiematch"><input type="file" name="image"><br>
+		   		</div><br><br>
+				<div class="form-group">
+					<input autocomplete="off" autofocus class="form-control" name="title" placeholder="Title" type="text"/>
+				</div><br>
+				<div class="form-group">
+					<div id="bio">
+						<textarea wrap="soft" class="form-control" name="bio" placeholder="Bio" rows="5"></textarea>
+					</div>
+				</div><br>
+				<div class="form-group">
+					If there are no allergies, please don't select any options.<br><br>
+					<select id="tags" name="tags" multiple class="form-control" size="12">
+						<option disabled selected value="">Allergies</option>
+						<option value = "corn">Corn</option>
+						<option value = "egg">Egg</option>
+						<option value = "fish">Fish</option>
+						<option value = "meat">Meat</option>
+						<option value = "milk">Milk</option>
+						<option value = "peanut">Peanut</option>
+						<option value = "shellfish">Shellfish</option>
+						<option value = "soy">Soy</option>
+						<option value = "tree nut">Tree Nut</option>
+						<option value = "wheat">Wheat</option>
+						<option value = "FPIES">FPIES</option>
+					</select>
+				</div>
+				<script>
+					$('option').mousedown(function(e)
+					{
+						e.preventDefault();
+						var originalScrollTop = $(this).parent().scrollTop();
+						console.log(originalScrollTop);
+						$(this).prop('selected', $(this).prop('selected') ? false : true);
+						var self = this;
+						$(this).parent().focus();
+						setTimeout(function()
+						{
+							$(self).parent().scrollTop(originalScrollTop);
+						}, 0);
+						return false;
+					});
+				</script><br><br>
+				<div class="form-group">
+					<button class="button-foodiematch" type="submit">Finish Registration</button><br><br>
+				</div>
+			</div><br><br>
+		</fieldset>
+	</form>
+</h_recipe>
 {% endblock %}

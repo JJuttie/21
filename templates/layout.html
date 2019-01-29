@@ -1,64 +1,57 @@
 <!doctype html>
 <html lang="en" class="no-js">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link rel="stylesheet" href="static/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="static/style.css"> <!-- Resource style -->
-	<link rel="stylesheet" href="static/buttons.css"> <!-- Button style -->
-	<script src="static/modernizr.js"></script> <!-- Modernizr -->
-
-	<script src="https://code.jquery.com/jquery-2.2.4.js"></script> <!-- Select selecting multiple options source-->
-
-	<title>FoodieMatch | {% block title %}{% endblock %}</title>
-</head>
-<body>
-	<header class="cd-header">
-		<a href="#0" class="cd-3d-nav-trigger">
-			Menu
-			<span></span>
-		</a>
-	</header> <!-- .cd-header -->
-
-	<main>
-		{% block main %}{% endblock %}
-	</main>
-
-	 <nav class="cd-3d-nav-container">
-            {% if session.user_id %}
-                <ul class="cd-3d-nav">
-
-                	<li {%- if request.path =="/index" %} class="cd-selected"{% endif %}>
-    					<a href="{{ url_for('index') }}">Browse</a>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="static/reset.css"> <!-- CSS reset -->
+		<link rel="stylesheet" href="static/style.css"> <!-- Resource style -->
+		<link rel="stylesheet" href="static/buttons.css"> <!-- Button style -->
+		<script src="static/modernizr.js"></script> <!-- Modernizr -->
+		<script src="https://code.jquery.com/jquery-2.2.4.js"></script> <!-- Select selecting multiple options source-->
+		<title>FoodieMatch | {% block title %}{% endblock %}</title>
+	</head>
+	<body>
+		<header class="cd-header">
+			<a href="#0" class="cd-3d-nav-trigger">
+				Menu
+			</a>
+		</header> <!-- .cd-header -->
+		<main>
+			{% block main %}{% endblock %}
+		</main>
+		<nav class="cd-3d-nav-container">
+	        {% if session.user_id %}
+	        	<ul class="cd-3d-nav">
+	                <li {%- if request.path =="/index" %} class="cd-selected"{% endif %}>
+	    				<a href="{{ url_for('index') }}">Browse</a>
 					</li>
 					<li {%- if request.path=="/matches" %} class="cd-selected"{% endif %}>
-    					<a href="{{ url_for('matches') }}">Matches</a>
+	    				<a href="{{ url_for('matches') }}">Matches</a>
 					</li>
-                	<li {%- if request.path =="/changerecipe" %} class="cd-selected"{% endif %}>
-    					<a href="{{ url_for('changerecipe') }}">Change My Recipe</a>
+	                <li {%- if request.path =="/changerecipe" %} class="cd-selected"{% endif %}>
+	    				<a href="{{ url_for('changerecipe') }}">Change My Recipe</a>
 					</li>
 					<li {%- if request.path=="/account" %} class="cd-selected"{% endif %}>
-    					<a href="{{ url_for('account') }}">Settings</a>
+	    				<a href="{{ url_for('account') }}">Settings</a>
 					</li>
 					<li {%- if request.path=="/logout" %} class="cd-selected"{% endif %}>
-    					<a href="{{ url_for('logout') }}">Log Out</a>
+	    				<a href="{{ url_for('logout') }}">Log Out</a>
 					</li>
-                </ul>
-            {% else %}
-                <ul class="cd-3d-nav">
+	            </ul>
+	        {% else %}
+	            <ul class="cd-3d-nav">
 					<li {%- if request.path=="/register" %} class="cd-selected"{% endif %}>
-    					<a href="{{ url_for('register') }}">Register</a>
+	    				<a href="{{ url_for('register') }}">Register</a>
 					</li>
 					<li {%- if request.path=="/login" %} class="cd-selected"{% endif %}>
-    					<a href="{{ url_for('login') }}">Log In</a>
+	    				<a href="{{ url_for('login') }}">Log In</a>
 					</li>
-                </ul>
-            {% endif %}
-        <span class="cd-marker color-1"></span>
-	</nav> <!-- .cd-3d-nav-container -->
-<script src="{{ url_for('static', filename='jquery-2.1.1.js') }}"></script>
-<script src="{{ url_for('static', filename='main.js') }}"></script> <!-- Resource jQuery -->
-<!--<script src="{{ url_for('static', filename='locationapi.js')}}"></script>-->
-</body>
+	            </ul>
+	        {% endif %}
+	        	<span class="cd-marker color-1"></span>
+		</nav> <!-- .cd-3d-nav-container -->
+		<script src="{{ url_for('static', filename='jquery-2.1.1.js') }}"></script>
+		<script src="{{ url_for('static', filename='main.js') }}"></script> <!-- Resource jQuery -->
+		<!--<script src="{{ url_for('static', filename='locationapi.js')}}"></script>-->
+	</body>
 </html>

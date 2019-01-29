@@ -10,12 +10,11 @@
 	<div class="changerecipe_screen">
 		<br><br><br>
 		<p><b><u>Account Details</u></b></p><br>
-	<p>E-mail address: {{ email }}</p>
-	<p>Name: {{ name }}</p>
-	<p>Town: {{ town }}</p>
-	<br><br>
-
-	<p><b><u>Change Password</u></b></p><br>
+		<p>E-mail address: {{ email }}</p>
+		<p>Name: {{ name }}</p>
+		<p>Town: {{ town }}</p>
+		<br><br>
+		<p><b><u>Change Password</u></b></p><br>
 		<form action="{{ url_for('password') }}" method="post">
 			<fieldset>
 				<div class="form-group">

@@ -6,30 +6,22 @@
 
 {% block main %}
 <h_matches><br><br>
-	<div class="matches_title_screen">
-		<br>
-			<p><b><u>My FoodieMatches:</u></b></p></p><br>
-	</div>
-	<br>
+	<div class="matches_title_screen"><br>
+		<p><b><u>My FoodieMatches:</u></b></p></p><br>
+	</div><br>
 {% for item in recipelist %}
-	<div class="matches_screen">
-		<br>
+	<div class="matches_screen"><br>
 		<p>{{ item[0]["title"] }}</p><br>
 		<div class="fotoindexmatches">
-		<img class="responsivephoto"src="/{{ item[0]["imageid"] }}">
-		</div>
-		<br>
-		<p>{{ item[0]["bio"] }}</p>
-		<br>
-		<p>Possible Allergies: {% for tag in item[0]["tags"] %} {{ tag }} {% endfor %}</p>
-		<br>
+			<img class="responsivephoto"src="/{{ item[0]["imageid"] }}">
+		</div><br>
+		<p>{{ item[0]["bio"] }}</p><br>
+		<p>Possible Allergies: {% for tag in item[0]["tags"] %} {{ tag }} {% endfor %}</p><br>
 		<p>Contact the owner now! :)</p>
 		<p>{{ item[0]["email"] }}</p>
 		<p>{{ item[0]["name"] }}</p>
-		<p>{{ item[0]["town"] }}</p>
-		<br><br>
-	</div>
-	<br><br>
+		<p>{{ item[0]["town"] }}</p><br><br>
+	</div><br><br>
 {% endfor %}
 </h_matches>
 {% endblock %}

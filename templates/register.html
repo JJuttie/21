@@ -5,69 +5,63 @@
 {% endblock %}
 
 {% block main %}
-<h_register>
-    <br><br><br><br><br><br><br><br><br>
+<h_register><br><br><br><br><br><br><br><br><br>
     <div class=login_screen>
-	<br><p>Please enter your details:</p><br>
-    <form action="{{ url_for('register') }}" method="post">
-        <fieldset>
-            <div class="form-group-login">
-                <input autocomplete="off" autofocus class="form-control" name="email" placeholder="E-mail" type="email"/>
-            </div>
-            <div class="form-group-login">
-                <input name="name" placeholder="Name" type="text"/>
-            </div>
-            <div class="form-group-login">
-                <input name="town" placeholder="Town" type="text"/>
-            </div><br>
-            <div class="form-group-login">
-                <input name="password" placeholder="Password" type="password"/>
-            </div>
-            <div class="form-group-login">
-                <input name="confirmation" placeholder="Confirm Password" type="password"/>
-            </div><br>
-            <div class="form-group-login">
-                <button class="button-foodiematch" type="submit">Next Step</button>
-            </div><br>
-        </fieldset>
-	</form>
-	</div>
-	<br><br><br><br><br><br><br><br><br>
+	    <br><p>Please enter your details:</p><br>
+        <form action="{{ url_for('register') }}" method="post">
+            <fieldset>
+                <div class="form-group-login">
+                    <input autocomplete="off" autofocus class="form-control" name="email" placeholder="E-mail" type="email"/>
+                </div>
+                <div class="form-group-login">
+                    <input name="name" placeholder="Name" type="text"/>
+                </div>
+                <div class="form-group-login">
+                    <input name="town" placeholder="Town" type="text"/>
+                </div><br>
+                <div class="form-group-login">
+                    <input name="password" placeholder="Password" type="password"/>
+                </div>
+                <div class="form-group-login">
+                    <input name="confirmation" placeholder="Confirm Password" type="password"/>
+                </div><br>
+                <div class="form-group-login">
+                    <button class="button-foodiematch" type="submit">Next Step</button>
+                </div><br>
+            </fieldset>
+	    </form>
+	</div><br><br><br><br><br><br><br><br><br>
 </h_register>
+<script>
+    // no empty fields validation
+    document.querySelector('form').onsubmit = function(){
+        if (!document.querySelector("div.form-group-login input[name='email']").value) {
+            alert('You must provide an email!');
+            return false;
+        }
+        else if(!document.querySelector("div.form-group-login input[name='name']").value) {
+        	alert('You must provide a name!');
+            return false;
+        }
+        else if(!document.querySelector("div.form-group-login input[name='town']").value) {
+        	alert('You must provide a town!');
+            return false;
+        }
+        else if(!document.querySelector("div.form-group-login input[name='password']").value) {
+        	alert('You must provide a password!');
+            return false;
+        }
+        else if(!document.querySelector("div.form-group-login input[name='confirmation']").value) {
+        	alert('You must provide a confirmation password!');
+            return false;
+        }
+        return true;
+    };
 
-
-	<script>
-	    // no empty fields validation
-        document.querySelector('form').onsubmit = function(){
-            if (!document.querySelector("div.form-group-login input[name='email']").value) {
-                alert('You must provide an email!');
-                return false;
-            }
-            else if(!document.querySelector("div.form-group-login input[name='name']").value) {
-            	alert('You must provide a name!');
-                return false;
-            }
-            else if(!document.querySelector("div.form-group-login input[name='town']").value) {
-            	alert('You must provide a town!');
-                return false;
-            }
-            else if(!document.querySelector("div.form-group-login input[name='password']").value) {
-            	alert('You must provide a password!');
-                return false;
-            }
-            else if(!document.querySelector("div.form-group-login input[name='confirmation']").value) {
-            	alert('You must provide a confirmation password!');
-                return false;
-            }
-            return true;
-        };
-
-        // email validation
-        function validateEmail(email){
-            var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
-            return re.test(email);
-            }
-
-    </script>
-
+    // email validation
+    function validateEmail(email){
+        var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+        return re.test(email);
+        }
+</script>
 {% endblock %}

@@ -5,76 +5,69 @@
 {% endblock %}
 
 {% block main %}
-<h_changerecipe> <br><br>
-<form action="{{ url_for('changerecipe') }}" method="post" enctype="multipart/form-data">
-	<fieldset>
-		<div class="matches_screen"><br>
-		<p><b><u>Current Recipe:</u></b></p><br>
-		<p>{{ huidig[0]["title"] }}</p><br>
-		<img class="responsivephoto"src="/{{ huidig[0]["imageid"] }}">
-		<p>{{ huidig[0]["bio"] }}</p>
-		<br>
-		<p>Possible allergies: {{ tags }}</p>
-		<br>
-	</div>
-	<br>
-	<div class="changerecipe_screen"><br>
-	    <div>
-	   		<p><b><u>Change Current Recipe:</u></b></p></p><br>
-			<span class="button-foodiematch"><input type="file" name="image">
-		</div>
-		   <br>
-		<div class="form-group">
-			<input autocomplete="off" autofocus class="form-control" name="title" placeholder="Title"/>
-		</div>
-		<br>
-		<div class="form-group">
-			<div id="bio">
-				<textarea wrap="soft" class="form-control" name="bio" placeholder="Bio" rows="5"></textarea>
+<h_changerecipe>
+	<br><br>
+	<form action="{{ url_for('changerecipe') }}" method="post" enctype="multipart/form-data">
+		<fieldset>
+			<div class="matches_screen"><br>
+				<p><b><u>Current Recipe:</u></b></p><br>
+				<p>{{ huidig[0]["title"] }}</p><br>
+			<img class="responsivephoto"src="/{{ huidig[0]["imageid"] }}">
+				<p>{{ huidig[0]["bio"] }}</p><br>
+				<p>Possible allergies: {{ tags }}</p><br>
+			</div><br>
+			<div class="changerecipe_screen"><br>
+	    		<div>
+	   				<p><b><u>Change Current Recipe:</u></b></p></p><br>
+					<span class="button-foodiematch"><input type="file" name="image">
+				</div><br>
+				<div class="form-group">
+					<input autocomplete="off" autofocus class="form-control" name="title" placeholder="Title"/>
+				</div><br>
+				<div class="form-group">
+					<div id="bio">
+						<textarea wrap="soft" class="form-control" name="bio" placeholder="Bio" rows="5"></textarea>
+					</div>
+				</div><br>
+				If there are no allergies, please don't select any options.
+				<div class="form-group">
+					<select id="tags" name="tags" multiple class="form-control">
+						<option disabled selected value="">Allergies</option>
+						<option value = "corn">Corn</option>
+						<option value = "egg">Egg</option>
+						<option value = "fish">Fish</option>
+						<option value = "meat">Meat</option>
+						<option value = "milk">Milk</option>
+						<option value = "peanut">Peanut</option>
+						<option value = "shellfish">Shellfish</option>
+						<option value = "soy">Soy</option>
+						<option value = "tree nut">Tree Nut</option>
+						<option value = "wheat">Wheat</option>
+						<option value = "FPIES">FPIES</option>
+					</select>
+				</div>
+				<script>
+					$('option').mousedown(function(e) {
+						e.preventDefault();
+						var originalScrollTop = $(this).parent().scrollTop();
+						console.log(originalScrollTop);
+						$(this).prop('selected', $(this).prop('selected') ? false : true);
+						var self = this;
+						$(this).parent().focus();
+						setTimeout(function() {
+							$(self).parent().scrollTop(originalScrollTop);
+						}, 0);
+
+						return false;
+					});
+				</script><br>
+				<div class="form-group">
+					<button class="button-foodiematch" type="submit">Change recipe</button>
+				</div><br>
 			</div>
-		</div>
-		<br>
-		If there are no allergies, please don't select any options.
-		<div class="form-group">
-			<select id="tags" name="tags" multiple class="form-control">
-				<option disabled selected value="">Allergies</option>
-				<option value = "corn">Corn</option>
-				<option value = "egg">Egg</option>
-				<option value = "fish">Fish</option>
-				<option value = "meat">Meat</option>
-				<option value = "milk">Milk</option>
-				<option value = "peanut">Peanut</option>
-				<option value = "shellfish">Shellfish</option>
-				<option value = "soy">Soy</option>
-				<option value = "tree nut">Tree Nut</option>
-				<option value = "wheat">Wheat</option>
-				<option value = "FPIES">FPIES</option>
-			</select>
-		</div>
-
-		<script>
-			$('option').mousedown(function(e) {
-				e.preventDefault();
-				var originalScrollTop = $(this).parent().scrollTop();
-				console.log(originalScrollTop);
-				$(this).prop('selected', $(this).prop('selected') ? false : true);
-				var self = this;
-				$(this).parent().focus();
-				setTimeout(function() {
-					$(self).parent().scrollTop(originalScrollTop);
-				}, 0);
-
-				return false;
-			});
-			</script>
-		<br>
-		<div class="form-group">
-			<button class="button-foodiematch" type="submit">Change recipe</button>
-		</div>
-		<br>
-	</fieldset>
-	</div>
-</form><br><br></h_changerecipe>
+		</fieldset>
+	</form><br><br>
+</h_changerecipe>
 
 {% endblock %}
 
