@@ -693,8 +693,13 @@ main.nav-is-visible {
   width: 70px;
   font-size: 50%;
 }
-
-main #apology img {
+.apology{
+  text-align:center;
+  vertical-align:middle;
+  margin-left:auto;
+  margin-right:auto;
+}
+main .apology img {
   height:70%;
   width:70%;
   display: block;
