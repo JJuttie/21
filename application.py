@@ -324,7 +324,7 @@ def delete():
             #acties die jouw hebben geliket verwijderen
             db.execute("DELETE FROM like WHERE likedid=:likedid", likedid=session["user_id"])
 
-            return redirect(url_for("login")
+            return redirect(url_for("login"))
 
         else:
             return apology("Wachtwoord komt niet overeen met je echte wachtwoord")
