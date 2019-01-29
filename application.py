@@ -182,11 +182,37 @@ def register():
     session.clear()
     if request.method == "POST":
 
+<<<<<<< HEAD
+        fromaddr = "foodiematch21@gmail.com"
+        toaddr = request.form.get("email")
+
+        msg = MIMEMultipart()
+
+        msg['From'] = fromaddr
+        msg['To'] = toaddr
+        msg['Subject'] = "Registration confirmation"
+
+        body = "Thank you for registering on FoodieMatch!\n We wish you a wonderful time on our platform! \n Hopefully you will meet awesome cooks and people. \n\n\n Kind regards, \n Team FoodieMatch"
+        msg.attach(MIMEText(body, 'plain'))
+
+
+        filename = "background_foodiematch.png"
+        attachment = open("static/background_foodiematch.png", "rb")
+
+        part = MIMEBase('application', 'octet-stream')
+        part.set_payload((attachment).read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+
+        msg.attach(part)
+
+=======
         gmail_user = "foodiematch21@gmail.com"
         gmail_pwd = "FoodieMatch21#"
         TO = request.form.get("email")
         SUBJECT = "Registration confirmation"
         message = "Thank you for registering on FoodieMatch!"
+>>>>>>> b9e10872e278f0f075c7c34cc3eaefe786258af0
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.ehlo()
         server.starttls()
