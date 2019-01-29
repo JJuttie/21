@@ -293,55 +293,41 @@ def forgot():
     else:
         return render_template("forgot.html")
 
-@app.route("/password", methods=["GET", "POST"])
-@login_required
-def password():
-    """Change your password"""
-    if request.method == "POST":
-        # wachtwoord opgeven
-        if not request.form.get("new"):
-            return apology("vul je nieuwe wachtwoord in")
-
-        # wachtwoord bevestigen
-        elif not request.form.get("confirmation"):
-            return apology("vul je bevestiging in")
-
-        #checken of de nieuwe hetzelfde zijn
-        if request.form.get("new") != request.form.get("confirmation"):
-            return apology("nieuwe wachtwoorden zijn niet gelijk aan elkaar")
-
-        #database updaten
-        db.execute("UPDATE users SET hash =:hash WHERE \
-        id=:id", id=session["user_id"], hash=pwd_context.hash(request.form.get("confirmation")))
-
-        return redirect(url_for("index"))
-
-    else:
-        return render_template("account.html")
-
 @app.route("/delete", methods=["GET", "POST"])
 @login_required
 def delete():
     """Delete your account"""
     if request.method == "POST":
 
-        #user verwijderen
-        db.execute("DELETE FROM users WHERE id=:id", id=session["user_id"])
+        #wachtwoord bevestigen
+        if not request.form.get("old"):
+            return apology("bevestig je accountverwijdering met je wachtwoord")
 
-        #afbeelding van gebruiker verwijderen
-        oldfile = db.execute("SELECT imageid FROM recipes WHERE id=:id", id=session["user_id"])
-        os.remove(oldfile[0]["imageid"])
+        #wachtwoord controleren
+        controle = pwd_context.hash(request.form.get("old"))
+        echt = db.execute("SELECT hash FROM users WHERE id=:id", id=session["user_id"])
 
-        #recipe verwijderen
-        db.execute("DELETE FROM recipes WHERE id=:id", id=session["user_id"])
+        if controle == echt:
+            #user verwijderen
+            db.execute("DELETE FROM users WHERE id=:id", id=session["user_id"])
 
-        #jouw likes verwijderen
-        db.execute("DELETE FROM like WHERE currentid=:currentid", currentid=session["user_id"])
+            #afbeelding van gebruiker verwijderen
+            oldfile = db.execute("SELECT imageid FROM recipes WHERE id=:id", id=session["user_id"])
+            os.remove(oldfile[0]["imageid"])
 
-        #acties die jouw hebben geliket verwijderen
-        db.execute("DELETE FROM like WHERE likedid=:likedid", likedid=session["user_id"])
+            #recipe verwijderen
+            db.execute("DELETE FROM recipes WHERE id=:id", id=session["user_id"])
 
-        return redirect(url_for("login"))
+            #jouw likes verwijderen
+            db.execute("DELETE FROM like WHERE currentid=:currentid", currentid=session["user_id"])
+
+            #acties die jouw hebben geliket verwijderen
+            db.execute("DELETE FROM like WHERE likedid=:likedid", likedid=session["user_id"])
+
+            return redirect(url_for("login")
+
+        else:
+            return apology("Wachtwoord komt niet overeen met je echte wachtwoord")
 
     else:
         return render_template("account.html")
@@ -484,12 +470,12 @@ def changerecipe():
 
     else:
         huidig = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
-        if not huidig:
-            return redirect(url_for("recipe"))
-        else:
-            tags = [tag for tag in huidig[0] if huidig[0][tag]==1]
-            tags = ", ".join(tags)
+        tags = [tag for tag in huidig[0] if huidig[0][tag]==1]
+        tags = ", ".join(tags)
+        if huidig:
             return render_template("changerecipe.html", huidig=huidig, tags=tags)
+        else:
+            return redirect(url_for("recipe"))
 
 
 
