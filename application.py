@@ -317,7 +317,34 @@ def password():
         return redirect(url_for("index"))
 
     else:
-        return render_template("password.html")
+        return render_template("account.html")
+
+@app.route("/delete", methods=["GET", "POST"])
+@login_required
+def delete():
+    """Delete your account"""
+    if request.method == "POST":
+
+        #user verwijderen
+        db.execute("DELETE FROM users WHERE id=:id", id=session["user_id"])
+
+        #afbeelding van gebruiker verwijderen
+        oldfile = db.execute("SELECT imageid FROM recipes WHERE id=:id", id=session["user_id"])
+        os.remove(oldfile[0]["imageid"])
+
+        #recipe verwijderen
+        db.execute("DELETE FROM recipes WHERE id=:id", id=session["user_id"])
+
+        #jouw likes verwijderen
+        db.execute("DELETE FROM like WHERE currentid=:currentid", currentid=session["user_id"])
+
+        #acties die jouw hebben geliket verwijderen
+        db.execute("DELETE FROM like WHERE likedid=:likedid", likedid=session["user_id"])
+
+        return redirect(url_for("login"))
+
+    else:
+        return render_template("account.html")
 
 @app.route("/recipe", methods=["GET", "POST"])
 @login_required
