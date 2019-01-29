@@ -409,7 +409,7 @@ main {
   backface-visibility: hidden;
 }
 /* main section on login page*/
-main h2 {
+main h_login {
   height:100%;
   width:100%;
   text-align: center;
@@ -425,7 +425,8 @@ main h2 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-main h3 {
+/* achtergrond voor register page*/
+main h_register {
   height:100%;
   width:100%;
   text-align: center;
@@ -441,7 +442,8 @@ main h3 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-main h4 {
+/* achtergrond voor account page*/
+main h_account {
   height:100%;
   width:100%;
   text-align: center;
@@ -457,7 +459,8 @@ main h4 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-main h5 {
+/* achtergrond voor index page*/
+main h_index {
   height:100%;
   width:100%;
   text-align: center;
@@ -473,7 +476,8 @@ main h5 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-main h6 {
+/* achtergrond voor change_recipe page*/
+main h_changerecipe {
   height:100%;
   width:100%;
   text-align: center;
@@ -489,8 +493,8 @@ main h6 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-main h7 {
+/* achtergrond voor recipe page*/
+main h_recipe {
   height:100%;
   width:100%;
   text-align: center;
@@ -506,8 +510,8 @@ main h7 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-main h9 {
+/* achtergrond voor matches page*/
+main h_matches {
   height:100%;
   width:100%;
   text-align: center;
@@ -523,7 +527,16 @@ main h9 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+/* achtergrond voor forgot page*/
+main h_forgot{
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #ffffff;
+  margin: 2em auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 /* semi-transparent box on login page */
 .login_screen {
   background: rgb(0, 0, 0,0.59);
@@ -620,15 +633,6 @@ main h9 {
 }
 .login_list{
   list-style:none;
-}
-main h1{
-  text-align: center;
-  font-size: 2.4rem;
-  font-weight: 300;
-  color: #ffffff;
-  margin: 2em auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 main.nav-is-visible {
   -webkit-transform: translateY(80px);
