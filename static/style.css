@@ -611,7 +611,6 @@ main h_forgot{
   margin:auto;
   border-radius:2%;
 }
-
 .forgotpassword{
   color:white;
 }
@@ -624,6 +623,7 @@ main h_forgot{
 .newregister:hover{
   color:rgb(121, 51, 18);
 }
+/* button die gebruikt worden op de website van foodiematch */
 .button-foodiematch{
   padding:10px 15px;
   font-size:16px;
