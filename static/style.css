@@ -406,6 +406,23 @@ main h_login {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* achtergrond voor about page*/
+main h_about {
+  height:100%;
+  width:100%;
+  text-align: left;
+  font-size:30px;
+  font-weight: 400;
+  color: #ffffff;
+  background: url("background_foodiematch.png") ;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:table;
+  margin-top:5px;
+  margin-bottom:5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 /* achtergrond voor register page*/
 main h_register {
   height:100%;
@@ -542,6 +559,16 @@ main h_forgot{
   background: rgb(0, 0, 0,0.59);
   text-align: center;
   min-width:180px;
+  width:30vw;
+  height:auto;
+  margin:auto;
+  border-radius:2%;
+}
+/* semi-transparent box on about page */
+.about_screen {
+  background: rgb(0, 0, 0,0.59);
+  text-align: center;
+  min-width:200px;
   width:30vw;
   height:auto;
   margin:auto;

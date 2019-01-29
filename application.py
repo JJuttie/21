@@ -122,6 +122,10 @@ def like():
     else:
         return render_template("index.html")
 
+@app.route("/about", methods=["GET", "POST"])
+def about():
+    return render_template("about.html")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in."""
@@ -181,6 +185,7 @@ def register():
     # if user reached route via POST (as by submitting a form via POST)
     session.clear()
     if request.method == "POST":
+
         fromaddr = "foodiematch21@gmail.com"
         toaddr = request.form.get("email")
 
@@ -203,15 +208,10 @@ def register():
         part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 
         msg.attach(part)
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.ehlo()
-        server.starttls()
-        server.login(gmail_user, gmail_pwd)
-        BODY = '\r\n'.join(['To: %s' % TO,
-                'From: %s' % gmail_user,
-                'Subject: %s' % SUBJECT,
-                '', message])
-        server.sendmail(gmail_user, [TO], BODY)
+        server.login(fromaddr, "FoodieMatch21#")
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+        server.quit()
 
         # provide email
         if not request.form.get("email"):

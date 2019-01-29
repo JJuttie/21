@@ -47,6 +47,9 @@
 					<li {%- if request.path=="/login" %} class="cd-selected"{% endif %}>
 	    				<a href="{{ url_for('login') }}">Log In</a>
 					</li>
+					<li {%- if request.path=="/about" %} class="cd-selected"{% endif %}>
+	    				<a href="{{ url_for('about') }}">About</a>
+					</li>
 	            </ul>
 	        {% endif %}
 	        	<span class="cd-marker color-1"></span>
