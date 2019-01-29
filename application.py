@@ -326,23 +326,35 @@ def delete():
     """Delete your account"""
     if request.method == "POST":
 
-        #user verwijderen
-        db.execute("DELETE FROM users WHERE id=:id", id=session["user_id"])
+        #wachtwoord bevestigen
+        if not request.form.get("old"):
+            return apology("bevestig je accountverwijdering met je wachtwoord")
 
-        #afbeelding van gebruiker verwijderen
-        oldfile = db.execute("SELECT imageid FROM recipes WHERE id=:id", id=session["user_id"])
-        os.remove(oldfile[0]["imageid"])
+        #wachtwoord controleren
+        rows = db.execute("SELECT * FROM users WHERE id = :id", id=session["user_id"])
 
-        #recipe verwijderen
-        db.execute("DELETE FROM recipes WHERE id=:id", id=session["user_id"])
+        # ensure email exists and password is correct
+        if len(rows) != 1 or not pwd_context.verify(request.form.get("old"), rows[0]["hash"]):
+            return apology("wachtwoord komt niet overeen met echte wachtwoord")
 
-        #jouw likes verwijderen
-        db.execute("DELETE FROM like WHERE currentid=:currentid", currentid=session["user_id"])
+        else:
+            #user verwijderen
+            db.execute("DELETE FROM users WHERE id=:id", id=session["user_id"])
 
-        #acties die jouw hebben geliket verwijderen
-        db.execute("DELETE FROM like WHERE likedid=:likedid", likedid=session["user_id"])
+            #afbeelding van gebruiker verwijderen
+            oldfile = db.execute("SELECT imageid FROM recipes WHERE id=:id", id=session["user_id"])
+            os.remove(oldfile[0]["imageid"])
 
-        return redirect(url_for("login"))
+            #recipe verwijderen
+            db.execute("DELETE FROM recipes WHERE id=:id", id=session["user_id"])
+
+            #jouw likes verwijderen
+            db.execute("DELETE FROM like WHERE currentid=:currentid", currentid=session["user_id"])
+
+            #acties die jouw hebben geliket verwijderen
+            db.execute("DELETE FROM like WHERE likedid=:likedid", likedid=session["user_id"])
+
+            return redirect(url_for("login"))
 
     else:
         return render_template("account.html")
@@ -485,13 +497,11 @@ def changerecipe():
 
     else:
         huidig = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
-        tags = [tag for tag in huidig[0] if huidig[0][tag]==1]
-        tags = ", ".join(tags)
-        if huidig:
-            return render_template("changerecipe.html", huidig=huidig, tags=tags)
-        else:
+        if not huidig:
             return redirect(url_for("recipe"))
-
-
+        else:
+            tags = [tag for tag in huidig[0] if huidig[0][tag]==1]
+            tags = ", ".join(tags)
+            return render_template("changerecipe.html", huidig=huidig, tags=tags)
 
 
