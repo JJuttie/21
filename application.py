@@ -353,12 +353,6 @@ def recipe():
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         # afbeeldingstype achterhalen
         filetype = filename[filename.rfind("."):]
-        # als filetype niet goed is, apology
-        # filetype = str(filetype)
-        # print(filetype)
-        # if filetype != ".jpg" or filetype != ".jpeg" or filetype != ".png" or filetype != ".gif":
-        #     db.execute("DELETE FROM recipes WHERE id=:id", id=id)
-        #     return apology("Filetype not approved", 200)
         # afbeelding hernoemen
         os.rename("static/images/"+filename, "static/images/"+str(id)+filetype)
         # imageid voor in de database vormen
@@ -441,11 +435,6 @@ def changerecipe():
         filename = secure_filename(image.filename)
         # type van de afbeelding ophalen
         filetype = filename[filename.rfind("."):]
-        # als filetype niet goed is, apology
-        # print(filetype)
-        # if filetype != ".jpg" or filetype != ".jpeg" or filetype != ".png" or filetype != ".gif":
-        #     db.execute("DELETE FROM recipes WHERE id=:id", id=id)
-        #     return apology("Filetype not approved", 200)
         # de oude file van gebruiker ophalen en verwijderen
         oldfile = db.execute("SELECT imageid FROM recipes WHERE id=:id", id=id)
         os.remove(oldfile[0]["imageid"])
