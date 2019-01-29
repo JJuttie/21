@@ -1,30 +1,22 @@
 /* --------------------------------
-
 Primary style
-
 -------------------------------- */
 *, *::after, *::before {
   box-sizing: border-box;
 }
-
 html {
   font-size: 62.5%;
 }
-
 body {
   font-size: 1.6rem;
   font-family: "Open Sans", sans-serif;
   background-color: rgb(121, 51, 18);
 }
-
 a {
   text-decoration: none;
 }
-
 /* --------------------------------
-
 Main Components
-
 -------------------------------- */
 .cd-header {
   height: 80px;
@@ -63,7 +55,6 @@ Main Components
     transform: translateY(170px);
   }
 }
-
 .cd-logo {
   float: left;
   margin-top: 28px;
@@ -72,7 +63,6 @@ Main Components
   height: auto;
   padding: 20px;
 }
-
 .cd-3d-nav-trigger {
   position: relative;
   float: right;
@@ -140,7 +130,6 @@ Main Components
   -o-transform: translateY(-8px) rotate(45deg);
   transform: translateY(-8px) rotate(45deg);
 }
-
 .cd-3d-nav-container {
   /* this is the 3D navigation container */
   position: fixed;
@@ -179,7 +168,6 @@ Main Components
     height: 170px;
   }
 }
-
 .cd-3d-nav {
   /* this is the 3D rotating navigation */
   position: relative;
@@ -322,7 +310,6 @@ Main Components
     transform: translateX(-50%);
   }
 }
-
 .cd-marker {
   /* line at the bottom of nav selected item */
   position: absolute;
@@ -368,33 +355,27 @@ Main Components
   -o-transform: translateZ(0);
   transform: translateZ(0);
 }
-
 /* these are the colors of the markers - line + arrow */
 .color-1 {
   color: white;
   background-color: white;
 }
-
 .color-2 {
   color: white;
   background-color: white;
 }
-
 .color-3 {
   color: white;
   background-color: white;
 }
-
 .color-4 {
   color: white;
   background-color: white;
 }
-
 .color-5 {
   color: white;
   background-color: white;
 }
-
 main {
   -webkit-transition: -webkit-transform 0.5s;
   -moz-transition: -moz-transform 0.5s;
@@ -408,7 +389,7 @@ main {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-/* main section on login page*/
+/* achtergrond voor login page*/
 main h_login {
   height:100%;
   width:100%;
@@ -546,7 +527,7 @@ main h_forgot{
   margin:auto;
   border-radius:2%;
 }
-
+/* semi-transparent box on matches page */
 .matches_screen {
   background: rgb(0, 0, 0,0.59);
   text-align: center;
@@ -556,6 +537,7 @@ main h_forgot{
   margin:auto;
   border-radius:2%;
 }
+/* semi-top-transparent box on matches page */
 .matches_title_screen {
   background: rgb(0, 0, 0,0.59);
   text-align: center;
@@ -565,7 +547,7 @@ main h_forgot{
   margin:auto;
   border-radius:2%;
 }
-
+/* semi-transparent box on forgot password page */
 .forgot-screen {
   background: rgb(0, 0, 0,0.59);
   text-align: center;
@@ -576,7 +558,7 @@ main h_forgot{
   border-radius:2%;
   padding-top:15px;
 }
-
+/* semi-transparent box on index page */
 .index_screen {
   background: rgb(0, 0, 0,0.59);
   text-align: center;
@@ -586,12 +568,13 @@ main h_forgot{
   margin:auto;
   border-radius:2%;
 }
+/* responsive photo on index page */
 .responsivephoto{
   width:35vw;
   height:auto;
   display:inline;
 }
-
+/* semi-transparent box on change recipe page */
 .changerecipe_screen {
   background: rgb(0, 0, 0,0.59);
   text-align: center;
@@ -601,7 +584,7 @@ main h_forgot{
   margin:auto;
   border-radius:2%;
 }
-
+/* semi-transparent box on recipe page */
 .recipe_screen {
   background: rgb(0, 0, 0,0.59);
   text-align: center;
@@ -611,12 +594,18 @@ main h_forgot{
   margin:auto;
   border-radius:2%;
 }
+/* list to remove dots on index page */
+.login_list{
+  list-style:none;
+}
+/* forgot password on index page */
 .forgotpassword{
   color:white;
 }
 .forgotpassword:hover{
   color:rgb(121, 51, 18);
 }
+/* register on index page */
 .newregister{
   color:white;
 }
@@ -640,9 +629,6 @@ main h_forgot{
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-.login_list{
-  list-style:none;
-}
 main.nav-is-visible {
   -webkit-transform: translateY(80px);
   -moz-transform: translateY(80px);
@@ -659,7 +645,6 @@ main.nav-is-visible {
     transform: translateY(170px);
   }
 }
-
 .form-group {
   vertical-align: middle;
   display: block;
@@ -673,26 +658,23 @@ main.nav-is-visible {
   margin-left: auto;
   margin-right: auto;
 }
-
 .form-group .form-control {
   height: 40px;
 }
-
 .form-group #bio {
   height: 70% ;
   font-size: 70%;
 }
-
 .form-group #bio textarea {
   height: 100%;
   padding: 2px;
 }
-
 .form-group #tags {
   height: 70px;
   width: 70px;
   font-size: 50%;
 }
+/* class om back button te centreren */
 .apology{
   text-align:center;
   vertical-align:middle;
@@ -706,7 +688,7 @@ main .apology img {
   margin-left: auto;
   margin-right: auto;
 }
-
+/* achtergrond voor forgot page */
 .forgot {
   background: url("background_matches.jpg");
   background-size:cover;
