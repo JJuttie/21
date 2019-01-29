@@ -330,10 +330,13 @@ def delete():
             return apology("bevestig je accountverwijdering met je wachtwoord")
 
         #wachtwoord controleren
-        controle = pwd_context.hash(request.form.get("old"))
-        echt = db.execute("SELECT hash FROM users WHERE id=:id", id=session["user_id"])
+        rows = db.execute("SELECT * FROM users WHERE id = :id", id=session["user_id"])
 
-        if controle == echt:
+        # ensure email exists and password is correct
+        if len(rows) != 1 or not pwd_context.verify(request.form.get("old"), rows[0]["hash"]):
+            return apology("wachtwoord komt niet overeen met echte wachtwoord")
+
+        else:
             #user verwijderen
             db.execute("DELETE FROM users WHERE id=:id", id=session["user_id"])
 
@@ -351,9 +354,6 @@ def delete():
             db.execute("DELETE FROM like WHERE likedid=:likedid", likedid=session["user_id"])
 
             return redirect(url_for("login"))
-
-        else:
-            return apology("Wachtwoord komt niet overeen met je echte wachtwoord")
 
     else:
         return render_template("account.html")
