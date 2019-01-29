@@ -177,9 +177,9 @@ def register():
         msg['To'] = toaddr
         msg['Subject'] = "Registration confirmation"
 
-        body = "Thank you for registering on FoodieMatch!\n"
-
+        body = "Thank you for registering on FoodieMatch!\n We wish you a wonderful time on our platform! \n Hopefully you will meet awesome cooks and people. \n\n\n Kind regards, \n Team FoodieMatch"
         msg.attach(MIMEText(body, 'plain'))
+
 
         filename = "background_foodiematch.png"
         attachment = open("static/background_foodiematch.png", "rb")
