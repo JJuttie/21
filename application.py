@@ -181,8 +181,6 @@ def register():
     # if user reached route via POST (as by submitting a form via POST)
     session.clear()
     if request.method == "POST":
-
-<<<<<<< HEAD
         fromaddr = "foodiematch21@gmail.com"
         toaddr = request.form.get("email")
 
@@ -205,14 +203,6 @@ def register():
         part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 
         msg.attach(part)
-
-=======
-        gmail_user = "foodiematch21@gmail.com"
-        gmail_pwd = "FoodieMatch21#"
-        TO = request.form.get("email")
-        SUBJECT = "Registration confirmation"
-        message = "Thank you for registering on FoodieMatch!"
->>>>>>> b9e10872e278f0f075c7c34cc3eaefe786258af0
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.ehlo()
         server.starttls()
