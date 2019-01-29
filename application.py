@@ -496,13 +496,11 @@ def changerecipe():
 
     else:
         huidig = db.execute("SELECT * FROM recipes WHERE id=:id", id=session["user_id"])
-        tags = [tag for tag in huidig[0] if huidig[0][tag]==1]
-        tags = ", ".join(tags)
-        if huidig:
-            return render_template("changerecipe.html", huidig=huidig, tags=tags)
-        else:
+        if not huidig:
             return redirect(url_for("recipe"))
-
-
+        else:
+            tags = [tag for tag in huidig[0] if huidig[0][tag]==1]
+            tags = ", ".join(tags)
+            return render_template("changerecipe.html", huidig=huidig, tags=tags)
 
 
