@@ -556,6 +556,15 @@ main h_forgot{
   margin:auto;
   border-radius:2%;
 }
+.matches_title_screen {
+  background: rgb(0, 0, 0,0.59);
+  text-align: center;
+  min-width:180px;
+  width:30vw;
+  height:auto;
+  margin:auto;
+  border-radius:2%;
+}
 
 .forgot-screen {
   background: rgb(0, 0, 0,0.59);
