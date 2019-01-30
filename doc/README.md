@@ -4,6 +4,7 @@ Sebastiaan van Dijk
 Alex Hakvoort
 Jasmine Evers
 Mike van Gils
+
 ## Overzicht van project
 Voor het vak ‘Webprogrammeren en Databases IK’ is de opdracht om een eigen website te bouwen. Groep 21 heeft gekozen voor een ‘photo sharing’-website.
 Daarin kunnen gebruikers foto’s uploaden die door andere gebruikers kunnen worden beoordeeld. Onze doelgroep is kookliefhebbers.
@@ -37,9 +38,13 @@ Dat hopen wij met de Tinder-layout te gaan bereiken.
 -   ChangeRecipe-pagina, hier komt je huidige gerecht te staan maar ook de mogelijkheid om deze aan te passen.
 -   Account-pagina
 	-   Gegevens en wachtwoord wijzigen.
+	-   Account verwijderen
 	-   Uitloggen
 
-## Layout
+## Layout, de screenshots
+De screenshots van ons eindproduct zijn te vinden onder het mapje docs maar wij raden aan om onze productvideo te bekijken waarin wij per scherm en feature toelichting geven.
+
+## Layout, de schetsen
 ![enter image description here](https://lh3.googleusercontent.com/plZgqXmlpuy6YpRWbDfXFlHnCvLFc1NSGLyadCqEJu8LaKtnmnMuEHNhx7GcGbDu4aSt3kA-R5vl)
 Registratie pagina
 
@@ -79,3 +84,20 @@ API:
 De moeilijkste elementen zullen te maken hebben met het uploaden van de afbeeldingen en/of gifs. Daarnaast moeten we veel tijd steken in het
 uitzoeken hoe we matchende gebruikers ontdekken. We zullen met id's moeten gaan werken en wanneer er een wederzijdse like is, moeten wij een
 match maken.
+
+### Rolverdeling
+We hebben met z'n allen aan de website gewerkt. De een hield zich wat meer bezig met het back-end programmeerwerk en de ander wat meer met het
+HTML/CSS front-end programmeerwerk maar we ondersteunden elkaar op de plekken waar dat nodig was. Over het algemeen hebben Sebastiaan en Jasmine
+het meeste aan het uiterlijk gewerkt en Alex en Mike wat meer aan het python programmeerwerk.
+
+### Repository
+Onze repository hebben wij zo klein mogelijk proberen te houden. Het mapje git kwam er automatisch bij omdat het anders niet werkt. In het mapje doc
+kan onze DESIGN.md en README.md worden gevonden, daarnaast zie je daar ook onze oorspronkelijke schetsen en de screenshots van het eindproduct. In de static map
+zitten een aantal css-bestanden, achtergronden voor verschillende pagina's maar ook alle recipe-images/gifs van alle gebruiker (vernoemd naar hun user-id).
+
+Onze templates zijn al onze pagina's te vinden waarin je navigeert door onze website. De pagina's worden aangedreven door de functies die te vinden zijn in application.py
+waarvan sommige daarvan dan weer ondersteunt worden door functies uit helpers.py. Hierin staan codelines die vaker terugkomen en handiger werden om ze een vaste functie te geven.
+
+Tot slot onze database foodiematch.db. Hierin staan drie tabellen (users, recipes en like). In users staan de gebruikersgegevens, in recipes hun gerecht en de locatie van de afbeelding
+of gif in de repository, en in likes staan de acties waarin mensen zijn geliket of zelf geliket hebben.
+
