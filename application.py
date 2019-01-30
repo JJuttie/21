@@ -78,7 +78,7 @@ def index():
         # al gelikete accounts eruit halen:
         [userlist.remove(match) for match in liked if match in userlist]
 
-        # als alle gebruikers al weergeven zijn moet er iets gebeuren, logt nu uit!!!!
+        # als alle gebruikers al weergeven zijn ga naar matches
         if userlist == []:
             return(redirect(url_for("matches")))
         # willekeurige gebruiker uitkiezen
@@ -174,6 +174,8 @@ def register():
     session.clear()
     if request.method == "POST":
 
+
+        # stuur email naar nieuwe gebruiker
         fromaddr = "foodiematch21@gmail.com"
         toaddr = request.form.get("email")
 
