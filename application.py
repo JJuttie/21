@@ -5,6 +5,12 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.base import MIMEBase
+from email import encoders
+
 import os
 from werkzeug.utils import secure_filename
 from tempfile import mkdtemp
@@ -34,26 +40,6 @@ Session(app)
 
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///foodiematch.db")
-
-def reset():
-
-    """Sending email for password reset"""
-
-    gmail_user = "foodiematch21@gmail.com"
-    gmail_pwd = "FoodieMatch21#"
-    TO = request.form.get("email")
-    SUBJECT = "Password reset"
-    message = "Use this link to reset your password"
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-    server.starttls()
-    server.login(gmail_user, gmail_pwd)
-    BODY = '\r\n'.join(['To: %s' % TO,
-            'From: %s' % gmail_user,
-            'Subject: %s' % SUBJECT,
-            '', message])
-    server.sendmail(gmail_user, [TO], BODY)
-
 
 @app.route("/", methods=["GET", "POST"])
 @login_required
@@ -200,7 +186,6 @@ def register():
         body = "Thank you for registering on FoodieMatch!\n We wish you a wonderful time on our platform! \n Hopefully you will meet awesome cooks and people. \n\n\n Kind regards, \n Team FoodieMatch"
         msg.attach(MIMEText(body, 'plain'))
 
-
         filename = "background_foodiematch.png"
         attachment = open("static/background_foodiematch.png", "rb")
 
@@ -210,6 +195,9 @@ def register():
         part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 
         msg.attach(part)
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
         server.login(fromaddr, "FoodieMatch21#")
         text = msg.as_string()
         server.sendmail(fromaddr, toaddr, text)
