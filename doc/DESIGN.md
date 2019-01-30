@@ -100,6 +100,14 @@ def forgot():
 - indien juist, mogelijkheid om wachtwoord te updaten
 - daarna doorsturen naar login
 
+def delete():
+"""Delete account""""
+- controleert het wachtwoord dat je moet invoeren om te bevestigen
+- verwijdert usergegevens uit de tabel users
+- verwijdert het gerecht uit de tabel recipes
+- verwijdert het fotobestand uit de repository
+- verwijdert de acties waarin jij iemand hebt geliket, en de acties waarin jij bent geliket.
+
 
 ### Extra functies in application.py
 def Facebook_login():
