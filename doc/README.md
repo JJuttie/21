@@ -95,6 +95,8 @@ Onze repository hebben wij zo klein mogelijk proberen te houden. Het mapje git k
 kan onze DESIGN.md en README.md worden gevonden, daarnaast zie je daar ook onze oorspronkelijke schetsen en de screenshots van het eindproduct. In de static map
 zitten een aantal css-bestanden, achtergronden voor verschillende pagina's maar ook alle recipe-images/gifs van alle gebruiker (vernoemd naar hun user-id).
 
+De mappen partials en scss bevatten toevoegingen voor het algemene CSS bestand die er voornamelijk zijn voor het goed functioneren van de navigation bar.
+
 Onze templates zijn al onze pagina's te vinden waarin je navigeert door onze website. De pagina's worden aangedreven door de functies die te vinden zijn in application.py
 waarvan sommige daarvan dan weer ondersteunt worden door functies uit helpers.py. Hierin staan codelines die vaker terugkomen en handiger werden om ze een vaste functie te geven.
 
