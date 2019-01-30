@@ -109,6 +109,8 @@ def index():
         bio = gerecht[0]["bio"]
         tags = [tag for tag in gerecht[0] if gerecht[0][tag]==1]
         tags = ", ".join(tags)
+        if not tags:
+            tags = "None"
         # likedid opslaan in globale variabele
         session["likedid"] = user
         return render_template("index.html", imageid=imageid, title=title, bio=bio, tags=tags)
@@ -454,6 +456,8 @@ def matches():
         recipe[0]["name"] = users[0]["name"]
         recipe[0]["town"] = users[0]["town"]
         recipe[0]["tags"] = [tag for tag in recipe[0] if recipe[0][tag]==1]
+        if not recipe[0]["tags"]:
+            recipe[0]["tags"] = "None"
         recipelist.append(recipe)
     return render_template("matches.html", recipelist=recipelist)
 
@@ -526,6 +530,8 @@ def changerecipe():
         else:
             tags = [tag for tag in huidig[0] if huidig[0][tag]==1]
             tags = ", ".join(tags)
+            if not tags:
+                tags = "None"
             return render_template("changerecipe.html", huidig=huidig, tags=tags)
 
 
