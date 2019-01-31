@@ -5,6 +5,10 @@ Alex Hakvoort
 Jasmine Evers
 Mike van Gils
 
+### Onze productvideo
+Onze productvideo staat verborgen op YouTube maar is te vinden via deze link:
+ https://youtu.be/nx9MeS-tG3o
+
 ## Overzicht van project
 Voor het vak ‘Webprogrammeren en Databases IK’ is de opdracht om een eigen website te bouwen. Groep 21 heeft gekozen voor een ‘photo sharing’-website.
 Daarin kunnen gebruikers foto’s uploaden die door andere gebruikers kunnen worden beoordeeld. Onze doelgroep is kookliefhebbers.
